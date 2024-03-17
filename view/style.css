@@ -149,18 +149,20 @@ body {
 
 .brand .navh__link,
 .navh__items .navh__link {
-  padding: 10px 15px;
-  text-align: center;
+  padding: 13px 150px;
+  text-align: left;
   display: block;
 }
 
 .navh__items .navh__link {
-  color: var(--shades);
-  font-size: 0.99rem;
+  /* color: var(--shades); */
+  align-items: center;
+  font-size: 2rem;
 }
 
 .navh__items .navh__link:hover {
-  color: var(--secondary);
+  /* color: var(--secondary); */
+  color: #0dc043;
 }
 
 .navh__item:nth-child(1) .navh__link::before {
@@ -726,7 +728,7 @@ h1 {
 .menu-icon:checked + label,
 .menu-icon:not(:checked) + label {
   position: fixed;
-  top: 63px;
+  top: 35px;
   right: 75px;
   display: block;
   width: 30px;
@@ -791,7 +793,7 @@ h1 {
 
 .nav {
   position: fixed;
-  top: 33px;
+  top: 2px;
   right: 50px;
   display: block;
   width: 80px;
@@ -973,5 +975,64 @@ h1 {
   }
   .nav ul li a {
     font-size: 8vh;
+  }
+}
+
+.container1 {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    #db34c5,
+    #5d2ecc
+  ); /* Gradient background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.199); /* Shadow for depth */
+  border-radius: 10px; /* Rounded corners */
+  position: relative;
+  overflow: hidden;
+}
+
+.container1::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+      90deg,
+      rgba(197, 73, 73, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none; /* Allow clicking through the pattern layer */
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  background: lightblue;
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, #3498db 10%, transparent 20%),
+    radial-gradient(circle, transparent 10%, #3498db 20%);
+  background-size: 30px 30px; /* Adjust the size of the pattern */
+  animation: moveBackground 30s linear infinite; /* Adjust the animation duration and timing function */
+}
+
+@keyframes moveBackground {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(20%, 20%);
   }
 }
