@@ -62,7 +62,8 @@ body {
 
 .footer {
   height: 50vh;
-  background-color: var(--primary);
+  /* background-color: var(--primary); */
+  background-image: url(resources/background1.png);
 }
 
 .header {
