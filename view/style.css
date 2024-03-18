@@ -71,7 +71,8 @@ body {
 }
 
 .navhbar {
-  padding-top: 0.5em;
+  position: static;
+  padding-top: 0.3em;
   padding-bottom: 0.5em;
   background: linear-gradient(45deg, #102eff, #d2379b);
   -webkit-box-shadow: 0 14px 14px -14px rgba(0, 0, 0, 0.75);
@@ -1233,7 +1234,7 @@ input:checked + .slider:before {
 /* ========================== */
 
 .ag-format-container {
-  width: 1142px;
+  width: 1900px;
   margin: 0 auto;
 }
 
@@ -1282,7 +1283,7 @@ body {
   transform: scale(10);
 }
 .ag-courses-item_title {
-  min-height: 87px;
+  height: 87px;
   margin: 0 0 25px;
 
   overflow: hidden;
