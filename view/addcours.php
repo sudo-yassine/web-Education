@@ -1,11 +1,8 @@
 <?php
 include '../Controller/coursC.php';
 $coursC = new coursC();
-
 $error = "";
-
 $cours = null;
-
 if (
     isset($_POST["nom_cours"]) &&
     isset($_POST["heures"]) &&
@@ -18,7 +15,6 @@ if (
         !empty($_POST["niveau"]) &&
         !empty($_POST["contenu"]) 
     ) {
-       
         $cours = new cours(
             null,
             $_POST['nom_cours'],

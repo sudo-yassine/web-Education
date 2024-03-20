@@ -6,8 +6,6 @@ class cours
     private $heures;
     private $niveau;
     private $contenu;
-
-
     public function __construct($id = null, $nom_cours , $heures, $niveau ,$contenu)
     {
         $this->id_cours = $id;
@@ -54,18 +52,5 @@ class cours
     {
         $this->contenu = $contenu;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
 ?>

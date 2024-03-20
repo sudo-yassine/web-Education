@@ -1,7 +1,6 @@
 <?php
 include '../config.php';
 include '../model/cours.php';
-
 class coursC
 {
     public function listcours()
@@ -10,30 +9,24 @@ class coursC
         $db = config::getConnexion();
         try {
             $stmt = $db->query($sql);
-
-
-            // Fetch all rows as an associative array
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $data;
         } catch (Exception $e) {
             die('Error:' . $e->getMessage());
         }
     }
-
     function deletecours($id_cours)
     {
         $sql = "DELETE FROM cours WHERE id_cours = :id_cours";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
         $req->bindValue(':id_cours', $id_cours);
-
         try {
             $req->execute();
         } catch (Exception $e) {
             die('Error:' . $e->getMessage());
         }
     }
-
     function addcours($cours)
     {
         $sql = "INSERT INTO cours
@@ -52,7 +45,6 @@ class coursC
             echo 'Error: ' . $e->getMessage();
         }
     }
-
     function updatecours($cours, $id_cours)
     {
         try {
@@ -63,7 +55,6 @@ class coursC
                 heures = :h,
                 niveau = :nv,
                 contenu = :c 
-                
                WHERE id_cours= :id_cours'
             );
             $query->execute([
@@ -79,7 +70,6 @@ class coursC
             $e->getMessage();
         }
     }
-
     function showcours($id_cours)
     {
         $sql = "SELECT * from cours where id_cours = $id_cours";
@@ -87,7 +77,6 @@ class coursC
         try {
             $query = $db->prepare($sql);
             $query->execute();
-
             $cours= $query->fetch();
             return $cours;
         } catch (Exception $e) {
