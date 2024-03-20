@@ -9,7 +9,7 @@ class config
         if (!isset(self::$pdo)) {
             try {
                 self::$pdo = new PDO(
-                    'mysql:host=localhost;dbname=phpformation',
+                    'mysql:host=localhost;dbname=WisdomWave',
                     'root',
                     '',
                     [
