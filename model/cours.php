@@ -46,7 +46,14 @@ class cours
         $this->niveau = $niveau;
     }
 
-
+    public function getcontenu()
+    {
+        return $this->contenu;
+    }
+    public function setcontenu($contenu)
+    {
+        $this->contenu = $contenu;
+    }
 
 
 
