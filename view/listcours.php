@@ -89,7 +89,8 @@ $list = $coursC->listcours();
                     <th>heures</th>
                     <th>niveau</th>
                     <th>contenu</th>
-                    <th>Actions</th>
+                    <th>update</th>
+                    <th>delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -102,13 +103,13 @@ $list = $coursC->listcours();
                         <td><?= $cours['heures']; ?></td>
                         <td><?= $cours['niveau']; ?></td>
                         <td><?= $cours['contenu']; ?></td>
-                        
-                        <td align="center">
-
-                            <!-- <a href="updatecours.php?id=<?php echo $cours['id_cours']; ?>"><i></i>Update</a> -->
-                            <a href="deletecours.php?id_cours=<?php echo $cours['id_cours']; ?>"class="btn"><i class="fa-solid fa-trash fa-xl"></i>Delete</a>
-
+                        <td>
+                            <a href="updatecours.php?id_cours=<?php echo $cours['id_cours']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>update</a>
                         </td>
+                        <td>
+                            <a href="deletecours.php?id_cours=<?php echo $cours['id_cours']; ?>"class="btn"><i class="fa-solid fa-trash fa-xl"></i>Delete</a>
+                        </td>
+
                     </tr>
                 <?php
                 }
