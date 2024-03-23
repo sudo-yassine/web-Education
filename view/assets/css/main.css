@@ -23,7 +23,7 @@
 :root {
   --color-default: #0a0d13;
   --color-primary: #9821c7;
-  --color-secondary: #7314f0d5;
+  --color-secondary: #7c09e7;
 }
 
 /* Smooth scroll behavior */
@@ -207,7 +207,7 @@ section {
   background: var(--color-primary);
   width: 40px;
   height: 40px;
-  border-radius: 4px;
+  border-radius: 30px;
   transition: all 0.4s;
 }
 
@@ -362,7 +362,7 @@ section {
     background: var(--color-primary);
     padding: 8px 20px;
     margin-left: 30px;
-    border-radius: 4px;
+    border-radius: 20px;
     color: #fff;
   }
 
@@ -385,7 +385,7 @@ section {
     background: #fff;
     box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
     transition: 0.3s;
-    border-radius: 4px;
+    border-radius: 20px;
   }
 
   .navbar .dropdown ul li {
@@ -505,7 +505,7 @@ section {
   .navbar .get-a-quote:focus {
     background: var(--color-primary);
     padding: 8px 20px;
-    border-radius: 4px;
+    border-radius: 20px;
     margin: 15px;
     color: #fff;
   }
@@ -735,7 +735,7 @@ section {
   border-left: 15px solid #fff;
   z-index: 200;
   animation: none;
-  border-radius: 0;
+  border-radius: 20;
 }
 
 .about .play-btn:hover:after {
@@ -769,7 +769,7 @@ section {
 .services .card .card-img {
   overflow: hidden;
   margin-bottom: 15px;
-  border-radius: 0;
+  border-radius: 20;
 }
 
 .services .card .card-img img {
@@ -837,7 +837,7 @@ section {
   letter-spacing: 1px;
   display: inline-block;
   padding: 12px 40px;
-  border-radius: 5px;
+  border-radius: 20px;
   transition: 0.5s;
   margin: 10px;
   border: 2px solid #fff;
@@ -1035,7 +1035,7 @@ section {
   color: var(--color-default);
   text-align: left;
   background: rgba(14, 29, 52, 0.03);
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 .faq .accordion-button:focus {
@@ -1470,10 +1470,10 @@ section {
 
 .get-a-quote .php-email-form input,
 .get-a-quote .php-email-form textarea {
-  border-radius: 0;
+  border-radius: 20;
   box-shadow: none;
   font-size: 14px;
-  border-radius: 0;
+  border-radius: 20;
 }
 
 .get-a-quote .php-email-form input:focus,
@@ -1495,7 +1495,7 @@ section {
   padding: 10px 30px;
   color: #fff;
   transition: 0.4s;
-  border-radius: 4px;
+  border-radius: 20px;
 }
 
 .get-a-quote .php-email-form button[type="submit"]:hover {
@@ -1528,7 +1528,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 4px;
+  border-radius: 20px;
   transition: all 0.3s ease-in-out;
   margin-right: 15px;
 }
@@ -1600,7 +1600,7 @@ section {
 
 .contact .php-email-form input,
 .contact .php-email-form textarea {
-  border-radius: 4px;
+  border-radius: 20px;
   box-shadow: none;
   font-size: 14px;
 }
@@ -1619,7 +1619,7 @@ section {
   padding: 10px 35px;
   color: #fff;
   transition: 0.4s;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 .contact .php-email-form button[type="submit"]:hover {
@@ -1708,8 +1708,9 @@ section {
 .hero {
   width: 100%;
   min-height: 50vh;
-  background-color: var(--color-secondary);
-  background-image: url("../img/hero-bg.png");
+  background: linear-gradient(45deg, #102eff, #d2379b);
+  /* background-color: var(--color-secondary); */
+  /* background-image: url("../img/hero-bg.png"); */
   background-size: cover;
   background-position: center;
   position: relative;
@@ -1740,7 +1741,7 @@ section {
 .hero form {
   background: #fff;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .hero form .form-control {
@@ -1809,7 +1810,8 @@ section {
 --------------------------------------------------------------*/
 .footer {
   font-size: 14px;
-  background-color: var(--color-secondary);
+  /* background-color: var(--color-secondary); */
+  background: linear-gradient(45deg, #102eff, #d2379b);
   padding: 50px 0;
   color: white;
 }
@@ -1919,10 +1921,10 @@ section {
   color: #fff;
 }
 /* ===================================== */
-
+/* button animated */
 .btn-conteiner {
   display: flex;
-  margin-left: 38px;
+  margin-left: 35px;
   justify-content: center;
   --color-text: #ffffff;
   --color-background: #ff135a6e;
@@ -1933,7 +1935,7 @@ section {
 .btn-content {
   display: flex;
   align-items: center;
-  padding: 5px 30px;
+  padding: 1px 15px;
   text-decoration: none;
   font-family: "Poppins", sans-serif;
   font-weight: 650;
@@ -1941,7 +1943,7 @@ section {
   color: var(--color-text);
   background: var(--color-background);
   transition: 1s;
-  border-radius: 10px;
+  border-radius: 30px;
   box-shadow: 0 0 0.2em 0 var(--color-background);
 }
 
@@ -1967,7 +1969,7 @@ section {
 }
 
 .icon-arrow {
-  width: 20px;
+  width: 25px;
   margin-left: 15px;
   position: relative;
   top: 6%;
@@ -2027,3 +2029,121 @@ section {
     outline-offset: 0;
   }
 }
+
+/* animation wave */
+
+:root {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+*,
+:before,
+:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  -ms-box-sizing: inherit;
+  -o-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+/* #page-wrap {
+  position: relative;
+  display: block;
+  clear: both;
+  background: none;
+  color: #000;
+  text-decoration: none;
+  padding: 3rem 0;
+  width: 100%;
+  height: 100%;
+} */
+
+#inner-wrap {
+  position: relative;
+  top: 3rem;
+  left: 0;
+  right: 0;
+  bottom: 3rem;
+  display: table;
+  width: 100%;
+  height: 100%;
+  min-height: 322px;
+  overflow: visible;
+}
+
+.waves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  min-width: 100%;
+  min-height: 70%;
+  margin: auto 0;
+}
+
+/* .text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: 83%;
+  height: 100%;
+  margin: auto;
+} */
+
+img,
+svg {
+  display: block;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.group:before,
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.group {
+  zoom: 1;
+}
+/* 
+.credits {
+  position: relative;
+  z-index: 9;
+  font-size: 130%;
+  text-align: center;
+  width: 100%;
+  padding: 2rem 0;
+} */
+
+/* .credits a {
+  display: inline-block;
+  color: #df1888;
+  font-family: Arial, sans-serif;
+  line-height: 1.5em;
+  text-decoration: none !important;
+  white-space: nowrap;
+  margin: 0 1.2em;
+  padding: 0.6em 0;
+  transition: 150ms;
+}
+
+.credits a:hover {
+  color: #2d71b9;
+  cursor: pointer;
+} */
