@@ -1,109 +1,103 @@
 <?php
 include '../config.php';
-include '../model/Recrut.php';
-  /*
-    CREATE TABLE recrut(
-        id_recrutement int,
-        date_entretien DATE,
-        statu int,
-        cv varchar(255),
-        nb_question int,
-        reponse varchar(255),
-        FOREIGN KEY(id_enseignant) REFERENCES enseignant(id_enseignant)      
-      );
-    */
+include '../model/recrut.php';
 
-class RecrutC
+/*
+CREATE TABLE recrut(
+  id_recrutement int,
+  date_entretien DATE,
+  statu int,
+  cv varchar(255),
+  nb_question int,
+  reponse varchar(255),
+  FOREIGN KEY(id_enseignant) REFERENCES enseignant(id_enseignant)
+
+);
+*/
+class recrutC
 {
-    public function listRecrut()
+    public function listrecrut()
     {
-        $sql = "SELECT * FROM Recrut";
+        $sql = "SELECT * FROM recrut";
         $db = config::getConnexion();
         try {
             $stmt = $db->query($sql);
-            // Fetch all rows as an associative array
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $data;
         } catch (Exception $e) {
             die('Error:' . $e->getMessage());
         }
     }
-
-    function deleteRecrut($id_recrutement)
+    function deleterecrut($id_recrut)
     {
-        $sql = "DELETE FROM Recrut WHERE id_recrutement = :id_recrutement";
+        $sql = "DELETE FROM recrut WHERE id_recrutement = :id_recrutement";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
-        $req->bindValue(':id_recrutement', $id_recrutement);
-
+        $req->bindValue(':id_recrutement', $id_recrut);
         try {
             $req->execute();
         } catch (Exception $e) {
             die('Error:' . $e->getMessage());
         }
     }
-
-    function addRecrut($Recrut)
+    function addrecrut($recrut)
     {
-        $sql = "INSERT INTO Recrut  
-        VALUES (NULL, :id_recrutement,:date_entretien, :statu, :cv, :nb_question, :reponse)";
+        $sql = "INSERT INTO recrut
+        VALUES (NULL, :dr,:st,:cv,:nbq,:rp,:ide)";
         $db = config::getConnexion();
         try {
-            var_dump($Recrut);
+            var_dump($recrut);
             $query = $db->prepare($sql);
             $query->execute([
-                'id_recrutement' => $Recrut->getid_ecrut(),
-                'date_entretien' => $Recrut->getdate_entretien(),
-                'statu' => $Recrut->getstatu(),
-                'cv' => $Recrut->getcv(),
-                'nb_question' => $Recrut->getnb_question(),
-                'reponse' => $Recrut->getreponse()
-
+                'de' => $recrut->getdate_entretien(),
+                'st' => $recrut->getstatu(),
+                'cv' => $recrut->getcv(),
+                'nbq' => $recrut->getnb_question(),               
+                'rp' => $recrut->getreponse(),
+                'ide' => $recrut->getid_enseignant()
 
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
         }
     }
-
-    function updateRecrut($Recrut, $id_recrutement)
+    function updaterecrut($recrut, $id_recrutement)
     {
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
-                'UPDATE Recrut SET 
-                    id_recrutement = :id_recrutement, 
-                    date_entretien = :date_entretien, 
-                    statu = :statu,
-                    cv = :cv,
-                    nb_question = :nb_question,
-                    reponse = :reponse
-                WHERE id_recrutement= :id_recrutement'
+                'UPDATE recrut SET
+                date_entretien = :de,
+                statu = :st,
+                cv = :cbv,
+                nb_questioncontnbq,n
+                rp = :rp,                
+                ide = :ideu = :c 
+               WHERE id_recrutement= :id_recrutement'
             );
             $query->execute([
-                'id_recrutement' => $Recrut->getid_ecrut(),
-                'date_entretien' => $Recrut->getdate_entretien(),
-                'statu' => $Recrut->getstatu(),
-                'cv' => $Recrut->getcv(),
-                'nb_question' => $Recrut->getnb_question(),
-                'reponse' => $Recrut->getreponse()
+                'id' => $recrut->getid(),
+                'de' => $recrut->getdate_entretien(),
+                'st' => $recrut->getstatu(),
+                'cv' => $recrut->getcv(),
+                'nbq' => $recrut->getnb_question(),               
+                'rp' => $recrut->getreponse(),
+                'ide' => $recrut->getid_enseignant()
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {
             $e->getMessage();
         }
     }
-
-    function showRecrut($id_recrutement)
+    function showrecrut($id_recrutement)
     {
-        $sql = "SELECT * from Recrut where id_recrutement = $id_recrutement";
+        $sql = "SELECT * from recrut where id_recrutement = $id_recrutement";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute();
-
-            $Recrut = $query->fetch();
-            return $Recrut;
+            $recrut= $query->fetch();
+            return $recrut;
         } catch (Exception $e) {
             die('Error: ' . $e->getMessage());
         }

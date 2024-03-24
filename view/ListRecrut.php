@@ -1,7 +1,7 @@
 <?php
 include '../Controller/RecrutC.php';
-$RecrutC = new RecrutC();
-$list = $RecrutC->listRecrut();
+$recrutC = new recrutC();
+$list = $recrutC->listrecrut();
 
 
 
@@ -51,30 +51,30 @@ $list = $RecrutC->listRecrut();
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id_recrutement="addRecrutModalLabel">Ajout Recrut</h5>
+                        <h5 class="modal-title" id_recrutement="addRecrutModalLabel">Ajout recrut</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                        
                         <!-- upload à changer-->
-                        <form method="POST" id="insertForm" action="upload.php" enctype="multipart/form-data">
+                        <form method="POST" id="insertForm" action="AddRecrut.php" enctype="multipart/form-data">
                             <div class="row mb-3">
                                 <div class="col">
-                                    <label class="form-label">date entretien/label>
-                                    <input type="date" class="form-control" name="date_entretien" placeholder="AAAA-MM-JJ">
+                                    <label class="form-label">date entretien</label>
+                                    <input type="date" class="form-control" name="a" placeholder="AAAA-MM-JJ">
                                 </div>
                                 <div class="col">
                                     <label class="form-label">statu</label>
-                                    <input type="text" class="form-control" name="statu" placeholder="">
+                                    <input type="text" class="form-control" name="b" placeholder="">
                                 </div>
-                                <label class="form-label">cv/label>
-                                    <input type="link" class="form-control" name="cv" placeholder="UPLOAD HERE">
+                                <label class="form-label">cv</label>
+                                    <input type="text" class="form-control" name="c" placeholder="UPLOAD HERE">
                                 </div>
-                                <div class="col">
-                                    <!-- question -->
+                                <label class="form-label">nb_question</label>
+                                    <input type="text" class="form-control" name="d" placeholder="...">
                                 </div>
-                                <label class="form-label">reponse/label>
-                                    <input type="text" class="form-control" name="reponse" placeholder="repondre ici">
+                                <label class="form-label">reponse</label>
+                                    <input type="text" class="form-control" name="e" placeholder="repondre ici">
                                 </div>
                                 <div class="col">
                                 </div>          
@@ -100,21 +100,22 @@ $list = $RecrutC->listRecrut();
             </thead>
             <tbody>
                 <?php
-                foreach ($list as $Recrut) {
+                foreach ($list as $recrut) {
                 ?>
                     <tr>
-                        <td><?= $Recrut['id_recrutement']; ?></td>
-                        <td><?= $Recrut['date_entretien']; ?></td>
-                        <td><?= $Recrut['statu']; ?></td>
-                        <td><?= $Recrut['cv']; ?></td>
-                        <td><?= $Recrut['reponse']; ?></td>
+                        <td><?= $recrut['id_recrutement']; ?></td>
+                        <td><?= $recrut['date_entretien']; ?></td>
+                        <td><?= $recrut['statu']; ?></td>
+                        <td><?= $recrut['cv']; ?></td>
+                        <td><?= $recrut['reponse']; ?></td>
                         <td align="center">
                         <!--  
-                            <a href="UpdateRecrut.php?id_recurtement=<?php echo $Recrut['id_recurtement']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>Update</a>
-                            <a href="DeleteRecrut.php?id_recurtement=<?php echo $Recrut['id_recurtement']; ?>" class="btn"><i class="fa-solid fa-trash fa-xl"></i>Delete</a>
+                            <a href="UpdateRecrut.php?id_recurtement=<?php echo $recrut['id_recurtement']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>Update</a>
+                            <a href="DeleteRecrut.php?id_recurtement=<?php echo $recrut['id_recurtement']; ?>" class="btn"><i class="fa-solid fa-trash fa-xl"></i>Delete</a>
                         -->
                         
-                        <a href="DeleteRecrut.php?id_recrutement=<?php echo $Recrut['id_recrutement']; ?>"><i ></i>Delete</a>                        </td>
+                        <!-- <a href="UpdateRecrut.php?id_recurtement=<?php echo $recrut['id_recurtement']; ?>"><i ></i>Update</a> -->
+                        <a href="DeleteRecrut.php?id_recrutement=<?php echo $recrut['id_recrutement']; ?>"><i ></i>Delete</a>                        </td>
                     </tr>
                 <?php
                 }
