@@ -1929,24 +1929,24 @@ section {
   margin-left: 35px;
   justify-content: center;
   --color-text: #ffffff;
-  --color-background: #ff135a6e;
-  --color-outline: #ff145a56;
-  --color-shadow: #00000080;
+  --color-background: #0ae75fab;
+  /* --color-outline: #ff145a56; */
+  /* --color-shadow: #00000080; */
 }
 
 .btn-content {
   display: flex;
   align-items: center;
   padding: 1px 15px;
-  text-decoration: none;
+  text-decoration: dashed;
   font-family: "Poppins", sans-serif;
-  font-weight: 650;
-  font-size: 35px;
+  font-weight: 750;
+  font-size: 50px;
   color: var(--color-text);
   background: var(--color-background);
   transition: 1s;
   border-radius: 30px;
-  box-shadow: 0 0 0.2em 0 var(--color-background);
+  /* box-shadow: 0 0 0.2em 0 var(--color-background); */
 }
 
 .btn-content:hover,
@@ -2149,3 +2149,11 @@ svg {
   color: #2d71b9;
   cursor: pointer;
 } */
+/* =============== */
+
+.headertext {
+  position: relative;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: black;
+}
