@@ -6,9 +6,9 @@ class examen
     private $titre;
     private $description;
     private $date_limite;
-    public function __construct($id = null, $id_cours , $titre, $description ,$date_limite)
+    public function __construct($id_examen = null, $id_cours , $titre, $description ,$date_limite)
     {
-        $this->id_examen = $id;
+        $this->id_examen = $id_examen;
         $this->id_cours = $id_cours;
         $this->titre = $titre;
         $this->description = $description;

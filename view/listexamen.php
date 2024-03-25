@@ -19,7 +19,7 @@ $list = $examenC->listexamen();
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3 mt-5" >
             <div class="text-body-secondary">
-                <span class="h5">tous les examen</span>
+                <span class="h5">tous les examens</span>
                 <br>
                crud examen 
             </div>
@@ -38,12 +38,12 @@ $list = $examenC->listexamen();
                         <form method="POST" id="insertForm" action="addexamen.php" enctype="multipart/form-data">
                             <div class="row mb-3">
                                 <div class="col">
-                                    <label class="form-label">ID cours</label>
-                                    <input type="text"class="form-control"  name="id_cours" placeholder="id cours">
+                                    <label class="form-label">id cours</label>
+                                    <input type="number"class="form-control"  name="id_cours" placeholder="id_cours">
                                 </div>
                                 <div class="col">
                                     <label class="form-label" >titre</label>
-                                    <input type="text" class="form-control" name="titre" placeholder="nombre titre">
+                                    <input type="text" class="form-control" name="titre" placeholder=" titre">
                                 </div>
                                 <div>
                                     <label >description</label>

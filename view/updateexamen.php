@@ -57,8 +57,8 @@ if (
                 <form method="POST" id="insertForm" action="" enctype="multipart/form-data">
                     <div class="row mb-3">
                         <div class="col">
-                            <label class="form-label">nom examen</label>
-                            <input type="text" class="form-control" name="id_cours" placeholder="nom examen" value="<?php echo $examen['id_cours']; ?>">
+                            <label class="form-label">id cours</label>
+                            <input type="text" class="form-control" name="id_cours" placeholder="id cours" value="<?php echo $examen['id_cours']; ?>">
                         </div>
                         <div class="col">
                             <label class="form-label">titre</label>
