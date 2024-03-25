@@ -1,7 +1,7 @@
 <?php
 include '../Controller/RecrutC.php';
-$recrutC = new recrutC();
-$list = $recrutC->listrecrut();
+$RecrutC = new RecrutC();
+$list = $RecrutC->listrecrut();
 
 
 
@@ -61,21 +61,19 @@ $list = $recrutC->listrecrut();
                             <div class="row mb-3">
                                 <div class="col">
                                     <label class="form-label">date entretien</label>
-                                    <input type="date" class="form-control" name="a" placeholder="AAAA-MM-JJ">
+                                    <input type="date" class="form-control" name="date_entretien" placeholder="AAAA-MM-JJ">
                                 </div>
+
                                 <div class="col">
-                                    <label class="form-label">statu</label>
-                                    <input type="text" class="form-control" name="b" placeholder="">
+                                    <label class="form-label">cv</label>
+                                    <input type="text" class="form-control" name="cv" placeholder="UPLOAD HERE">
                                 </div>
-                                <label class="form-label">cv</label>
-                                    <input type="text" class="form-control" name="c" placeholder="UPLOAD HERE">
-                                </div>
-                                <label class="form-label">nb_question</label>
-                                    <input type="text" class="form-control" name="d" placeholder="...">
-                                </div>
-                                <label class="form-label">reponse</label>
-                                    <input type="text" class="form-control" name="e" placeholder="repondre ici">
-                                </div>
+
+                                <div class="col">
+                                    <label class="form-label">reponse</label>                               
+                                    <input type="text" class="form-control" name="reponse" placeholder="repondre ici">
+                                </div>       
+                                                      
                                 <div class="col">
                                 </div>          
                                 <button type="submit" class="btn btn-primary me-1" id="insertBtn">Submit</button>
@@ -92,30 +90,27 @@ $list = $recrutC->listrecrut();
             <thead class="table-dark">
                 <tr>
                     <th>#</th>
-                    <th>date_entretien</th>
-                    <th>statu</th>
+                    <th>date_entretien</th>               
                     <th>cv</th>
                     <th>reponse</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                foreach ($list as $recrut) {
+                foreach ($list as $Recrut) {
                 ?>
                     <tr>
-                        <td><?= $recrut['id_recrutement']; ?></td>
-                        <td><?= $recrut['date_entretien']; ?></td>
-                        <td><?= $recrut['statu']; ?></td>
-                        <td><?= $recrut['cv']; ?></td>
-                        <td><?= $recrut['reponse']; ?></td>
+                        <td><?= $Recrut['date_entretien']; ?></td>
+                        <td><?= $Recrut['cv']; ?></td>
+                        <td><?= $Recrut['reponse']; ?></td>
                         <td align="center">
                         <!--  
-                            <a href="UpdateRecrut.php?id_recurtement=<?php echo $recrut['id_recurtement']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>Update</a>
-                            <a href="DeleteRecrut.php?id_recurtement=<?php echo $recrut['id_recurtement']; ?>" class="btn"><i class="fa-solid fa-trash fa-xl"></i>Delete</a>
+                            <a href="UpdateRecrut.php?id_recurtement=<?php echo $Recrut['id_recurtement']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>Update</a>
+                            <a href="DeleteRecrut.php?id_recurtement=<?php echo $Recrut['id_recurtement']; ?>" class="btn"><i class="fa-solid fa-trash fa-xl"></i>Delete</a>
                         -->
                         
-                        <!-- <a href="UpdateRecrut.php?id_recurtement=<?php echo $recrut['id_recurtement']; ?>"><i ></i>Update</a> -->
-                        <a href="DeleteRecrut.php?id_recrutement=<?php echo $recrut['id_recrutement']; ?>"><i ></i>Delete</a>                        </td>
+                        <a href="UpdateRecrut.php?id_recrutement=<?php echo $Recrut['id_recrutement']; ?>"><i ></i>Update</a> 
+                        <a href="DeleteRecrut.php?id_recrutement=<?php echo $Recrut['id_recrutement']; ?>"><i ></i>Delete</a>                        </td>
                     </tr>
                 <?php
                 }
@@ -130,14 +125,7 @@ $list = $recrutC->listrecrut();
     <!-- Datatables  -->
     <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
     <!-- JS  -->
-    <script>
-        // function to display image before upload
-        $("input.image").change(function() {
-            var file = this.files[0];
-            var url = URL.createObjectURL(file);
-            $(this).closest(".row").find(".preview_img").attr("src", url);
-        });
-    </script>
+ 
 
 
     

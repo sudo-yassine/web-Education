@@ -1,6 +1,6 @@
 <?php
 include '../config.php';
-include '../model/recrut.php';
+include '../model/Recrut.php';
 
 /*
 CREATE TABLE recrut(
@@ -14,9 +14,9 @@ CREATE TABLE recrut(
 
 );
 */
-class recrutC
+class RecrutC
 {
-    public function listrecrut()
+    public function ListRecrut()
     {
         $sql = "SELECT * FROM recrut";
         $db = config::getConnexion();
@@ -28,40 +28,40 @@ class recrutC
             die('Error:' . $e->getMessage());
         }
     }
-    function deleterecrut($id_recrut)
+    function DeleteRecrut($id_recrutement)
     {
         $sql = "DELETE FROM recrut WHERE id_recrutement = :id_recrutement";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
-        $req->bindValue(':id_recrutement', $id_recrut);
+        $req->bindValue(':id_recrutement', $id_recrutement);
         try {
             $req->execute();
         } catch (Exception $e) {
             die('Error:' . $e->getMessage());
         }
     }
-    function addrecrut($recrut)
+    function AddRecrut($Recrut)
     {
         $sql = "INSERT INTO recrut
-        VALUES (NULL, :dr,:st,:cv,:nbq,:rp,:ide)";
+        VALUES (NULL, :de,:st,:cv,:nbq,:rp,:ide)";
         $db = config::getConnexion();
         try {
-            var_dump($recrut);
+            var_dump($Recrut);
             $query = $db->prepare($sql);
             $query->execute([
-                'de' => $recrut->getdate_entretien(),
-                'st' => $recrut->getstatu(),
-                'cv' => $recrut->getcv(),
-                'nbq' => $recrut->getnb_question(),               
-                'rp' => $recrut->getreponse(),
-                'ide' => $recrut->getid_enseignant()
+                'de' => $Recrut->getdate_entretien(),
+                'st' => $Recrut->getstatu(),
+                'cv' => $Recrut->getcv(),
+                'nbq' => $Recrut->getnb_question(),               
+                'rp' => $Recrut->getreponse(),
+                'ide' => $Recrut->getid_enseignant()
 
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
         }
     }
-    function updaterecrut($recrut, $id_recrutement)
+    function UpdateRecrut($Recrut, $id_recrutement)
     {
         try {
             $db = config::getConnexion();
@@ -70,34 +70,35 @@ class recrutC
                 date_entretien = :de,
                 statu = :st,
                 cv = :cbv,
-                nb_questioncontnbq,n
-                rp = :rp,                
-                ide = :ideu = :c 
+                nb_question = :nbq,
+                reponse = :rp,                
+                id_enseignant = :ide 
                WHERE id_recrutement= :id_recrutement'
             );
             $query->execute([
-                'id' => $recrut->getid(),
-                'de' => $recrut->getdate_entretien(),
-                'st' => $recrut->getstatu(),
-                'cv' => $recrut->getcv(),
-                'nbq' => $recrut->getnb_question(),               
-                'rp' => $recrut->getreponse(),
-                'ide' => $recrut->getid_enseignant()
+                'id_recrutement' => $id_recrutement,
+                'de' => $Recrut->getdate_entretien(),
+                'st' => $Recrut->getstatu(),
+                'cbv' => $Recrut->getcv(),
+                'nbq' => $Recrut->getnb_question(),               
+                'rp' => $Recrut->getreponse(),
+                'ide' => $Recrut->getid_enseignant(),
+                'id_recrutement' => $id_recrutement
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {
             $e->getMessage();
         }
     }
-    function showrecrut($id_recrutement)
+    function ShowRecrut($id_recrutement)
     {
         $sql = "SELECT * from recrut where id_recrutement = $id_recrutement";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute();
-            $recrut= $query->fetch();
-            return $recrut;
+            $Recrut= $query->fetch();
+            return $Recrut;
         } catch (Exception $e) {
             die('Error: ' . $e->getMessage());
         }

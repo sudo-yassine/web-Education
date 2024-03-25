@@ -1,5 +1,5 @@
 <?php
 include '../Controller/RecrutC.php';
 $RecrutC = new RecrutC();
-$RecrutC->deleteRecrut($_GET['id_recrutement']);
+$RecrutC->DeleteRecrut($_GET['id_recrutement']);
 header('Location:ListRecrut.php');

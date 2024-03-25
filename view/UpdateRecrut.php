@@ -5,13 +5,11 @@ $error = "";
 $Recrut = null;
 if (
     isset($_POST["date_entretien"]) &&
-    isset($_POST["statu"]) &&
     isset($_POST["cv"]) &&
     isset($_POST['reponse'])
 ) {
     if (
         !empty($_POST['date_entretien']) &&
-        !empty($_POST["statu"]) &&
         !empty($_POST["cv"]) &&
         !empty($_POST["reponse"]) 
     ) {
@@ -19,14 +17,17 @@ if (
         $Recrut = new Recrut(
             null,
             $_POST['date_entretien'],
-            $_POST['statu'],
+            null,
             $_POST['cv'],
-            $_POST['reponse']      
+            null,
+            $_POST['reponse'],
+            null
         );
         $RecrutC->UpdateRecrut($Recrut, $_GET['id_recrutement']);
         header('Location:ListRecrut.php');
     } else
         $error = "Missing information";
+
 }
 ?>
 <!DOCTYPE html>
@@ -37,49 +38,43 @@ if (
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP Formation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7statukqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
      <div class="container">
         <?php
-        if (isset($_GET['id_cours'])) {
-            $cours = $coursC->showcours($_GET['id_cours']);
+        if (isset($_GET['id_recrutement'])) {
+            $Recrut = $RecrutC->ShowRecrut($_GET['id_recrutement']);
         ?>
             <div class="modal-header">
-                <h5 class="modal-title" id="addcoursModalLabel">Update cours</h5>
+                <h5 class="modal-title" id="addRecrutModalLabel">Update Recrut</h5>
             </div>
             <div class="modal-body">
                 <div id="error">
                     <?php echo $error; ?>
                 </div>
-                <form method="POST" id="insertForm" action="upload.php" enctype="multipart/form-data">
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <label class="form-label">date entretien/label>
-                                    <input type="date" class="form-control" name="date_entretien" placeholder="AAAA-MM-JJ">
-                                </div>
-                                <div class="col">
-                                    <label class="form-label">statu</label>
-                                    <input type="text" class="form-control" name="statu" placeholder="">
-                                </div>
-                                <label class="form-label">cv/label>
-                                    <input type="link" class="form-control" name="cv" placeholder="UPLOAD HERE">
-                                </div>
-                                <div class="col">
-                
-                                </div>
-                                <label class="form-label">reponse/label>
-                                    <input type="text" class="form-control" name="reponse" placeholder="repondre ici">
-                                </div>
-                                <div class="col">
-                                </div>          
-                                <button type="submit" class="btn btn-primary me-1" id="insertBtn">Submit</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    
-                                </div>
+                <form method="POST" id="insertForm" action="" enctype="multipart/form-data">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label class="form-label">Date Entretien</label>
+                            <input type="date" class="form-control" name="date entretien" placeholder="date_entretien" value="<?php echo $Recrut['date_entretien']; ?>">
                         </div>
+                        <div class="col">
+                            <label class="form-label">cv</label>
+                            <input type="text" class="form-control" name="cv" placeholder="cv" value="<?php echo $Recrut['cv']; ?>">
+                        </div>
+                         <div class="col">
+                            <label class="form-label">reponse</label>
+                            <input type="text" class="form-control" name="reponse" placeholder="reponse" value="<?php echo $Recrut['reponse']; ?>">
+                        </div>
+                    </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary me-1" id="insertBtn">Submit</button>
+                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                    </div>
                 </form>
             </div>
         <?php

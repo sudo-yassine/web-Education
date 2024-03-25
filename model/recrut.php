@@ -1,5 +1,5 @@
 <?php
-class recrut
+class Recrut
 {
    private $id_recrutement;
    private $date_entretien;
