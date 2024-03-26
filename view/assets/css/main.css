@@ -2003,5 +2003,6 @@ section {
 }
 
 .logoww {
-  margin-left: 0px;
+  /* margin-left: 0px; */
+  height: 450px;
 }
