@@ -1,5 +1,6 @@
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 class config
 {
     private static $pdo = null;
@@ -10,12 +11,21 @@ class config
     private static $pdo = null;
 
 >>>>>>> origin/recrut
+=======
+class config
+{
+    private static $pdo = null;
+>>>>>>> origin/utilisateur
     public static function getConnexion()
     {
         if (!isset(self::$pdo)) {
             try {
                 self::$pdo = new PDO(
+<<<<<<< HEAD
                     'mysql:host=localhost;dbname=WisdomWave',
+=======
+                    'mysql:host=localhost;dbname=education',
+>>>>>>> origin/utilisateur
                     'root',
                     '',
                     [
@@ -30,7 +40,11 @@ class config
         return self::$pdo;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> origin/recrut
+=======
+}
+>>>>>>> origin/utilisateur
