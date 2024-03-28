@@ -344,7 +344,7 @@ label {
 
 :root {
   --secondary-color: #151226;
-  --contrast-color: #b012b6;
+  --contrast-color: #bf307f;
 }
 .overlay {
   position: absolute;
@@ -358,10 +358,31 @@ label {
 }
 
 .container {
-  animation: expand 1.2s ease forwards;
+  animation: expand 0.8s ease forwards;
   background-color: var(--secondary-color);
-
+  position: relative;
   transition: all 0.8s ease;
+}
+
+.container_content {
+  width: 50%;
+}
+
+.container_content_inner {
+  width: 80%;
+  margin-left: 80px;
+}
+
+.container_outer_img {
+  /* margin: 50px; */
+  /* width: 50%; */
+  overflow: hidden;
+}
+
+.container_img {
+  width: 800px;
+  height: 800px;
+  animation: slideIn 1s ease-in-out forwards;
 }
 
 @keyframes slideIn {
