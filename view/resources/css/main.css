@@ -119,11 +119,11 @@ body {
 }
 
 .widget1 {
+  margin: auto;
   width: 100%;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.575);
   background-color: #dddddd;
   /* padding: 0.5rem; */
-  margin-bottom: 2rem;
   font-size: 1.125rem;
 }
 
@@ -200,7 +200,8 @@ button:active {
 
 /* stat card */
 .card {
-  margin-left: pc;
+  /* margin-left: pc; */
+  margin: auto;
   width: 380px;
   /* background: #fff480; */
   color: black;
@@ -219,10 +220,9 @@ button:active {
   height: 100%;
   transition: transform 0.4s ease;
   color: rgb(183, 0, 255);
-  /* font-family: "Anton", sans-serif; */
-  font-weight: 200;
-  font-style: normal;
-  font-size: xx-large;
+  font-family: sans-serif;
+  font-weight: 900;
+  font-size: 180%;
 }
 
 .card .card-top,
@@ -289,7 +289,7 @@ button:active {
 .about .content h3 {
   /* font-weight: 700; */
   font-size: 32px;
-  font-family:sans-serif;
+  font-family: sans-serif;
   color: #001f8d;
 }
 
@@ -574,7 +574,7 @@ button:active {
   color: #8917d4;
   background-color: transparent;
   border: 1px solid rgba(99, 116, 152, 0.4);
-  font-family:sans-serif;
+  font-family: sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 600;
@@ -763,7 +763,7 @@ button:active {
   color: #8917d4;
   background-color: transparent;
   border: 1px solid rgba(99, 116, 152, 0.4);
-  font-family:sans-serif;
+  font-family: sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 600;
@@ -782,8 +782,8 @@ button:active {
     margin-top: 16px;
   }
 }
- /* user think */
- #myCard .title{
+/* user think */
+#myCard .title {
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
@@ -791,10 +791,10 @@ button:active {
   line-height: 42px;
   letter-spacing: -0.015em;
 
-  color: #2C2C2C;
+  color: #2c2c2c;
 }
 
-#myCard .subtitle{
+#myCard .subtitle {
   /* border: 1px solid #000; */
   margin-top: -10px;
   /* padding: 0px; */
@@ -806,24 +806,24 @@ button:active {
   line-height: 28px;
   letter-spacing: -0.015em;
 
-  color: #2C2C2C;
+  color: #2c2c2c;
 }
 
-#myCard .text{
+#myCard .text {
   /* border: 1px solid #000; */
 
- font-size: 18px;
- font-weight: 500;
- font-style: normal;
+  font-size: 18px;
+  font-weight: 500;
+  font-style: normal;
   font-size: 16px;
   line-height: 22px;
   text-align: center;
   letter-spacing: -0.015em;
 
-  color: #6D6D6D;
+  color: #6d6d6d;
 }
 
-#myCard .card-img{
+#myCard .card-img {
   /* border: 1px solid #000; */
   margin-top: -45px;
   width: 350px;
@@ -831,7 +831,7 @@ button:active {
   margin: 0 auto;
 }
 
-#myCard .card-img-container{
+#myCard .card-img-container {
   /* border: 1px solid #000; */
   margin-top: -175px;
   padding: 0px;
@@ -842,39 +842,35 @@ button:active {
   border-radius: 50px;
   margin-left: 15px;
 }
-.card 
-{
-  float:left;
+.card {
+  float: left;
   margin: 6%;
 }
 
-#myCard{
+#myCard {
   margin-top: 100px;
 
-  background: #FFFFFF;
-  border: 3px solid #C0C0C0;
+  background: #ffffff;
+  border: 3px solid #c0c0c0;
   box-sizing: border-box;
   /* box-shadow: 0px 5px 5px 3px rgba(0, 0, 0, 0.25); */
 }
 
-#myCard .icon{
+#myCard .icon {
   /* border: 1px solid #000; */
   color: rgb(105, 105, 105);
   font-size: 30px;
 }
 /* what users think text  */
-.users_think
-{
+.users_think {
   margin-left: 47%;
 }
-.titre
-{
+.titre {
   color: #8917d4;
   font-weight: bolder;
 }
 /* img form  */
-.img_form
-{
+.img_form {
   float: left;
 }
 /* formulaire  */
@@ -890,10 +886,9 @@ button:active {
   border-radius: 16px;
   transform: translateY(350px);
   /*transform: translateX(200px);*/
-  float:left;
+  float: left;
   margin-left: 50%;
   z-index: 1;
- 
 }
 
 .form {
@@ -912,8 +907,8 @@ button:active {
   color: black;
   background: transparent;
   border: 2px solid rgb(124, 11, 124);
- width: 350px;
- height: 50px;
+  width: 350px;
+  height: 50px;
   padding: 8px;
   outline: none;
 }
@@ -936,7 +931,7 @@ button:active {
 
 .button_1 {
   float: left;
-  flex :left;
+  flex: left;
   margin-right: 110px;
   padding: 17px 40px;
   border-radius: 50px;
