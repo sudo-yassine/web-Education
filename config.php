@@ -1,7 +1,15 @@
 <?php
+<<<<<<< HEAD
 class config
 {
     private static $pdo = null;
+=======
+
+class config
+{
+    private static $pdo = null;
+
+>>>>>>> origin/recrut
     public static function getConnexion()
     {
         if (!isset(self::$pdo)) {
@@ -21,4 +29,8 @@ class config
         }
         return self::$pdo;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/recrut
