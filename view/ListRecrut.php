@@ -22,7 +22,7 @@ $list = $RecrutC->listrecrut();
     <!-- Datatables CSS  -->
     <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet" />
     <!-- CSS  -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./resources/css/style.css">
 
 </head>
 
