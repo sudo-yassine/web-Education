@@ -81,6 +81,7 @@ body {
   margin-left: 10rem;
   position: relative;
   font-weight: 500;
+  font-family: sans-serif;
 }
 
 .header-navigation a {
@@ -445,13 +446,14 @@ button:active {
 .mainHeading__text {
   z-index: 1;
   color: #637498;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.075);
   padding: 40px;
   max-width: 620px;
   margin-top: 100px;
   width: 70%;
   backdrop-filter: blur(8px);
   animation: text 0.8s 0.6s ease backwards;
+  font-family: sans-serif;
   position: relative;
 }
 .mainHeading__text:before {
@@ -685,7 +687,6 @@ button:active {
   margin-bottom: 24px;
   font-size: 40px;
   color: #8f3fc4;
-  
 }
 @media screen and (max-width: 799px) {
   .mainHeading_2__title {
@@ -697,6 +698,7 @@ button:active {
   letter-spacing: 0.5px;
   font-size: 16px;
   line-height: 26px;
+  font-family: sans-serif;
 }
 @media screen and (max-width: 799px) {
   .mainHeading_2__description {
@@ -946,4 +948,19 @@ button:active {
   font-size: 15px;
   font-weight: bold;
   transition: all 0.5s ease;
+}
+
+.card_title {
+  font-family: sans-serif;
+  font-size: 400%;
+  font-weight: 790;
+  color: black;
+  float: left;
+}
+
+.card_title2 {
+  font-family: sans-serif;
+  font-size: 400%;
+  font-weight: 500;
+  color: rgb(128, 8, 197);
 }
