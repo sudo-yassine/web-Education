@@ -13,7 +13,7 @@
   --header-height-difference: calc(
     var(--header-outer-height) - var(--header-inner-height)
   );
-  --header-bg: #ffffff7c;
+  --header-bg: #ffffff;
 }
 
 body {
@@ -685,7 +685,6 @@ button:active {
   margin-bottom: 24px;
   font-size: 40px;
   color: #8f3fc4;
-  
 }
 @media screen and (max-width: 799px) {
   .mainHeading_2__title {

@@ -1,115 +1,162 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;700&display=swap");
 
-header {
-  height: 200vh;
+:root {
+  --color: #33333300;
 }
+/* 
+body {
+  font-family: "Red Hat Text", sans-serif;
+} */
 
 .container {
-  /* hide fixed overflow contents */
-  clip: rect(0, auto, auto, 0);
-
-  /* does not work if overflow = visible */
-  overflow: hidden;
-
-  /* only works with absolute positioning */
-  position: absolute;
-
-  /* Make sure containers are full-width and height */
-  height: 100vh;
-  left: 0;
+  text-align: center;
+  color: var(--color);
   width: 100%;
-  
-  
-  /* safari hack */
-  -webkit-mask-image: -webkit-linear-gradient(top, #ffffff 0%,#ffffff 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url(/view/resources/img/Design.png);
+  background-size: cover;
+  background-position: center;
+
+  /*  this is where the magic happens:  */
+  background-attachment: fixed;
 }
 
-.container_solid {
-  background: white;
-  
-  /* position this container at the top of its parent element */
-  top: 0;
+p {
+  max-width: 52ch;
+  line-height: 1.5;
+  padding: 1em;
 }
 
-.title_wrapper {
-  position: fixed;
-  display: block;  
-  margin: auto;
+.blank,
+.other {
   width: 100%;
-  /* center the text wrapper vertically */
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
-          padding-left: 7%;
+  min-height: 40vh;
+  background-color: rgb(196, 193, 193);
 }
 
+.second {
+  background-image: url(/view/resources/img/image.png);
+  background-attachment: fixed;
+  height: 1200px;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-top: 1em;
+}
+
+.card > a {
+  margin-bottom: 2em;
+}
+
+.item {
+  display: flex;
+  max-width: 320px;
+  background-color: white;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.5em;
+  -webkit-box-shadow: 0px 29px 38px -15px rgba(0, 0, 0, 0.43);
+  -moz-box-shadow: 0px 29px 38px -15px rgba(0, 0, 0, 0.43);
+  box-shadow: 0px 29px 38px -15px rgba(0, 0, 0, 0.43);
+}
+
+.img {
+  width: 90%;
+  height: 200px;
+  background-color: lightgrey;
+  background-size: cover;
+  background-position: center;
+  margin-top: 20px;
+  border-radius: 0.3em;
+}
+
+.img-first {
+  background-image: url(https://images.unsplash.com/photo-1522163182402-834f871fd851?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1606&q=80);
+}
+
+.img-second {
+  background-image: url(https://images.unsplash.com/photo-1628746404106-4d3843b231b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2F2aW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=900&q=60);
+}
+
+.img-third {
+  background-image: url(https://images.unsplash.com/photo-1632853073412-782bf0279d65?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);
+}
+
+.second {
+  flex-direction: row;
+  gap: 1.6em;
+}
+/* mch commetaire */
 .title_wrapper h1 {
   text-align: center;
   font-size: 300px;
   text-transform: uppercase;
   text-align: left;
-  font-family:sans-serif;
+  font-family: sans-serif;
   font-weight: 700;
+  color: #ffffff;
 }
 .title_wrapper h2 {
-    text-align: center;
-    font-size: 210px;
-    text-transform: uppercase;
-    text-align: left;
-    font-family:sans-serif;
-    font-weight: 700;
-    color: #ffffff;
-    transform: translateY(-110%);
-    
-
-
-    
-  }
-
-
-.container_solid .title_wrapper h1 {
-  /* the text background */
-  background: url(/view/resources/img/Design.png);
-  background-size: 100vw auto;
-  background-position: center;
-  
-  /* clip the text is possible */
-  text-fill-color: transparent;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-  
-  /* fallback text color */
-  color: black;
+  text-align: center;
+  font-size: 210px;
+  text-transform: uppercase;
+  text-align: left;
+  font-family: sans-serif;
+  font-weight: 700;
+  color: #ffffff;
+  transform: translateY(-110%);
 }
 
-.container_image {
-  /* Grab a free image from unsplash */
-  background-image: url(/view/resources/img/Design.png);
-  background-size:100vw auto;
-  background-position: center;
-  background-attachment: fixed;
-  
-  /* position the second container below the first container */
-  top: 00vh;
+.widget1 {
+  height: 30vh;
+  transform: translateY(-10px);
 }
 
-.container_image .title_wrapper h1 {
-  color: white;
+.your_courses h1 {
+  font-family: sans-serif;
+  /* font-size: 1200%; */
+  color: rgba(147, 8, 202, 0.726);
+}
+.your_courses h2 {
+  font-family: sans-serif;
+  /* font-size: 900%; */
+  /* transform: translateY(-180px); */
+  color: rgb(7, 0, 10);
 }
 
-section {
-  min-height: 100vh;
-  padding: 2em;
-  margin: auto;
-  max-width: 800px;
+/* animaited text */
+
+h1 {
+  --s: 0.1em; /* the thickness of the line */
+  --c: #980bda; /* the color */
+
+  color: #0000;
+  padding-bottom: var(--s);
+  background: linear-gradient(90deg, var(--c) 50%, #000 0)
+      calc(100% - var(--_p, 0%)) / 200% 100%,
+    linear-gradient(var(--c) 0 0) 0% 100% / var(--_p, 0%) var(--s) no-repeat;
+  -webkit-background-clip: text, padding-box;
+  background-clip: text, padding-box;
+  transition: 0.5s;
+}
+h1:hover {
+  --_p: 100%;
 }
 
-section h2 {
-  font-family: 'Fraunces', serif;
-}
-
-section p {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+/* body {
+  height: 100vh;
+  margin: 0;
+  display: grid;
+  place-content: center;
+} */
+h1 {
+  font-family: system-ui, sans-serif;
+  font-size: 5rem;
+  cursor: pointer;
 }
