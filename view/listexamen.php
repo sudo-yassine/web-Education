@@ -36,8 +36,8 @@ $list = $examenC->listexamen();
           </span>
 
           <div class="text logo-text">
-            <span class="name">Codinglab</span>
-            <span class="profession">Web developer</span>
+            <span class="name">Wisdom Wave</span>
+            <span class="profession">Dashboard</span>
           </div>
         </div>
 
