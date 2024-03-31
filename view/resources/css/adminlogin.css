@@ -7,6 +7,7 @@
 
 body {
 	background: #f6f5f7;
+	background-image: url(/view/resources/img/image.png);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -46,8 +47,8 @@ a {
 
 button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid #3d0be0;
+	background: rgba(22, 16, 30, 0.827);
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -160,9 +161,10 @@ input {
 }
 
 .overlay {
-	background: #FF416C;
+	background: rgb(97,11,210);
 	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background: linear-gradient(79deg, rgba(97,11,210,1) 27%, rgba(170,34,187,1) 96%);
+
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -226,27 +228,3 @@ input {
 	width: 40px;
 }
 
-footer {
-    background-color: #222;
-    color: #fff;
-    font-size: 14px;
-    bottom: 0;
-    position: fixed;
-    left: 0;
-    right: 0;
-    text-align: center;
-    z-index: 999;
-}
-
-footer p {
-    margin: 10px 0;
-}
-
-footer i {
-    color: red;
-}
-
-footer a {
-    color: #3c97bf;
-    text-decoration: none;
-}
