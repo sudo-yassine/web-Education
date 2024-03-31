@@ -124,7 +124,7 @@ $list = $RecrutC->listrecrut();
     </nav>
 
     <section class="home">
-      <div class="text">Dashboard Sidebar</div>
+      <div class="text">Dashboard </div>
       <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3 mt-5">
             <div class="text-body-secondary">
