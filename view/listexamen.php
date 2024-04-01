@@ -53,7 +53,7 @@ $list = $examenC->listexamen();
 
           <ul class="menu-links">
             <li class="nav-link">
-              <a href="#">
+              <a href="dashboard.html">
                 <i class="bx bx-home-alt icon"></i>
                 <span class="text nav-text">Dashboard</span>
               </a>
@@ -120,7 +120,7 @@ $list = $examenC->listexamen();
     </nav>
 
     <section class="home">
-      <div class="text">Dashboard </div>
+      <div class="text">Gestion des Examens </div>
       <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3 mt-5" >
             <div class="text-body-secondary">
