@@ -13,6 +13,7 @@
     <title>home join us</title>
   </head>
   <body>
+    <div class= 'container'>
     <!-- Sticky header -->
     <header class="header-outer">
       <div class="header-inner responsive-wrapper">
@@ -29,17 +30,27 @@
     </header>
 
     <section class="login_img">
-      <img
-        src="resources/img/student_space.png"
+       <div class="container_outer_img">
+          <div class="img-inner">
+            <img
+              src="resources/img/teacher_space.png"
+              alt=""
+              class="container_img"
+            />
+          </div>
+        </div>
+      <!-- <img
+        src="resources/img/teacher_space.png"
         alt=""
         height="800"
         width="800"
-      />
+      /> -->
     </section>
     <section class="form_buttons">
       <div class="multi-button">
-        <button>Student space</button>
-        <button>Teacher space</button>
+        <button onclick="window.location.href='eleve.html'">Student space</button>
+        <button onclick="window.location.href='enseignant.html'">Teacher space</button>
+        
       </div>
      <div class="main">  	
 		<input type="checkbox" id="chk" aria-hidden="true">
@@ -70,4 +81,5 @@
   
   </body>
   
+  <div class="overlay"></div>
 </html>
