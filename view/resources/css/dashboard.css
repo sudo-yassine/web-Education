@@ -486,3 +486,366 @@ body.dark .home .text {
     text-align: center;
   }
 }
+/*home mtaa dashbord*/
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  border: none;
+  position: relative;
+  width: 350px;
+  float: left;
+  margin: 4%;
+  margin-bottom: 30px;
+  box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
+}
+.l-bg-cherry {
+  background: linear-gradient(to right, #493240, #f09) !important;
+  color: #fff;
+}
+
+.l-bg-blue-dark {
+  background: linear-gradient(to right, #373b44, #4286f4) !important;
+  color: #fff;
+}
+
+.l-bg-green-dark {
+  background: linear-gradient(to right, #0a504a, #38ef7d) !important;
+  color: #fff;
+}
+
+.l-bg-orange-dark {
+  background: linear-gradient(to right, #a86008, #ffba56) !important;
+  color: #fff;
+}
+
+.card .card-statistic-3 .card-icon-large .fas, .card .card-statistic-3 .card-icon-large .far, .card .card-statistic-3 .card-icon-large .fab, .card .card-statistic-3 .card-icon-large .fal {
+  font-size: 60px;
+  margin-right: 50%;
+}
+
+.card .card-statistic-3 .card-icon {
+  text-align: center;
+  line-height: 50px;
+  margin-left: 15px;
+  color: #000;
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  opacity: 0.1;
+}
+
+.l-bg-cyan {
+  background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+  color: #fff;
+}
+
+.l-bg-green {
+  background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
+  color: #fff;
+}
+
+.l-bg-orange {
+  background: linear-gradient(to right, #f9900e, #ffba56) !important;
+  color: #fff;
+}
+
+.l-bg-cyan {
+  background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+  color: #fff;
+}
+/*stat*/
+@import url("https://fonts.googleapis.com/css?family=Satisfy|Zilla+Slab");
+ body {
+	 background: #643a7a;
+}
+ .frame {
+	 position: absolute;
+	 top: 50%;
+	 left: 50%;
+	 width: 400px;
+	 height: 400px;
+	 margin-top: -200px;
+	 margin-left: -200px;
+	 border-radius: 2px;
+	 box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.6);
+	 background: #201c29;
+	 font-family: "Zilla Slab", serif;
+	 color: #fff;
+	 -webkit-font-smoothing: antialiased;
+	 -moz-osx-font-smoothing: grayscale;
+}
+ .card1 {
+	 position: absolute;
+   margin-top: 400px;
+	 top: 90px;
+	 left: 60px;
+	 height: 220px;
+	 width: 280px;
+	 background: #fff;
+	 border-radius: 5px;
+	 box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.6);
+	 overflow: hidden;
+}
+ .card1 .header {
+	 position: relative;
+	 height: 60px;
+	 width: 100%;
+	 background: #643a7a;
+	 color: #fff;
+}
+ .card1 .header .big {
+	 position: absolute;
+	 font-family: Satisfy, fantasy;
+	 font-size: 1.5rem;
+}
+ .card1 .header .small {
+	 position: absolute;
+	 font-size: 1rem;
+}
+ .card1 .header .title {
+	 top: 12px;
+	 left: 15px;
+}
+ .card1 .header .date {
+	 top: 2.5rem;
+	 left: 15px;
+}
+ .card1 .header .type {
+	 top: 14px;
+	 right: 15px;
+}
+ .card1 .header .value {
+	 position: absolute;
+	 font-size: 1.5rem;
+	 top: 2rem;
+	 right: 15px;
+}
+ .card1 .parameter {
+	 text-align: right;
+	 padding: 10px 0 14px 0;
+}
+ .card1 .parameter span {
+	 position: relative;
+	 font-size: 0.85rem;
+	 color: #606060;
+	 line-height: 13px;
+	 padding: 0 10px 0 25px;
+}
+ .card1 .parameter span:before {
+	 position: absolute;
+	 left: 6px;
+	 top: 6px;
+	 display: block;
+	 content: "";
+	 width: 11px;
+	 height: 4px;
+	 border-radius: 3px;
+}
+ .card1 .parameter .red:before {
+	 background: #643a7a;
+}
+ .card1 .parameter .blue:before {
+	 background: #547496;
+}
+ .card1 .statistic {
+	 position: relative;
+	 height: 81px;
+	 width: 260px;
+	 margin: 0 auto;
+}
+ .card1 .statistic .line-1, .card .statistic .line-2, .card .statistic .line-3 {
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 right: 0;
+	 height: 2px;
+	 background: rgba(255, 192, 203, 0.3);
+}
+ .card1 .statistic .line-2 {
+	 top: 40px;
+}
+ .card1 .statistic .line-3 {
+	 top: inherit;
+	 bottom: 0;
+}
+ .card1 .statistic .data svg {
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 right: 0;
+	 bottom: 0;
+	 stroke-dasharray: 1000;
+	 stroke-dashoffset: 1000;
+	 animation: 4s dash 0.5s linear forwards;
+}
+ @keyframes dash {
+	 to {
+		 stroke-dashoffset: 0;
+	}
+}
+ .card1 .statistic .data polyline {
+	 fill: none;
+	 stroke-width: 2;
+	 stroke-linecap: round;
+}
+ .card1 .statistic .data.red polyline {
+	 stroke: #643a7a;
+}
+ .card1 .statistic .data.blue polyline {
+	 stroke: #547496;
+}
+ .card1 .statistic .data .tooltip {
+	 position: absolute;
+	 bottom: 13px;
+	 left: 50%;
+	 transform: translate3d(-50%, 10px, 0);
+	 font-weight: 600;
+	 font-size: 11px;
+	 line-height: 11px;
+	 color: #fff;
+	 padding: 8px 6px;
+	 border-radius: 3px;
+	 visibility: hidden;
+	 opacity: 0;
+	 transition: transform 0.4s ease-out 0s, opacity 0.4s ease-out 0s;
+}
+ .card1 .statistic .data .tooltip:after {
+	 position: absolute;
+	 display: block;
+	 content: "";
+	 height: 6px;
+	 width: 6px;
+	 left: 50%;
+	 margin-left: -3px;
+	 bottom: -3px;
+	 transform: rotate(45deg);
+}
+ .card1 .statistic .data [class^="point-"] {
+	 position: absolute;
+	 width: 6px;
+	 height: 6px;
+	 border-radius: 3px;
+	 cursor: pointer;
+	 z-index: 10;
+}
+ .card1 .statistic .data [class^="point-"]:hover .tooltip {
+	 visibility: visible;
+	 opacity: 1;
+	 transform: translate3d(-50%, 0, 0);
+}
+ .card1 .statistic .data.red [class^="point-"], .card1 .statistic .data.red .tooltip, .card1 .statistic .data.red .tooltip:after {
+	 background: #643a7a;
+}
+ .card1 .statistic .data.red .point-1 {
+	 left: 7px;
+	 top: 43px;
+}
+ .card1 .statistic .data.red .point-2 {
+	 left: 48px;
+	 top: 9px;
+}
+ .card1 .statistic .data.red .point-3 {
+	 left: 88px;
+	 top: 20px;
+}
+ .card1 .statistic .data.red .point-4 {
+	 left: 128px;
+	 top: 8px;
+}
+ .card1 .statistic .data.red .point-5 {
+	 left: 169px;
+	 top: 35px;
+}
+ .card1 .statistic .data.red .point-6 {
+	 left: 209px;
+	 top: 45px;
+}
+ .card1 .statistic .data.red .point-7 {
+	 left: 249px;
+	 top: 16px;
+}
+ .card1 .statistic .data.blue [class^="point-"], .card1 .statistic .data.blue .tooltip, .card1 .statistic .data.blue .tooltip:after {
+	 background: #547496;
+}
+ .card1 .statistic .data.blue .point-1 {
+	 left: 7px;
+	 top: 58px;
+}
+ .card1 .statistic .data.blue .point-2 {
+	 left: 48px;
+	 top: 47px;
+}
+ .card1 .statistic .data.blue .point-3 {
+	 left: 88px;
+	 top: 62px;
+}
+ .card1 .statistic .data.blue .point-4 {
+	 left: 128px;
+	 top: 52px;
+}
+ .card1 .statistic .data.blue .point-5 {
+	 left: 169px;
+	 top: 58px;
+}
+ .card1 .statistic .data.blue .point-6 {
+	 left: 209px;
+	 top: 71px;
+}
+ .card1 .statistic .data.blue .point-7 {
+	 left: 249px;
+	 top: 61px;
+}
+ .card1 .days {
+	 width: 280px;
+	 margin: 0 auto;
+}
+ .card1 .days .day {
+	 display: block;
+	 float: left;
+	 width: 14.2857142857%;
+	 font-size: 9px;
+	 color: #949494;
+	 line-height: 30px;
+	 text-transform: uppercase;
+	 text-align: center;
+}
+/*wahda okhra*/
+svg {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+  padding-top: 40px;
+}
+
+polyline {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 5s ease-in forwards;
+  animation-iteration-count: 10;
+  animation-direction: alternate;
+}
+
+@keyframes dash{
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.container1
+{
+  background-color: purple;
+  height: 290px;
+  width: 400px;
+  margin-left: 35%;
+  border-radius: 20px;
+
+}
+
+p {
+  font-size: 2rem;
+  text-align:center;
+  color: #efefef;
+}
+.name {
+  font-size: .8rem;
+  font-weight: light;
+}
