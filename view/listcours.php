@@ -32,7 +32,7 @@ $list = $coursC->listcours();
       <header>
         <div class="image-text">
           <span class="image">
-            <!--<img src="logo.png" alt="">-->
+            <img src="resources/img/wisdomwave.png" alt="">
           </span>
 
           <div class="text logo-text">
