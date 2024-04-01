@@ -1,34 +1,38 @@
 <?php
-include '../controller/coursC.php';
-$coursC = new coursC();
-$list = $coursC->listcours();
+include '../Controller/RecrutC.php';
+$RecrutC = new RecrutC();
+$list = $RecrutC->listrecrut();
+
+
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cours</title>
+    <title>Recrutement</title>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet" />-->
-    <!----======== CSS ======== -->
-   
+    <!-- Font Awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Datatables CSS  -->
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet" />
+    <!-- CSS  -->
+    <link rel="stylesheet" href="./resources/css/style.css">
 
-    <!----===== Boxicons CSS ===== -->
-    <link
-      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+</head>
 
-    <link rel="stylesheet" href="resources/css/dashboard.css" />
-    <!-- <link rel="stylesheet" href="./resources/css/style.css"> -->
-    </head>
 <body>
-    
+    <?php
+    // Include the header content
+    // include 'Header.php';
 
- <nav class="sidebar close">
+    ?>
+    <nav class="sidebar close">
       <header>
         <div class="image-text">
           <span class="image">
@@ -119,85 +123,86 @@ $list = $coursC->listcours();
       </div>
     </nav>
 
-     <section class="home">
-      
-      <div class="text">Gestion des Cours  </div>
+    <section class="home">
+      <div class="text">Gestion des Recrutements </div>
       <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-3 mt-5" >
+        <div class="d-flex justify-content-between align-items-center mb-3 mt-5">
             <div class="text-body-secondary">
-                <span class="h5">tous les cours</span>
+                <span class="h5">All Recruts</span>
                 <br>
-               crud cours 
+                Manage all your existing Recrutements or add a new one
             </div>
-            <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#addcoursModal">
-                ajouter un cours
+            <!-- Button to trigger Add student offcanvas -->
+            <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#addRecrutModal">
+                Add new Recrutement
             </button>
         </div>
-        <div class="modal fade"  id="addcoursModal" tabindex="-1" aria-labelledby="addcoursModalLabel" aria-hidden="true">
+
+        <!-- Modal -->
+        <div class="modal fade" id="addRecrutModal" tabindex="-1" aria-labelledby="addRecrutModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 id="addcoursModalLabel">ajouter un cours</h5>
+                        <h5 class="modal-title" id_recrutement="addRecrutModalLabel">Ajout recrut</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" id="insertForm" action="addcours.php" enctype="multipart/form-data">
+                       
+                        <!-- upload à changer-->
+                        <form method="POST" id="insertForm" action="AddRecrut.php" enctype="multipart/form-data">
                             <div class="row mb-3">
                                 <div class="col">
-                                    <label class="form-label">nom cours</label>
-                                    <input type="text"class="form-control"  name="nom_cours" placeholder="nom du cours">
+                                    <label class="form-label">date entretien</label>
+                                    <input type="date" class="form-control" name="date_entretien" placeholder="AAAA-MM-JJ">
                                 </div>
+
                                 <div class="col">
-                                    <label class="form-label" >heures</label>
-                                    <input type="text" class="form-control" name="heures" placeholder="nombre heures">
+                                    <label class="form-label">cv</label>
+                                    <input type="text" class="form-control" name="cv" placeholder="UPLOAD HERE">
                                 </div>
-                                <div>
-                                    <label >niveau</label>
-                                    <input type="text" class="form-control" name="niveau" placeholder="niveau">
-                                </div>
-                                <div class="form-label">
-                                    <label >contenu</label>
-                                    <input type="text"class="form-control"  name="contenu" placeholder="contenu">
-                                </div>
-                            </div>
-                            <div>
-                                <button type="submit"  class="btn btn-primary me-1" id="insertBtn">Submit</button>
-                                <button type="button"  class="btn btn-primary me-1" data-bs-dismiss="modal">Cancel</button>
+
+                                <div class="col">
+                                    <label class="form-label">reponse</label>                               
+                                    <input type="text" class="form-control" name="reponse" placeholder="repondre ici">
+                                </div>       
+                                                      
+                                <div class="col">
+                                </div>          
+                                <button type="submit" class="btn btn-primary me-1" id="insertBtn">Submit</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
+
         <table class="table table-bordered table-striped table-hover align-middle" id="myTable" style="width:100%;">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>nom cours</th>
-                    <th>heures</th>
-                    <th>niveau</th>
-                    <th>contenu</th>
-                    <th>update</th>
-                    <th>delete</th>
+                    <th>#</th>
+                    <th>date_entretien</th>               
+                    <th>cv</th>
+                    <th>reponse</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                foreach ($list as $cours) {
+                foreach ($list as $Recrut) {
                 ?>
                     <tr>
-                        <td><?= $cours['id_cours']; ?></td>
-                        <td><?= $cours['nom_cours']; ?></td>
-                        <td><?= $cours['heures']; ?></td>
-                        <td><?= $cours['niveau']; ?></td>
-                        <td><?= $cours['contenu']; ?></td>
-                        <td>
-                            <a href="updatecours.php?id_cours=<?php echo $cours['id_cours']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>update</a>
-                        </td>
-                        <td>
-                            <a href="deletecours.php?id_cours=<?php echo $cours['id_cours']; ?>"class="btn"><i class="fa-solid fa-trash fa-xl"></i>Delete</a>
-                        </td>
-
+                        <td><?= $Recrut['date_entretien']; ?></td>
+                        <td><?= $Recrut['cv']; ?></td>
+                        <td><?= $Recrut['reponse']; ?></td>
+                        <td align="center">
+                        <!--  
+                            <a href="UpdateRecrut.php?id_recurtement=<?php echo $Recrut['id_recurtement']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>Update</a>
+                            <a href="DeleteRecrut.php?id_recurtement=<?php echo $Recrut['id_recurtement']; ?>" class="btn"><i class="fa-solid fa-trash fa-xl"></i>Delete</a>
+                        -->
+                        
+                        <a href="UpdateRecrut.php?id_recrutement=<?php echo $Recrut['id_recrutement']; ?>"><i ></i>Update</a> 
+                        <a href="DeleteRecrut.php?id_recrutement=<?php echo $Recrut['id_recrutement']; ?>"><i ></i>Delete</a>                        </td>
                     </tr>
                 <?php
                 }
@@ -205,9 +210,25 @@ $list = $coursC->listcours();
             </tbody>
         </table>
     </div>
-    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+ <!-- Bootstrap  -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <!-- Jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>-->
+    <!-- Datatables  -->
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
+    <!-- JS  -->
+ 
+    <!----======== CSS ======== -->
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+
+    <!----===== Boxicons CSS ===== -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="resources/css/dashboard.css" />
+
     </section>
 
     <script>
@@ -236,5 +257,14 @@ $list = $coursC->listcours();
         }
       });
     </script>
+
+
+
+
+    
+
+
+    
 </body>
+
 </html>
