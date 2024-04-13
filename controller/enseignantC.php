@@ -1,12 +1,11 @@
 <?php
-include_once '../Config.php';
-include_once '../Model/utilisateur.php';
-
-class utilisateurC
+include_once '../Model/enseignant.php';
+include_once 'utilisateurC.php';
+class enseignantC extends utilisateurC
 {
-    public function listUtilisateurs()
+    public function listEnseignants()
     {
-        $sql = "SELECT * FROM utilisateur";
+        $sql = "SELECT * FROM enseignant";
         $db = config::getConnexion();
         try {
             $stmt = $db->query($sql);
@@ -17,9 +16,9 @@ class utilisateurC
         }
     }
 
-    public function deleteUtilisateur($id)
+    public function deleteEnseignant($id)
     {
-        $sql = "DELETE FROM utilisateur WHERE Id_utilisateur = :id";
+        $sql = "DELETE FROM enseignant WHERE Id_enseignant = :id";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
         $req->bindValue(':id', $id);
@@ -31,10 +30,10 @@ class utilisateurC
         }
     }
 
-    public function addUtilisateur($Utilisateur)
+    public function addEnseignant($enseignant)
     {
-        $sql = "INSERT INTO utilisateur  
-                VALUES (NULL, :Nom, :Prenom, :Adresse, :Tel, :Password)";
+        $sql = "INSERT INTO enseignant  
+                VALUES (NULL, :Nom, :Prenom, :Adresse, :Tel, :Password, NULL, :specialite)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
@@ -44,39 +43,41 @@ class utilisateurC
                 'Adresse' => $Utilisateur->getAdresse(),
                 'Tel' => $Utilisateur->getTel(),
                 'Password' => $Utilisateur->getPassword(),
+                'specialite' =>$enseignant->getSpecialite()
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
         }
     }
-    public function getUtilisateurById($id)
+    public function getEnseignantById($id)
         {
-        $sql = "SELECT * FROM utilisateur WHERE Id_utilisateur = :id";
+        $sql = "SELECT * FROM enseignant WHERE Id_enseignant = :id";
         $db = config::getConnexion();
         $req = $db->prepare($sql);
         $req->bindValue(':id', $id);
         try {
             $req->execute();
-            $utilisateur = $req->fetch(PDO::FETCH_ASSOC);
-            return $utilisateur;
+            $enseignant = $req->fetch(PDO::FETCH_ASSOC);
+            return $enseignant;
         } catch (Exception $e) {
             die('Error:' . $e->getMessage());
         }
     }
 
 
-    public function updateUtilisateur($Utilisateur, $id)
+    public function updateEnseignant($enseignant, $id)
     {
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
-                'UPDATE utilisateur SET 
+                'UPDATE enseignant SET 
                     Nom = :Nom, 
                     Prenom = :Prenom, 
                     Adresse = :Adresse,
                     Tel = :Tel,
-                    Password = :Password
-                WHERE Id_utilisateur = :id'
+                    Password = :Password,
+                    specialite = :specialite
+                WHERE Id_enseignant = :id'
             );
             $query->execute([
                 'id' => $id,
@@ -84,22 +85,23 @@ class utilisateurC
                 'Prenom' => $Utilisateur->getPrenom(),
                 'Adresse' => $Utilisateur->getAdresse(),
                 'Tel' => $Utilisateur->getTel(),
-                'Password' => $Utilisateur->getPassword()
+                'Password' => $Utilisateur->getPassword(),
+                'specialite' =>$enseignant->getEnseignant()
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {
             echo 'Error: ' . $e->getMessage();
         }
     }
-    function showuser($Id_utilisateur)
+    function showenseignant($Id_enseignant)
     {
-        $sql = "SELECT * from utilisateur where Id_utilisateur = $Id_utilisateur";
+        $sql = "SELECT * from enseignant where Id_enseignant = $Id_enseignant";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute();
-            $cours= $query->fetch();
-            return $cours;
+            $enseignant= $query->fetch();
+            return $enseignant;
         } catch (Exception $e) {
             die('Error: ' . $e->getMessage());
         }

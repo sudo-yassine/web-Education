@@ -1,12 +1,12 @@
 <?php
 class Utilisateur
 {
-    private $Id_utilisateur;
-    private $Nom;
-    private $Prenom;
-    private $Adresse;
-    private $Tel;
-    private $Password;
+    public $Id_utilisateur;
+    public $Nom;
+    public $Prenom;
+    public $Adresse;
+    public $Tel;
+    public $Password;
 
 
     public function __construct ($Id_utilisateu, $Nom, $Prenom, $Adresse ,$Tel, $Password)
