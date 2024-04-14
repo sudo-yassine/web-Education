@@ -6,9 +6,9 @@ class eleve extends Utilisateur
     private $niveau;
 
 
-    public function __construct($Id_utilisateu, $Nom, $Prenom, $Adresse ,$Tel, $Password, $Id_eleve,$niveau)
+    public function __construct($Id_utilisateur, $Nom, $Prenom, $Adresse ,$Tel, $Password, $Id_eleve,$niveau)
     {
-        parent::__construct($Id_utilisateu, $Nom, $Prenom, $Adresse ,$Tel, $Password);
+        parent::__construct($Id_utilisateur, $Nom, $Prenom, $Adresse ,$Tel, $Password);
         $this->Id_eleve = $Id_eleve;
         $this->niveau = $niveau;
     }

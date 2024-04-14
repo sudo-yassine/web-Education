@@ -6,9 +6,9 @@ class enseignant extends Utilisateur
     private $specialite;
 
 
-    public function __construct($Id_utilisateu, $Nom, $Prenom, $Adresse ,$Tel, $Password, $Id_enseignant,$specialite)
+    public function __construct($Id_utilisateur, $Nom, $Prenom, $Adresse ,$Tel, $Password, $Id_enseignant,$specialite)
     {
-        parent::__construct($Id_utilisateu, $Nom, $Prenom, $Adresse ,$Tel, $Password);
+        parent::__construct($Id_utilisateur, $Nom, $Prenom, $Adresse ,$Tel, $Password);
         $this->Id_enseignant = $Id_enseignant;
         $this->specialite = $specialite;
     }

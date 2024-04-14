@@ -9,9 +9,9 @@ class Utilisateur
     public $Password;
 
 
-    public function __construct ($Id_utilisateu, $Nom, $Prenom, $Adresse ,$Tel, $Password)
+    public function __construct ($Id_utilisateur, $Nom, $Prenom, $Adresse ,$Tel, $Password)
     {
-        $this->Id_utilisateu = $Id_utilisateu;
+        $this->Id_utilisateur = $Id_utilisateur;
         $this->Nom = $Nom;
         $this->Prenom = $Prenom;
         $this->Adresse = $Adresse;
@@ -21,7 +21,7 @@ class Utilisateur
 
     public function getId()
     {
-        return $this->Id_utilisateu;
+        return $this->Id_utilisateur;
     }
     public function getNom()
     {

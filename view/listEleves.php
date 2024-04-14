@@ -35,7 +35,7 @@ $list = $eleveC->listeleves();
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" id="insertForm" action="" enctype="multipart/form-data">
+                        <form method="POST" id="insertForm" action="AddEleve.php" enctype="multipart/form-data">
                             <div class="row mb-3">
                                 <div class="col">
                                     <label class="form-label">Nom</label>
@@ -86,28 +86,26 @@ $list = $eleveC->listeleves();
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($list as $eleve) {
-                ?>
-                    <tr>
-                        <td><?= $eleve['Id_eleve']; ?></td>
-                        <td><?= $eleve['Nom']; ?></td>
-                        <td><?= $eleve['Prenom']; ?></td>
-                        <td><?= $eleve['Adresse']; ?></td>
-                        <td><?= $eleve['Tel']; ?></td>
-                        <td><?= $eleve['Password']; ?></td>
-                        <td><?= $eleve['niveau']; ?></td>
-                        <td>
-                            <a href="updateeleve.php?Id_eleve=<?php echo $eleve['Id_eleve']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>Modifier</a>
-                        </td>
-                        <td>
-                            <a href="Deleteeleve.php?Id_eleve=<?php echo $eleve['Id_eleve']; ?>"class="btn"><i class="fa-solid fa-trash fa-xl"></i>supprimer</a>
-                        </td>
-
-                    </tr>
-                <?php
-                }
-                ?>
+            <?php foreach ($list as $eleve) { ?>
+            <tr>
+                <td><?= $eleve['Id_utilisateur']; ?></td>
+                <td><?= $eleve['Nom']; ?></td>
+                <td><?= $eleve['Prenom']; ?></td>
+                <td><?= $eleve['Adresse']; ?></td>
+                <td><?= $eleve['Tel']; ?></td>
+                <td><?= $eleve['Password']; ?></td>
+                
+                <td><?= $eleve['niveau']; ?></td>
+                <td>
+                    <a href="updateeleve.php?Id_eleve=<?= $eleve['Id_eleve']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>Modifier</a>
+                </td>
+                <td>
+                    <a href="Deleteeleve.php?Id_eleve=<?= $eleve['Id_eleve']; ?>" class="btn"><i class="fa-solid fa-trash fa-xl"></i>supprimer</a>
+                </td>
+            </tr>
+            <?php } ?>
+                
+                
             </tbody>
         </table>
     </div>

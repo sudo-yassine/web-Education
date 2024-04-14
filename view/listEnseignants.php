@@ -86,28 +86,24 @@ $list = $enseignantC->listenseignants();
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($list as $enseignant) {
-                ?>
-                    <tr>
-                        <td><?= $enseignant['Id_enseignant']; ?></td>
-                        <td><?= $enseignant['Nom']; ?></td>
-                        <td><?= $enseignant['Prenom']; ?></td>
-                        <td><?= $enseignant['Adresse']; ?></td>
-                        <td><?= $enseignant['Tel']; ?></td>
-                        <td><?= $enseignant['Password']; ?></td>
-                        <td><?= $enseignant['specialite']; ?></td>
-                        <td>
-                            <a href="updateenseignant.php?Id_enseignant=<?php echo $enseignant['Id_enseignant']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>Modifier</a>
-                        </td>
-                        <td>
-                            <a href="Deleteenseignant.php?Id_enseignant=<?php echo $enseignant['Id_enseignant']; ?>"class="btn"><i class="fa-solid fa-trash fa-xl"></i>supprimer</a>
-                        </td>
-
-                    </tr>
-                <?php
-                }
-                ?>
+            <?php foreach ($list as $enseignant) { ?>
+            <tr>
+                <td><?= $enseignant['Id_enseignant']; ?></td>
+                <td><?= $enseignant['Nom']; ?></td>
+                <td><?= $enseignant['Prenom']; ?></td>
+                <td><?= $enseignant['Adresse']; ?></td>
+                <td><?= $enseignant['Tel']; ?></td>
+                <td><?= $enseignant['Password']; ?></td>
+               
+                <td><?= $enseignant['specialite']; ?></td>
+                <td>
+                    <a href="updateenseignant.php?Id_enseignant=<?= $enseignant['Id_enseignant']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>Modifier</a>
+                </td>
+                <td>
+                    <a href="Deleteenseignant.php?Id_enseignant=<?= $enseignant['Id_enseignant']; ?>" class="btn"><i class="fa-solid fa-trash fa-xl"></i>supprimer</a>
+                </td>
+            </tr>
+            <?php } ?>
             </tbody>
         </table>
     </div>
