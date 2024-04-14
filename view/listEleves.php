@@ -1,7 +1,9 @@
 <?php
 include_once '../controller/eleveC.php';
+$utilisateurC = new utilisateurC();
 $eleveC = new eleveC();
 $list = $eleveC->listeleves();
+$list1 = $utilisateurC->listUtilisateurs();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,7 +96,6 @@ $list = $eleveC->listeleves();
                 <td><?= $eleve['Adresse']; ?></td>
                 <td><?= $eleve['Tel']; ?></td>
                 <td><?= $eleve['Password']; ?></td>
-                
                 <td><?= $eleve['niveau']; ?></td>
                 <td>
                     <a href="updateeleve.php?Id_eleve=<?= $eleve['Id_eleve']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>Modifier</a>

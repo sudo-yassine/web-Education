@@ -34,25 +34,24 @@ class eleveC extends utilisateurC
     
     public function addeleve($eleve)
 {
-    $sql = "INSERT INTO eleve (Id_utilisateur, Nom, Prenom, Adresse, Tel, Password, Id_eleve, niveau)  
-            VALUES (:Id_utilisateur, :Nom, :Prenom, :Adresse, :Tel, :Password, :Id_eleve, :niveau)";
+    $sql = "INSERT INTO eleve (Id_eleve, niveau) 
+            VALUES (:Id_eleve, :niveau)";
     $db = config::getConnexion();
     try {
+        // Récupérer l'ID de l'utilisateur associé à l'élève
+        $Id_utilisateur = $eleve->getId();
+
+        // Préparer et exécuter la requête d'insertion
         $query = $db->prepare($sql);
         $query->execute([
-            'Id_utilisateur' => $eleve->getId(),
-            'Nom' => $eleve->getNom(),
-            'Prenom' => $eleve->getPrenom(),
-            'Adresse' => $eleve->getAdresse(),
-            'Tel' => $eleve->getTel(),
-            'Password' => $eleve->getPassword(),
-            'Id_eleve' => $eleve->getId_eleve(),
-            'niveau' => $eleve->getNiveau()
+            'Id_eleve' => $Id_utilisateur, // Utiliser l'ID de l'utilisateur comme ID de l'élève
+            'niveau' => $eleve->getNiveau() // Récupérer le niveau de l'élève depuis l'objet eleve
         ]);
     } catch (Exception $e) {
         echo 'Error: ' . $e->getMessage();
     }
 }
+
 
     public function geteleveById($id)
         {

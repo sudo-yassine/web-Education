@@ -20,6 +20,10 @@ class eleve extends Utilisateur
     {
         return $this->niveau;
     }
+    public function setId_eleve($Id)
+    {
+        $this->getId_eleve= $Id;
+    }
     public function setNiveau($niveau)
     {
         $this->niveau = $niveau;
