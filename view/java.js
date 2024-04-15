@@ -25,13 +25,3 @@ function validateForm() {
 
     return true;
 }
-// Regular expression pattern for password validation
-const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-// Function to validate password
-function validatePassword(password) {
-    if (!passwordPattern.test(password)) {
-        alert("password invalide");
-        return false;
-    }
-}

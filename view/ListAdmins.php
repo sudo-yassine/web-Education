@@ -40,7 +40,7 @@ $list = $adminC->listAdmins();
                         <div class="row mb-3">
                             <div class="col">
                                 <label class="form-label">Niveau</label>
-                                <select class="form-select" name="niveau" id="niveau">
+                                <select class="form-select" name="niveau" id="niveau"  onclick="return validateNiveauSelection()">
                                     <?php
                                     // Tableau des options de niveau
                                     $niveaux = array("super", "controle", "Avancé");
@@ -67,7 +67,7 @@ $list = $adminC->listAdmins();
                             </div>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-primary me-1" id="insertBtn" onclick="return validateNiveauSelection()">Enregistrer</button>
+                            <button type="submit" class="btn btn-primary me-1" id="insertBtn">Enregistrer</button>
                             <button type="reset" class="btn btn-secondary">Annuler</button>
                         </div>
                     </form>
@@ -91,14 +91,15 @@ $list = $adminC->listAdmins();
                             var pass = input.value.trim();
                             
                             //var errorDiv = input;
-                            var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                            var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
 
                             if (!regex.test(pass)) {
                                 //errorDiv.textContent = "test";
                                 alert("password invalide");
                                 return false;
                             } else {
-                                errorDiv.textContent = "";
+                                errorDiv.textContent = " correct";
                                 return true;
                             }
                         }
