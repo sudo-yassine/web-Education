@@ -43,11 +43,15 @@ $list = $examenC->listexamen();
                                 </div>
                                 <div class="col">
                                     <label class="form-label" >titre</label>
-                                    <input type="text" class="form-control" name="titre" placeholder=" titre">
+                                    <input type="text" class="form-control" name="titre" placeholder=" titre" 
+                                    onblur="validateTitre(this)" value="<?php echo htmlspecialchars($admin['titre'] ?? ''); ?>">
+                                    <div id="error_nom" class="text-danger"></div>
                                 </div>
                                 <div>
                                     <label >description</label>
-                                    <input type="text" class="form-control" name="description" placeholder="description">
+                                    <input type="text" class="form-control" name="description" placeholder="description"
+                                    onblur="validateDescription(this)" value="<?php echo htmlspecialchars($admin['description'] ?? ''); ?>">
+                                    <div id="error" class="text-danger"></div>
                                 </div>
                                 <div class="form-label">
                                     <label >date_limite</label>
@@ -59,6 +63,37 @@ $list = $examenC->listexamen();
                                 <button type="button"  class="btn btn-primary me-1" data-bs-dismiss="modal">Cancel</button>
                             </div>
                         </form>
+                        <script>
+                        function validateTitre(input) {
+                            var titre = input.value.trim();
+                            var errorDiv = input.nextElementSibling;
+                            var regex =/^[A-Z][a-zA-Z]*$/;
+
+                            if (!regex.test(titre)) {
+                                errorDiv.textContent = "Veuillez entrer un titre valide ";
+                                return false;
+                            } else {
+                                errorDiv.textContent = "";
+                                return true;
+                            }
+                        }
+                        
+                        function validateDescription(input) {
+                            var descrip = input.value.trim();
+                            var errorDiv = input.nextElementSibling;
+                            var regex =/^[a-zA-Z0-9]+ [a-zA-Z0-9]+$/;
+
+                            if (!regex.test(descrip)) {
+                                errorDiv.textContent = "Veuillez entrer un descrip valide ";
+                                return false;
+                            } else {
+                                errorDiv.textContent = "";
+                                return true;
+                            }
+                        }
+                        
+                    </script>
+
                     </div>
                 </div>
             </div>
