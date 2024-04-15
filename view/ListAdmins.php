@@ -64,6 +64,7 @@ $list = $adminC->listAdmins();
                             <div class="col">
                                 <label class="form-label">Mot de passe</label>
                                 <input type="password" class="form-control" name="pass" placeholder="Mot de passe" onblur="validatepass(this)" value="<?php echo htmlspecialchars($admin['pass'] ?? ''); ?>">
+                                <div id="error_prenom" class="text-danger"></div>
                             </div>
                         </div>
                         <div>
@@ -90,16 +91,15 @@ $list = $adminC->listAdmins();
                         function validatepass(input) {
                             var pass = input.value.trim();
                             
-                            //var errorDiv = input;
+                            var errorDiv = input.nextElementSibling;
                             var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
 
                             if (!regex.test(pass)) {
-                                //errorDiv.textContent = "test";
-                                alert("password invalide");
+                                errorDiv.textContent = "password invalide";
                                 return false;
                             } else {
-                                errorDiv.textContent = " correct";
+                                errorDiv.textContent = "";
                                 return true;
                             }
                         }
