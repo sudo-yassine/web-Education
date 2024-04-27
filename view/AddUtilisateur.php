@@ -17,3 +17,4 @@ $error = "";
      );
     $utilisateurC->addUtilisateur($Utilisateur);
     header('Location:ListUtilisateurs.php');
+   ?>

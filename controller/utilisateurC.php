@@ -42,10 +42,8 @@ class utilisateurC
             die('Error:' . $e->getMessage());
         }
     }
-    public function addUtilisateur($Utilisateur)
-    {
-        $sql = "INSERT INTO utilisateur  
-                VALUES (NULL, :Nom, :Prenom, :Email, :Tel, :Password,:Role)";
+    public function addUtilisateur($Utilisateur) {
+        $sql = "INSERT INTO utilisateur (Nom, Prenom, Email, Tel, Password, Role) VALUES (:Nom, :Prenom, :Email, :Tel, :Password, :Role)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
@@ -55,12 +53,13 @@ class utilisateurC
                 'Email' => $Utilisateur->getEmail(),
                 'Tel' => $Utilisateur->getTel(),
                 'Password' => $Utilisateur->getPassword(),
-                'Role' =>$Utilisateur->getRole()
+                'Role' => $Utilisateur->getRole()
             ]);
         } catch (Exception $e) {
-            echo 'Error: ' . $e->getMessage();
+            echo 'Erreur: ' . $e->getMessage();
         }
     }
+    
     public function getUtilisateurById($id)
         {
         $sql = "SELECT * FROM utilisateur WHERE Id_utilisateur = :id";
