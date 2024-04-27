@@ -4,17 +4,17 @@ class Utilisateur
     protected $Id_utilisateur;
     protected $Nom;
     protected $Prenom;
-    protected $Adresse;
+    protected $Email;
     protected $Tel;
     protected $Password;
     protected $Role;
 
-    public function __construct($Id_utilisateur, $Nom, $Prenom, $Adresse, $Tel, $Password, $Role)
+    public function __construct($Id_utilisateur, $Nom, $Prenom, $Email, $Tel, $Password, $Role)
     {
         $this->Id_utilisateur = $Id_utilisateur;
         $this->Nom = $Nom;
         $this->Prenom = $Prenom;
-        $this->Adresse = $Adresse;
+        $this->Email = $Email;
         $this->Tel = $Tel;
         $this->Password = $Password;
         $this->Role = $Role;
@@ -35,9 +35,9 @@ class Utilisateur
     {
         return $this->Prenom;
     }
-    public function getAdresse()
+    public function getEmail()
     {
-        return $this->Adresse;
+        return $this->Email;
     }
     public function getTel()
     {
@@ -55,9 +55,9 @@ class Utilisateur
     {
         $this->Prenom = $Prenom;
     }
-    public function setAdresse($Adresse)
+    public function setEmail($Email)
     {
-        $this->Adresse = $Adresse;
+        $this->Email = $Email;
     }
     public function setTel($Tel)
     {

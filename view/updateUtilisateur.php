@@ -6,7 +6,7 @@ $utilisateur = null;
 if (
     isset($_POST["Nom"]) &&
     isset($_POST["Prenom"]) &&
-    isset($_POST["Adresse"]) &&
+    isset($_POST["Email"]) &&
     isset($_POST['Tel'])&&
     isset($_POST["Password"])&&
     isset($_POST["Role"])
@@ -14,7 +14,7 @@ if (
     if (
         !empty($_POST["Nom"]) &&
         !empty($_POST["Prenom"]) &&
-        !empty($_POST["Adresse"]) &&
+        !empty($_POST["Email"]) &&
         !empty($_POST['Tel'])&&
         !empty($_POST["Password"])&&
         !empty($_POST["Role"])
@@ -25,7 +25,7 @@ if (
             null,
             $_POST['Nom'],
             $_POST['Prenom'],
-            $_POST['Adresse'],
+            $_POST['Email'],
             $_POST['Tel'],
             $_POST['Password'],
             $_POST['Role']   
@@ -72,8 +72,8 @@ if (
                             <input type="text" class="form-control" name="Prenom" placeholder="Prenom" value="<?php echo $utilisateur['Prenom']; ?>">
                         </div>
                          <div class="col">
-                            <label class="form-label">Adresse</label>
-                            <input type="text" class="form-control" name="Adresse" placeholder="Adresse" value="<?php echo $utilisateur['Adresse']; ?>">
+                            <label class="form-label">Email</label>
+                            <input type="text" class="form-control" name="Email" placeholder="Email" value="<?php echo $utilisateur['Email']; ?>">
                         </div>
                          <div class="col">
                             <label class="form-label">Tel</label>

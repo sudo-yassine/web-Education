@@ -14,12 +14,12 @@ if (isset($_GET['Id_eleve'])) {
 
 // Traitement de la soumission du formulaire
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!empty($_POST["Nom"]) && !empty($_POST["Prenom"]) && !empty($_POST["Adresse"]) && !empty($_POST["Tel"]) && !empty($_POST["Password"]) && !empty($_POST["niveau"])) {
+    if (!empty($_POST["Nom"]) && !empty($_POST["Prenom"]) && !empty($_POST["Email"]) && !empty($_POST["Tel"]) && !empty($_POST["Password"]) && !empty($_POST["niveau"])) {
         $eleveToUpdate = new Eleve(
             $_GET['Id_eleve'],  // Utilisez l'ID existant plutôt que `null`
             $_POST['Nom'],
             $_POST['Prenom'],
-            $_POST['Adresse'],
+            $_POST['Email'],
             $_POST['Tel'],
             $_POST['Password'],
             1, // Supposons que le rôle est statique, à ajuster selon votre application
@@ -69,8 +69,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <input type="text" class="form-control" name="Prenom" placeholder="Prenom" value="<?php echo $eleve['Prenom']; ?>">
                         </div>
                          <div class="col">
-                            <label class="form-label">Adresse</label>
-                            <input type="text" class="form-control" name="Adresse" placeholder="Adresse" value="<?php echo $eleve['Adresse']; ?>">
+                            <label class="form-label">Email</label>
+                            <input type="text" class="form-control" name="Email" placeholder="Email" value="<?php echo $eleve['Email']; ?>">
                         </div>
                         <div class="col">
                             <label class="form-label">Tel</label>

@@ -4,9 +4,9 @@ class Eleve extends Utilisateur
 {
     private $niveau;
 
-    public function __construct($Id_utilisateur, $Nom, $Prenom, $Adresse, $Tel, $Password, $Role, $niveau)
+    public function __construct($Id_utilisateur, $Nom, $Prenom, $Email, $Tel, $Password, $Role, $niveau)
     {
-        parent::__construct($Id_utilisateur, $Nom, $Prenom, $Adresse, $Tel, $Password, $Role);
+        parent::__construct($Id_utilisateur, $Nom, $Prenom, $Email, $Tel, $Password, $Role);
         $this->niveau = $niveau;
     }
 

@@ -27,7 +27,7 @@ class eleveC
     }
     public function listEleves()
     {
-        $sql = "SELECT utilisateur.Id_utilisateur, utilisateur.Nom, utilisateur.Prenom, utilisateur.Adresse, utilisateur.Tel, utilisateur.Password, eleve.Id_eleve, eleve.niveau FROM utilisateur INNER JOIN eleve ON utilisateur.Id_utilisateur = eleve.Id_eleve";
+        $sql = "SELECT utilisateur.Id_utilisateur, utilisateur.Nom, utilisateur.Prenom, utilisateur.Email, utilisateur.Tel, utilisateur.Password, eleve.Id_eleve, eleve.niveau FROM utilisateur INNER JOIN eleve ON utilisateur.Id_utilisateur = eleve.Id_eleve";
         $db = config::getConnexion();
         try {
             $stmt = $db->query($sql);
@@ -56,13 +56,13 @@ class eleveC
         $db->beginTransaction();  // Commencer une transaction
         try {
             // Ajout dans la table utilisateur
-            $sql = "INSERT INTO utilisateur (Nom, Prenom,Adresse=:Adresse,Tel , Password, Role)
+            $sql = "INSERT INTO utilisateur (Nom, Prenom,Email=:Email,Tel , Password, Role)
                     VALUES (:Nom, :Prenom, :Tel, :Password, 1)";
             $query = $db->prepare($sql);
             $query->execute([
                 'Nom' => $eleve->getNom(),
                 'Prenom' => $eleve->getPrenom(),
-                'Adresse' =>$eleve->getAdresse(),
+                'Email' =>$eleve->getEmail(),
                 'Tel' => $eleve->getTel(),
                 'Password' => $eleve->getPassword()
             ]);
@@ -104,14 +104,14 @@ class eleveC
         try {
             $db->beginTransaction();
             // Mise à jour de la table utilisateur
-            $sql = "UPDATE utilisateur SET Nom = :Nom, Prenom = :Prenom, Adresse=:Adresse, Tel = :Tel, Password = :Password
+            $sql = "UPDATE utilisateur SET Nom = :Nom, Prenom = :Prenom, Email=:Email, Tel = :Tel, Password = :Password
                     WHERE Id_utilisateur = :id AND Role = 1";
             $query = $db->prepare($sql);
             $query->execute([
                 'id' => $id,
                 'Nom' => $eleve->getNom(),
                 'Prenom' => $eleve->getPrenom(),
-                'Adresse' =>$eleve->getAdresse(),
+                'Email' =>$eleve->getEmail(),
                 'Tel' => $eleve->getTel(),
                 'Password' => $eleve->getPassword()
             ]);
@@ -145,7 +145,7 @@ class eleveC
     }*/
     function showuser($Id_eleve) {
         // Joindre la table `eleve` avec la table `utilisateur` pour obtenir des informations sur l'utilisateur associé à chaque élève
-        $sql = "SELECT eleve.*, utilisateur.Nom, utilisateur.Prenom, utilisateur.Adresse,utilisateur.Tel,utilisateur.Password 
+        $sql = "SELECT eleve.*, utilisateur.Nom, utilisateur.Prenom, utilisateur.Email,utilisateur.Tel,utilisateur.Password 
                 FROM eleve 
                 INNER JOIN utilisateur ON eleve.Id_eleve = utilisateur.Id_utilisateur 
                 WHERE eleve.Id_eleve = :Id_eleve"; 

@@ -45,14 +45,14 @@ class utilisateurC
     public function addUtilisateur($Utilisateur)
     {
         $sql = "INSERT INTO utilisateur  
-                VALUES (NULL, :Nom, :Prenom, :Adresse, :Tel, :Password,:Role)";
+                VALUES (NULL, :Nom, :Prenom, :Email, :Tel, :Password,:Role)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute([
                 'Nom' => $Utilisateur->getNom(),
                 'Prenom' => $Utilisateur->getPrenom(),
-                'Adresse' => $Utilisateur->getAdresse(),
+                'Email' => $Utilisateur->getEmail(),
                 'Tel' => $Utilisateur->getTel(),
                 'Password' => $Utilisateur->getPassword(),
                 'Role' =>$Utilisateur->getRole()
@@ -85,7 +85,7 @@ class utilisateurC
                 'UPDATE utilisateur SET 
                     Nom = :Nom, 
                     Prenom = :Prenom, 
-                    Adresse = :Adresse,
+                    Email = :Email,
                     Tel = :Tel,
                     Password = :Password,
                     Role= :Role
@@ -95,7 +95,7 @@ class utilisateurC
                 'id' => $id,
                 'Nom' => $Utilisateur->getNom(),
                 'Prenom' => $Utilisateur->getPrenom(),
-                'Adresse' => $Utilisateur->getAdresse(),
+                'Email' => $Utilisateur->getEmail(),
                 'Tel' => $Utilisateur->getTel(),
                 'Password' => $Utilisateur->getPassword(),
                 'Role' =>$Utilisateur->getRole()

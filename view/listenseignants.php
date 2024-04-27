@@ -27,7 +27,7 @@ function escape($value) {
                     <th>ID</th>
                     <th>Nom</th>
                     <th>Prénom</th>
-                    <th>Adresse</th>
+                    <th>Email</th>
                     <th>Tél</th>
                     <th>Mot de passe</th>
                     <th>specialite</th>
@@ -42,7 +42,7 @@ function escape($value) {
                     echo '<td>' . escape($enseignant['Id_utilisateur'] ) . '</td>';
                     echo '<td>' . escape($enseignant['Nom'] ) . '</td>';
                     echo '<td>' . escape($enseignant['Prenom']  ) . '</td>';
-                    echo '<td>' . escape($enseignant['Adresse'] ) . '</td>';
+                    echo '<td>' . escape($enseignant['Email'] ) . '</td>';
                     echo '<td>' . escape($enseignant['Tel'] ) . '</td>';
                     echo '<td>' . escape($enseignant['Password'] ) . '</td>';
                     echo '<td>' . escape($enseignant['specialite'] ) . '</td>';

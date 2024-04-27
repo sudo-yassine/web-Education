@@ -58,8 +58,8 @@ $list = $utilisateurC->listUtilisateurs();
                                     <div id="error_nom" class="text-danger"></div>
                                 </div>
                                 <div>
-                                    <label >Adresse</label>
-                                    <input type="text" class="form-control" name="Adresse" placeholder="Adresse">
+                                    <label >Email</label>
+                                    <input type="text" class="form-control" name="Email" placeholder="Email">
                                 </div>
                                 <div class="form-label">
                                     <label >Tel</label>
@@ -121,7 +121,7 @@ $list = $utilisateurC->listUtilisateurs();
                     <th>Id_utilisateur</th>
                     <th>Nom</th>
                     <th>Prenom</th>
-                    <th>Adresse</th>
+                    <th>Email</th>
                     <th>Tel</th>
                     <th>Password</th>
                     <th>Role</th>
@@ -137,7 +137,7 @@ $list = $utilisateurC->listUtilisateurs();
                         <td><?= $utilisateur['Id_utilisateur']; ?></td>
                         <td><?= $utilisateur['Nom']; ?></td>
                         <td><?= $utilisateur['Prenom']; ?></td>
-                        <td><?= $utilisateur['Adresse']; ?></td>
+                        <td><?= $utilisateur['Email']; ?></td>
                         <td><?= $utilisateur['Tel']; ?></td>
                         <td><?= $utilisateur['Password']; ?></td>
                         <td><?= $utilisateur['Role']; ?></td>

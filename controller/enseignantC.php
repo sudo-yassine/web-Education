@@ -27,7 +27,7 @@ class enseignantC
     }
     public function listenseignants()
     {
-        $sql = "SELECT utilisateur.Id_utilisateur, utilisateur.Nom, utilisateur.Prenom, utilisateur.Adresse, utilisateur.Tel, utilisateur.Password, enseignant.Id_enseignant, enseignant.specialite FROM utilisateur INNER JOIN enseignant ON utilisateur.Id_utilisateur = enseignant.Id_enseignant";
+        $sql = "SELECT utilisateur.Id_utilisateur, utilisateur.Nom, utilisateur.Prenom, utilisateur.Email, utilisateur.Tel, utilisateur.Password, enseignant.Id_enseignant, enseignant.specialite FROM utilisateur INNER JOIN enseignant ON utilisateur.Id_utilisateur = enseignant.Id_enseignant";
         $db = config::getConnexion();
         try {
             $stmt = $db->query($sql);
@@ -56,13 +56,13 @@ class enseignantC
         $db->beginTransaction();  // Commencer une transaction
         try {
             // Ajout dans la table utilisateur
-            $sql = "INSERT INTO utilisateur (Nom, Prenom,Adresse=:Adresse,Tel , Password, Role)
+            $sql = "INSERT INTO utilisateur (Nom, Prenom,Email=:Email,Tel , Password, Role)
                     VALUES (:Nom, :Prenom, :Tel, :Password, 0)";
             $query = $db->prepare($sql);
             $query->execute([
                 'Nom' => $enseignant->getNom(),
                 'Prenom' => $enseignant->getPrenom(),
-                'Adresse' =>$enseignant->getAdresse(),
+                'Email' =>$enseignant->getEmail(),
                 'Tel' => $enseignant->getTel(),
                 'Password' => $enseignant->getPassword()
             ]);
@@ -104,14 +104,14 @@ class enseignantC
         try {
             $db->beginTransaction();
             // Mise à jour de la table utilisateur
-            $sql = "UPDATE utilisateur SET Nom = :Nom, Prenom = :Prenom, Adresse=:Adresse, Tel = :Tel, Password = :Password
+            $sql = "UPDATE utilisateur SET Nom = :Nom, Prenom = :Prenom, Email=:Email, Tel = :Tel, Password = :Password
                     WHERE Id_utilisateur = :id AND Role = 1";
             $query = $db->prepare($sql);
             $query->execute([
                 'id' => $id,
                 'Nom' => $enseignant->getNom(),
                 'Prenom' => $enseignant->getPrenom(),
-                'Adresse' =>$enseignant->getAdresse(),
+                'Email' =>$enseignant->getEmail(),
                 'Tel' => $enseignant->getTel(),
                 'Password' => $enseignant->getPassword()
             ]);
@@ -133,7 +133,7 @@ class enseignantC
     
     function showuser($Id_enseignant) {
         // Joindre la table `enseignant` avec la table `utilisateur` pour obtenir des informations sur l'utilisateur associé à chaque élève
-        $sql = "SELECT enseignant.*, utilisateur.Nom, utilisateur.Prenom, utilisateur.Adresse,utilisateur.Tel,utilisateur.Password 
+        $sql = "SELECT enseignant.*, utilisateur.Nom, utilisateur.Prenom, utilisateur.Email,utilisateur.Tel,utilisateur.Password 
                 FROM enseignant 
                 INNER JOIN utilisateur ON enseignant.Id_enseignant = utilisateur.Id_utilisateur 
                 WHERE enseignant.Id_enseignant = :Id_enseignant"; 

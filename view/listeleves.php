@@ -27,7 +27,7 @@ function escape($value) {
                     <th>ID</th>
                     <th>Nom</th>
                     <th>Prénom</th>
-                    <th>Adresse</th>
+                    <th>Email</th>
                     <th>Tél</th>
                     <th>Mot de passe</th>
                     <th>Niveau</th>
@@ -42,7 +42,7 @@ function escape($value) {
                     echo '<td>' . escape($eleve['Id_utilisateur'] ) . '</td>';
                     echo '<td>' . escape($eleve['Nom'] ) . '</td>';
                     echo '<td>' . escape($eleve['Prenom']  ) . '</td>';
-                    echo '<td>' . escape($eleve['Adresse'] ) . '</td>';
+                    echo '<td>' . escape($eleve['Email'] ) . '</td>';
                     echo '<td>' . escape($eleve['Tel'] ) . '</td>';
                     echo '<td>' . escape($eleve['Password'] ) . '</td>';
                     echo '<td>' . escape($eleve['niveau'] ) . '</td>';
