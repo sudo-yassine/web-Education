@@ -9,221 +9,153 @@ $list = $coursC->listcours();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cours</title>
+    <title>Gestion des Cours</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet" />-->
-    <!----======== CSS ======== -->
-   
-
-    <!----===== Boxicons CSS ===== -->
-    <link
-      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="resources/css/dashboard.css" />
-    <!-- <link rel="stylesheet" href="./resources/css/style.css"> -->
-    </head>
+    <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="resources/css/dashboard.css">
+</head>
 <body>
-    
-
- <nav class="sidebar close">
-      <header>
+<nav class="sidebar close">
+    <header>
         <div class="image-text">
-          <span class="image">
-            <img src="resources/img/wisdomwave.png" alt="">
-          </span>
-
-          <div class="text logo-text">
-            <span class="name">Wisdom Wave</span>
-            <span class="profession">Dashboard</span>
-          </div>
+            <span class="image">
+                <img src="resources/img/wisdomwave.png" alt="">
+            </span>
+            <div class="text logo-text">
+                <span class="name">Wisdom Wave</span>
+                <span class="profession">Dashboard</span>
+            </div>
         </div>
-
         <i class="bx bx-chevron-right toggle"></i>
-      </header>
-
-      <div class="menu-bar">
+    </header>
+    <div class="menu-bar">
         <div class="menu">
-          <li class="search-box">
-            <i class="bx bx-search icon"></i>
-            <input type="text" placeholder="Search..." />
-          </li>
-
-          <ul class="menu-links">
-            <li class="nav-link">
-              <a href="dashboard.html">
-                <i class="bx bx-home-alt icon"></i>
-                <span class="text nav-text">Dashboard</span>
-              </a>
+            <li class="search-box">
+                <i class="bx bx-search icon"></i>
+                <input type="text" placeholder="Search...">
             </li>
-
-            <li class="nav-link">
-              <a href="listUtilisateurs.php">
-                <i class="bx bx-bar-chart-alt-2 icon"></i>
-                <span class="text nav-text">Gestion Utilisateur</span>
-              </a>
-            </li>
-
-            <li class="nav-link">
-              <a href="listcours.php">
-                <i class="bx bx-bell icon"></i>
-                <span class="text nav-text">Gestion Cours</span>
-              </a>
-            </li>
-
-            <li class="nav-link">
-              <a href="listexamen.php">
-                <i class="bx bx-pie-chart-alt icon"></i>
-                <span class="text nav-text">Gestion Examen</span>
-              </a>
-            </li>
-
-            <li class="nav-link">
-              <a href="ListRecrut.php">
-                <i class="bx bx-heart icon"></i>
-                <span class="text nav-text">Gestion Recrut</span>
-              </a>
-            </li>
-
-            <li class="nav-link">
-              <a href="#">
-                <i class="bx bx-wallet icon"></i>
-                <span class="text nav-text">Gestion Achats</span>
-              </a>
-            </li>
-          </ul>
+            <ul class="menu-links">
+                <li class="nav-link">
+                    <a href="dashboard.html">
+                        <i class="bx bx-home-alt icon"></i>
+                        <span class="text nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="listUtilisateurs.php">
+                        <i class="bx bx-bar-chart-alt-2 icon"></i>
+                        <span class="text nav-text">Gestion Utilisateur</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="listcours.php">
+                        <i class="bx bx-bell icon"></i>
+                        <span class="text nav-text">Gestion Cours</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="listexamen.php">
+                        <i class="bx bx-pie-chart-alt icon"></i>
+                        <span class="text nav-text">Gestion Examen</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="ListRecrut.php">
+                        <i class="bx bx-heart icon"></i>
+                        <span class="text nav-text">Gestion Recrut</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#">
+                        <i class="bx bx-wallet icon"></i>
+                        <span class="text nav-text">Gestion Achats</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-
         <div class="bottom-content">
-          <li class="">
-            <a href="#">
-              <i class="bx bx-log-out icon"></i>
-              <span class="text nav-text">Logout</span>
-            </a>
-          </li>
-
-          <li class="mode">
-            <div class="sun-moon">
-              <i class="bx bx-moon icon moon"></i>
-              <i class="bx bx-sun icon sun"></i>
-            </div>
-            <span class="mode-text text">Dark mode</span>
-
-            <div class="toggle-switch">
-              <span class="switch"></span>
-            </div>
-          </li>
+            <li class="">
+                <a href="#">
+                    <i class="bx bx-log-out icon"></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
+            <li class="mode">
+                <div class="sun-moon">
+                    <i class="bx bx-moon icon moon"></i>
+                    <i class="bx bx-sun icon sun"></i>
+                </div>
+                <span class="mode-text text">Dark mode</span>
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li>
         </div>
-      </div>
-    </nav>
-
-     <section class="home">
-      
-      <div class="text">Gestion des Cours  </div>
-
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-3 mt-5" >
+    </div>
+</nav>
+<section class="home">
+    <div class="text">Gestion des Cours</div>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-3 mt-5">
             <div class="text-body-secondary">
-                <span class="h5">tous les cours</span>
+                <span class="h5">Tous les cours</span>
                 <br>
-               crud cours 
+                CRUD cours
             </div>
-            
             <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#addcoursModal">
-                ajouter un cours
+                Ajouter un cours
             </button>
         </div>
-        <div class="modal fade"  id="addcoursModal" tabindex="-1" aria-labelledby="addcoursModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addcoursModal" tabindex="-1" aria-labelledby="addcoursModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 id="addcoursModalLabel">ajouter un cours</h5>
+                        <h5 class="modal-title" id="addcoursModalLabel">Ajouter un cours</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" id="insertForm" action="addcours.php" enctype="multipart/form-data">
+                        <form method="POST" id="insertForm" action="addcours.php">
                             <div class="row mb-3">
                                 <div class="col">
-                                    <label class="form-label">nom cours</label>
-                                    <input type="text"class="form-control"  name="nom_cours" placeholder="nom du cours" onblur="validateName(this)" value="<?php echo htmlspecialchars($cours['nom_cours'] ?? ''); ?>">  
-
-                                    <div id="erreur" class="text-danger"></div>
+                                    <label class="form-label">Nom cours</label>
+                                    <input type="text" class="form-control" name="nom_cours" placeholder="Nom du cours">
                                 </div>
                                 <div class="col">
-                                    <label class="form-label" >heures</label>
-                                    <input type="text" class="form-control" name="heures" placeholder="nombre heures"onblur="validateNiveau(this)"value="<?php echo htmlspecialchars($cours['heures'] ?? ''); ?>">
-                                    <div id="erreur" class="text-danger"></div>
+                                    <label class="form-label">Heures</label>
+                                    <input type="text" class="form-control" name="heures" placeholder="Nombre heures">
                                 </div>
-                                <div>
-                                    <label >niveau</label>
-                                    <input type="text" class="form-control" name="niveau" placeholder="niveau" onblur="validateNiveau(this)"value="<?php echo htmlspecialchars($cours['niveau'] ?? ''); ?>">
-                                    <div id="erreur" class="text-danger"></div>
+                                <div class="col">
+                                    <label class="form-label">Niveau</label>
+                                    <input type="text" class="form-control" name="niveau" placeholder="Niveau">
                                 </div>
-                                <div class="form-label">
-                                    <label >contenu</label>
-                                    <input type="text"class="form-control"  name="contenu" placeholder="contenu"onblur="validateNiveau(this)"value="<?php echo htmlspecialchars($cours['contenu'] ?? ''); ?>">
+                                <div class="col">
+                                    <label class="form-label">Contenu</label>
+                                    <input type="text" class="form-control" name="contenu" placeholder="Contenu">
                                 </div>
                             </div>
-                            <div>
-                                <button type="submit"  class="btn btn-primary me-1" id="insertBtn">Submit</button>
-                                <button type="button"  class="btn btn-primary me-1" data-bs-dismiss="modal">Cancel</button>
-                                <div id="erreur" class="text-danger"></div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-                        function validateName(input) {
-                            var name = input.value.trim();
-                            var errorDiv = input.nextElementSibling;
-                            var regex = /^[A-Za-z]+$/;
-
-                            if (!regex.test(name)) {
-                                errorDiv.textContent = "Veuillez entrer un nom ou un prénom valide (lettres uniquement)";
-                                
-                                return false;
-                            } else {
-                                errorDiv.textContent = "";
-                                return true;
-                            }
-                        }
-                        function validateNiveau(input) {
-                            var name = input.value.trim();
-                            var errorDiv = input.nextElementSibling;
-                            var regex=/^[a-zA-Z0-9]+$/
-;
-
-                            if (!regex.test(name)) {
-                                errorDiv.textContent = "Veuillez entrer un nom ou un prénom valide (lettres uniquement)";
-                                
-                                return false;
-                            } else {
-                                errorDiv.textContent = "";
-                                return true;
-                            }
-                        }
-                        
-                    </script>
         <table class="table table-bordered table-striped table-hover align-middle" id="myTable" style="width:100%;">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
-                    <th>nom cours</th>
-                    <th>heures</th>
-                    <th>niveau</th>
-                    <th>contenu</th>
-                    <th>update</th>
-                    <th>delete</th>
+                    <th>Nom cours</th>
+                    <th>Heures</th>
+                    <th>Niveau</th>
+                    <th>Contenu</th>
+                    <th>Update</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <?php
-                foreach ($list as $cours) {
-                ?>
+                <?php foreach ($list as $cours) { ?>
                     <tr>
                         <td><?= $cours['id_cours']; ?></td>
                         <td><?= $cours['nom_cours']; ?></td>
@@ -231,46 +163,26 @@ $list = $coursC->listcours();
                         <td><?= $cours['niveau']; ?></td>
                         <td><?= $cours['contenu']; ?></td>
                         <td>
-                            <a href="updatecours.php?id_cours=<?php echo $cours['id_cours']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>update</a>
+                            <a href="updatecours.php?id_cours=<?= $cours['id_cours']; ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i> Update</a>
                         </td>
                         <td>
-                            <a href="deletecours.php?id_cours=<?php echo $cours['id_cours']; ?>"class="btn"><i class="fa-solid fa-trash fa-xl"></i>Delete</a>
+                            <a href="deletecours.php?id_cours=<?= $cours['id_cours']; ?>" class="btn btn-danger"><i class="bi bi-trash"></i> Delete</a>
                         </td>
-
                     </tr>
-                <?php
-                }
-                ?>
+                <?php } ?>
             </tbody>
         </table>
     </div>
-    </section>
+</section>
 
-    <script>
-      const body = document.querySelector("body"),
-        sidebar = body.querySelector("nav"),
-        toggle = body.querySelector(".toggle"),
-        searchBtn = body.querySelector(".search-box"),
-        modeSwitch = body.querySelector(".toggle-switch"),
-        modeText = body.querySelector(".mode-text");
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha3/js/bootstrap.bundle.min.js" integrity="sha384-2xz8+GMOkG+RVwNv5a3wuO/k9V70S6f4BPgF4EExe7HZb57FDq7IPISnBgLX1BTH" crossorigin="anonymous"></script>
+<script>
+    const toggle = document.querySelector(".toggle");
+    const sidebar = document.querySelector(".sidebar");
 
-      toggle.addEventListener("click", () => {
+    toggle.addEventListener("click", () => {
         sidebar.classList.toggle("close");
-      });
-
-      searchBtn.addEventListener("click", () => {
-        sidebar.classList.remove("close");
-      });
-
-      modeSwitch.addEventListener("click", () => {
-        body.classList.toggle("dark");
-
-        if (body.classList.contains("dark")) {
-          modeText.innerText = "Light mode";
-        } else {
-          modeText.innerText = "Dark mode";
-        }
-      });
-    </script>
+    });
+</script>
 </body>
 </html>
