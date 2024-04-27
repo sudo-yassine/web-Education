@@ -62,5 +62,6 @@ function escape($value) {
             $('#myTable').DataTable();
         });
     </script>
+    <script src="java.js"></script>
 </body>
 </html>

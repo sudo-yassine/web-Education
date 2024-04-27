@@ -33,6 +33,16 @@ $utilisateurs = $utilisateurC->listUtilisateurs(); // Cette fonction doit retour
             <div class="mb-3">
                 <label for="specialite" class="form-label">specialite :</label>
                 <input type="text" class="form-control" name="specialite" id="specialite" placeholder="specialite de l'enseignant">
+                <select class="form-select" name="specialite" id="niveau"  onclick="return validateSpecSelection()">
+                                    <?php
+                                    // Tableau des options de niveau
+                                    $spec = array("Math", "Physique", "Français");
+                                    // Parcours des options et affichage dans la liste déroulante
+                                    foreach ($spec as $spec) {
+                                        echo "<option value='" . $spec . "'>" . $spec . "</option>";
+                                    }
+                                    ?>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
@@ -41,5 +51,6 @@ $utilisateurs = $utilisateurC->listUtilisateurs(); // Cette fonction doit retour
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="java.js"></script>
 </body>
 </html>

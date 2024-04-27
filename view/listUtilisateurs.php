@@ -49,11 +49,13 @@ $list = $utilisateurC->listUtilisateurs();
                             <div class="row mb-3">
                                 <div class="col">
                                     <label class="form-label">Nom</label>
-                                    <input type="text"class="form-control"  name="Nom" placeholder="nom de l'utilisateur">
+                                    <input type="text" class="form-control" name="nom" placeholder="Nom" onblur="validateName(this)" value="<?php echo htmlspecialchars($utilisateur['Nom'] ?? ''); ?>">
+                                    <div id="error_nom" class="text-danger"></div>
                                 </div>
                                 <div class="col">
                                     <label class="form-label" >Prenom</label>
-                                    <input type="text" class="form-control" name="Prenom" placeholder="Prenom de l'utilisateur">
+                                    <input type="text" class="form-control" name="Prenom" placeholder="Nom" onblur="validateName(this)" value="<?php echo htmlspecialchars($utilisateur['Prenom'] ?? ''); ?>">
+                                    <div id="error_nom" class="text-danger"></div>
                                 </div>
                                 <div>
                                     <label >Adresse</label>
@@ -65,7 +67,8 @@ $list = $utilisateurC->listUtilisateurs();
                                 </div>
                                 <div class="form-label">
                                     <label >Password</label>
-                                    <input type="text"class="form-control"  name="Password" placeholder="Password">
+                                    <input type="Password" class="form-control" name="pass" placeholder="Password" onblur="validatepass(this)" value="<?php echo htmlspecialchars($utilisateur['Password'] ?? ''); ?>">
+                                <div id="error_prenom" class="text-danger"></div>
                                 </div>
                                 <div class="form-label">
                                     <label >Role</label>
@@ -77,6 +80,37 @@ $list = $utilisateurC->listUtilisateurs();
                                 <button type="button"  class="btn btn-primary me-1" data-bs-dismiss="modal">Cancel</button>
                             </div>
                         </form>
+                        <script>
+                        function validateName(input) {
+                            var name = input.value.trim();
+                            var errorDiv = input.nextElementSibling;
+                            var regex = /^[A-Za-z]+$/;
+
+                            if (!regex.test(name)) {
+                                errorDiv.textContent = "Veuillez entrer un nom ou un prénom valide (lettres uniquement)";
+                                return false;
+                            } else {
+                                errorDiv.textContent = "";
+                                return true;
+                            }
+                        }
+                        
+                        function validatepass(input) {
+                            var pass = input.value.trim();
+                            
+                            var errorDiv = input.nextElementSibling;
+                            var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+
+                            if (!regex.test(pass)) {
+                                errorDiv.textContent = "password invalide";
+                                return false;
+                            } else {
+                                errorDiv.textContent = "";
+                                return true;
+                            }
+                        }
+                    </script>
                     </div>
                 </div>
             </div>
@@ -123,6 +157,7 @@ $list = $utilisateurC->listUtilisateurs();
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="java.js"></script>
     <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
 </body>
 

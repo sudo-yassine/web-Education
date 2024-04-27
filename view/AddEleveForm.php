@@ -33,6 +33,16 @@ $utilisateurs = $utilisateurC->listUtilisateurs(); // Cette fonction doit retour
             <div class="mb-3">
                 <label for="niveau" class="form-label">Niveau :</label>
                 <input type="text" class="form-control" name="niveau" id="niveau" placeholder="Niveau de l'élève">
+                <select class="form-select" name="niveau" id="niveau"  onclick="return validateNiveauSelection()">
+                                    <?php
+                                    // Tableau des options de niveau
+                                    $niveaux = array("moyen(ne)", "passable", "Avancé","Tres bien");
+                                    // Parcours des options et affichage dans la liste déroulante
+                                    foreach ($niveaux as $niveau) {
+                                        echo "<option value='" . $niveau . "'>" . $niveau . "</option>";
+                                    }
+                                    ?>
+                                </select>
             </div>
             <button type="submit" class="btn btn-primary">Ajouter</button>
         </form>
