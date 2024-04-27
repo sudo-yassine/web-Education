@@ -38,6 +38,18 @@ $list = $coursC->listcours();
                         <form method="POST" id="insertForm" action="addcours.php" enctype="multipart/form-data">
                             <div class="row mb-3">
                                 <div class="col">
+                <label class="form-label">Matière</label>
+                <select class="form-select" name="matiere">
+                    <?php
+                    // Fetch matieres from the database
+                    $matieres = $coursC->listmatieres(); // Assuming you have a method to list matieres in your coursC class
+                    foreach ($matieres as $matiere) {
+                        echo "<option value='" . $matiere['id_matiere'] . "'>" . $matiere['nom_matiere'] . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+                                <div class="col">
                                     <label class="form-label">nom cours</label>
                                     <input type="text"class="form-control"  name="nom_cours" placeholder="nom du cours" onblur="validateName(this)" value="<?php echo htmlspecialchars($cours['nom_cours'] ?? ''); ?>">  
 
