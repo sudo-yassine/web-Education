@@ -19,9 +19,9 @@ $list = $utilisateurC->listUtilisateurs();
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3 mt-5" >
             <div class="text-body-secondary">
-                <span class="h5">tous les utilisateur</span>
+                <span class="h5">Tous les utilisateur</span>
                 <br>
-               crud utilisateur 
+               Crud utilisateur 
             </div>
             <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#adduserModal">
                 ajouter un utilisateur
