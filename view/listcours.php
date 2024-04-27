@@ -122,6 +122,7 @@ $list = $coursC->listcours();
      <section class="home">
       
       <div class="text">Gestion des Cours  </div>
+
       <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3 mt-5" >
             <div class="text-body-secondary">
@@ -129,6 +130,7 @@ $list = $coursC->listcours();
                 <br>
                crud cours 
             </div>
+            
             <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#addcoursModal">
                 ajouter un cours
             </button>
@@ -145,30 +147,67 @@ $list = $coursC->listcours();
                             <div class="row mb-3">
                                 <div class="col">
                                     <label class="form-label">nom cours</label>
-                                    <input type="text"class="form-control"  name="nom_cours" placeholder="nom du cours">
+                                    <input type="text"class="form-control"  name="nom_cours" placeholder="nom du cours" onblur="validateName(this)" value="<?php echo htmlspecialchars($cours['nom_cours'] ?? ''); ?>">  
+
+                                    <div id="erreur" class="text-danger"></div>
                                 </div>
                                 <div class="col">
                                     <label class="form-label" >heures</label>
-                                    <input type="text" class="form-control" name="heures" placeholder="nombre heures">
+                                    <input type="text" class="form-control" name="heures" placeholder="nombre heures"onblur="validateNiveau(this)"value="<?php echo htmlspecialchars($cours['heures'] ?? ''); ?>">
+                                    <div id="erreur" class="text-danger"></div>
                                 </div>
                                 <div>
                                     <label >niveau</label>
-                                    <input type="text" class="form-control" name="niveau" placeholder="niveau">
+                                    <input type="text" class="form-control" name="niveau" placeholder="niveau" onblur="validateNiveau(this)"value="<?php echo htmlspecialchars($cours['niveau'] ?? ''); ?>">
+                                    <div id="erreur" class="text-danger"></div>
                                 </div>
                                 <div class="form-label">
                                     <label >contenu</label>
-                                    <input type="text"class="form-control"  name="contenu" placeholder="contenu">
+                                    <input type="text"class="form-control"  name="contenu" placeholder="contenu"onblur="validateNiveau(this)"value="<?php echo htmlspecialchars($cours['contenu'] ?? ''); ?>">
                                 </div>
                             </div>
                             <div>
                                 <button type="submit"  class="btn btn-primary me-1" id="insertBtn">Submit</button>
                                 <button type="button"  class="btn btn-primary me-1" data-bs-dismiss="modal">Cancel</button>
+                                <div id="erreur" class="text-danger"></div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+                        function validateName(input) {
+                            var name = input.value.trim();
+                            var errorDiv = input.nextElementSibling;
+                            var regex = /^[A-Za-z]+$/;
+
+                            if (!regex.test(name)) {
+                                errorDiv.textContent = "Veuillez entrer un nom ou un prénom valide (lettres uniquement)";
+                                
+                                return false;
+                            } else {
+                                errorDiv.textContent = "";
+                                return true;
+                            }
+                        }
+                        function validateNiveau(input) {
+                            var name = input.value.trim();
+                            var errorDiv = input.nextElementSibling;
+                            var regex=/^[a-zA-Z0-9]+$/
+;
+
+                            if (!regex.test(name)) {
+                                errorDiv.textContent = "Veuillez entrer un nom ou un prénom valide (lettres uniquement)";
+                                
+                                return false;
+                            } else {
+                                errorDiv.textContent = "";
+                                return true;
+                            }
+                        }
+                        
+                    </script>
         <table class="table table-bordered table-striped table-hover align-middle" id="myTable" style="width:100%;">
             <thead class="table-dark">
                 <tr>
@@ -205,9 +244,6 @@ $list = $coursC->listcours();
             </tbody>
         </table>
     </div>
-    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>-->
     </section>
 
     <script>
