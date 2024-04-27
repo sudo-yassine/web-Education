@@ -69,7 +69,7 @@ $list = $utilisateurC->listUtilisateurs();
                                 </div>
                                 <div class="form-label">
                                     <label >Role</label>
-                                    <input type="number"class="form-control"  name="Role" placeholder="Eleve 0 sinon Enseigant 1">
+                                    <input type="number"class="form-control"  name="Role" placeholder="Eleve 1 sinon Enseigant 0">
                                 </div>
                             </div>
                             <div>
