@@ -1,5 +1,5 @@
 <?php
-include '../controller/examenC.php';
+include_once '../controller/examenC.php';
 $examenC = new examenC();
 $list = $examenC->listexamen();
 ?>
@@ -38,8 +38,8 @@ $list = $examenC->listexamen();
                         <form method="POST" id="insertForm" action="addexamen.php" enctype="multipart/form-data">
                             <div class="row mb-3">
                                 <div class="col">
-                                    <label class="form-label">id cours</label>
-                                    <input type="number"class="form-control"  name="id_cours" placeholder="id_cours">
+                                    <label class="form-label">ID ressources</label>
+                                    <input type="number"class="form-control"  name="id_ressources" placeholder="id_ressources">
                                 </div>
                                 <div class="col">
                                     <label class="form-label" >titre</label>
@@ -54,8 +54,8 @@ $list = $examenC->listexamen();
                                     <div id="error" class="text-danger"></div>
                                 </div>
                                 <div class="form-label">
-                                    <label >date_limite</label>
-                                    <input type="Date"class="form-control"  name="date_limite" placeholder="date_limite">
+                                    <label >duree</label>
+                                    <input type="Text"class="form-control"  name="duree" placeholder="duree">
                                 </div>
                             </div>
                             <div>
@@ -102,10 +102,10 @@ $list = $examenC->listexamen();
             <thead class="table-dark">
                 <tr>
                     <th>ID examen</th>
-                    <th>ID cours</th>
+                    <th>ID ressources</th>
                     <th>titre</th>
                     <th>description</th>
-                    <th>date_limite</th>
+                    <th>duree</th>
                     <th>update</th>
                     <th>delete</th>
                 </tr>
@@ -116,10 +116,10 @@ $list = $examenC->listexamen();
                 ?>
                     <tr>
                         <td><?= $examen['id_examen']; ?></td>
-                        <td><?= $examen['id_cours']; ?></td>
+                        <td><?= $examen['id_ressources']; ?></td>
                         <td><?= $examen['titre']; ?></td>
                         <td><?= $examen['description']; ?></td>
-                        <td><?= $examen['date_limite']; ?></td>
+                        <td><?= $examen['duree']; ?></td>
                         <td>
                             <a href="updateexamen.php?id_examen=<?php echo $examen['id_examen']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>update</a>
                         </td>

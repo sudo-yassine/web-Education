@@ -1,27 +1,27 @@
 <?php
-include '../Controller/examenC.php';
+include_once '../Controller/examenC.php';
 $examenC = new examenC();
 $error = "";
 $examen = null;
 if (
-    isset($_POST["id_cours"]) &&
+    isset($_POST["id_ressources"]) &&
     isset($_POST["titre"]) &&
     isset($_POST["description"]) &&
-    isset($_POST['date_limite'])
+    isset($_POST['duree'])
 ) {
     if (
-        !empty($_POST['id_cours']) &&
+        !empty($_POST['id_ressources']) &&
         !empty($_POST["titre"]) &&
         !empty($_POST["description"]) &&
-        !empty($_POST["date_limite"]) 
+        !empty($_POST["duree"]) 
     ) {
        
         $examen = new examen(
             null,
-            $_POST['id_cours'],
+            $_POST['id_ressources'],
             $_POST['titre'],
             $_POST['description'],
-            $_POST['date_limite']      
+            $_POST['duree']      
         );
         $examenC->updateexamen($examen, $_GET['id_examen']);
         header('Location:listexamen.php');
@@ -57,8 +57,8 @@ if (
                 <form method="POST" id="insertForm" action="" enctype="multipart/form-data">
                     <div class="row mb-3">
                         <div class="col">
-                            <label class="form-label">id cours</label>
-                            <input type="text" class="form-control" name="id_cours" placeholder="id cours" value="<?php echo $examen['id_cours']; ?>">
+                            <label class="form-label">ID ressources</label>
+                            <input type="text" class="form-control" name="id_ressources" placeholder="ID ressources" value="<?php echo $examen['id_ressources']; ?>">
                         </div>
                         <div class="col">
                             <label class="form-label">titre</label>
@@ -69,8 +69,8 @@ if (
                             <input type="text" class="form-control" name="description" placeholder="description" value="<?php echo $examen['description']; ?>">
                         </div>
                          <div class="col">
-                            <label class="form-label">date_limite</label>
-                            <input type="text" class="form-control" name="date_limite" placeholder="date_limite" value="<?php echo $examen['date_limite']; ?>">
+                            <label class="form-label">duree</label>
+                            <input type="text" class="form-control" name="duree" placeholder="duree" value="<?php echo $examen['duree']; ?>">
                         </div>
                     </div>
                     </div>
