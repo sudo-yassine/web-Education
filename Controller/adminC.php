@@ -33,8 +33,8 @@ class adminC
 
     public function addAdmin($admin)
 {
-    $sql = "INSERT INTO adminisatrateur (niveau, nom, prenom, pass)  
-            VALUES (:niveau, :nom, :prenom, :pass)";
+    $sql = "INSERT INTO adminisatrateur (niveau, nom, prenom, pass,Email)  
+            VALUES (:niveau, :nom, :prenom, :pass,:Email)";
     $db = config::getConnexion();
     try {
         $query = $db->prepare($sql);
@@ -43,6 +43,7 @@ class adminC
             'nom' => $admin->getnom(),
             'prenom' => $admin->getprenom(),
             'pass' => $admin->getpassword(),
+            'Email' =>$admin->getEmail()
         ]);
 
         // Retourner true si l'ajout a réussi
@@ -80,7 +81,8 @@ class adminC
                     niveau = :niveau,
                     nom = :nom, 
                     prenom = :prenom, 
-                    pass = :pass
+                    pass = :pass,
+                    Email = :Email
                 WHERE Id_admin = :id'
             );
             $query->execute([
@@ -88,7 +90,8 @@ class adminC
                 'niveau' => $admin->getniveau(),
                 'nom' => $admin->getnom(),
                 'prenom' => $admin->getprenom(),
-                'pass' => $admin->getpassword()
+                'pass' => $admin->getpassword(),
+                'Email' =>$admin->getEmail()
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {

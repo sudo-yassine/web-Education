@@ -5,14 +5,16 @@ include '../Controller/adminC.php';
 $adminC = new adminC();
 
 // Vérifier si les données POST sont présentes
-if(isset($_POST['niveau'], $_POST['nom'], $_POST['prenom'], $_POST['pass'])) {
+if(isset($_POST['niveau'], $_POST['nom'], $_POST['prenom'], $_POST['pass'],$_POST['Email'])) {
     // Créer une nouvelle instance de la classe admin avec les données POST
     $admin = new admin(
         null,
         $_POST['niveau'],
         $_POST['nom'],
         $_POST['prenom'],
-        $_POST['pass']
+        $_POST['pass'],
+        $_POST['Email']
+
     );
     
 

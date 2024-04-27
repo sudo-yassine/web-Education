@@ -7,13 +7,15 @@ if (
     isset($_POST["niveau"]) &&
     isset($_POST["nom"]) &&
     isset($_POST["prenom"]) &&
-    isset($_POST["pass"])
+    isset($_POST["pass"])&&
+    isset($_POST["Email"])
 ) {
     if (
         !empty($_POST["niveau"]) &&
         !empty($_POST["nom"]) &&
         !empty($_POST["prenom"]) &&
-        !empty($_POST["pass"])
+        !empty($_POST["pass"])&&
+        !empty($_POST["Email"])
     
     ) {
        
@@ -22,7 +24,8 @@ if (
             $_POST['niveau'],
             $_POST['nom'],
             $_POST['prenom'],
-            $_POST['pass']     
+            $_POST['pass'] ,  
+            $_POST['Email']   
         );
         $adminC->updateAdmin($admin, $_GET['Id_admin']);
         header('Location:listAdmins.php');
@@ -72,6 +75,10 @@ if (
                     <div class="col">
                         <label class="form-label">pass</label>
                         <input type="pass" class="form-control" name="pass" placeholder="pass" value="<?php echo htmlspecialchars($admin['pass'] ?? ''); ?>">
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Email</label>
+                        <input type="Email" class="form-control" name="Email" placeholder="Email" value="<?php echo htmlspecialchars($admin['Email'] ?? ''); ?>">
                     </div>
             </div>
             <div>

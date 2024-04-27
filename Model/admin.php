@@ -6,15 +6,17 @@ class admin
     private $nom;
     private $prenom;
     private $pass;
+    private $Email;
 
 
-    public function __construct ($Id_admin,$niveau , $nom, $prenom, $pass)
+    public function __construct ($Id_admin,$niveau , $nom, $prenom, $pass,$Email)
     {
         $this->Id_admin = $Id_admin;
         $this->niveau = $niveau;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->pass = $pass;
+        $this->Email =$Email;
     }
 
     public function getId()
@@ -24,6 +26,10 @@ class admin
     public function getnom()
     {
         return $this->nom;
+    }
+    public function getEmail()
+    {
+        return $this->Email;
     }
     public function getprenom()
     {
@@ -40,6 +46,10 @@ class admin
     public function setnom($nom)
     {
         $this->nom = $nom;
+    }
+    public function setEmail($Email)
+    {
+        $this->Email = $Email;
     }
     public function setprenom($prenom)
     {

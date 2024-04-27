@@ -66,6 +66,10 @@ $list = $adminC->listAdmins();
                                 <input type="password" class="form-control" name="pass" placeholder="Mot de passe" onblur="validatepass(this)" value="<?php echo htmlspecialchars($admin['pass'] ?? ''); ?>">
                                 <div id="error_prenom" class="text-danger"></div>
                             </div>
+                            <div class="col">
+                                <label class="form-label">Email</label>
+                                <input type="Email" class="form-control" name="Email" placeholder="Email" >
+                            </div>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-primary me-1" id="insertBtn">Enregistrer</button>
@@ -117,6 +121,7 @@ $list = $adminC->listAdmins();
                     <th>Nom</th>
                     <th>Prenom</th>
                     <th>Password</th>
+                    <th>Email</th>
                     <th>Modifier</th>
                     <th>Supprimer</th>
                 </tr>
@@ -131,6 +136,7 @@ $list = $adminC->listAdmins();
                         <td><?= $admin['nom']; ?></td>
                         <td><?= $admin['prenom']; ?></td>
                         <td><?= $admin['pass']; ?></td>
+                        <td><?= $admin['Email']; ?></td>
                         <td>
                             <a href="UpdateAdmin.php?Id_admin=<?php echo $admin['Id_admin']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>Modifier</a>
                         </td>
