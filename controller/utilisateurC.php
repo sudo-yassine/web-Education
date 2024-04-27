@@ -1,6 +1,6 @@
 <?php
-include '../Config.php';
-include '../Model/utilisateur.php';
+include_once '../config.php';
+include_once '../Model/utilisateur.php';
 
 class utilisateurC
 {
@@ -16,7 +16,7 @@ class utilisateurC
             die('Error:' . $e->getMessage());
         }
     }
-
+/*
     public function deleteUtilisateur($id)
     {
         $sql = "DELETE FROM utilisateur WHERE Id_utilisateur = :id";
@@ -29,12 +29,23 @@ class utilisateurC
         } catch (Exception $e) {
             die('Error:' . $e->getMessage());
         }
+    }*/
+    function deleteutilisateur($Id_utilisateur)
+    {
+        $sql = "DELETE FROM utilisateur WHERE Id_utilisateur = :Id_utilisateur";
+        $db = config::getConnexion();
+        $req = $db->prepare($sql);
+        $req->bindValue(':Id_utilisateur', $Id_utilisateur);
+        try {
+            $req->execute();
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
+        }
     }
-
     public function addUtilisateur($Utilisateur)
     {
         $sql = "INSERT INTO utilisateur  
-                VALUES (NULL, :Nom, :Prenom, :Adresse, :Tel, :Password)";
+                VALUES (NULL, :Nom, :Prenom, :Adresse, :Tel, :Password,:Role)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
@@ -44,6 +55,7 @@ class utilisateurC
                 'Adresse' => $Utilisateur->getAdresse(),
                 'Tel' => $Utilisateur->getTel(),
                 'Password' => $Utilisateur->getPassword(),
+                'Role' =>$Utilisateur->getRole()
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
@@ -75,7 +87,8 @@ class utilisateurC
                     Prenom = :Prenom, 
                     Adresse = :Adresse,
                     Tel = :Tel,
-                    Password = :Password
+                    Password = :Password,
+                    Role= :Role
                 WHERE Id_utilisateur = :id'
             );
             $query->execute([
@@ -84,7 +97,8 @@ class utilisateurC
                 'Prenom' => $Utilisateur->getPrenom(),
                 'Adresse' => $Utilisateur->getAdresse(),
                 'Tel' => $Utilisateur->getTel(),
-                'Password' => $Utilisateur->getPassword()
+                'Password' => $Utilisateur->getPassword(),
+                'Role' =>$Utilisateur->getRole()
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {
@@ -98,8 +112,8 @@ class utilisateurC
         try {
             $query = $db->prepare($sql);
             $query->execute();
-            $cours= $query->fetch();
-            return $cours;
+            $utilisateur= $query->fetch();
+            return $utilisateur;
         } catch (Exception $e) {
             die('Error: ' . $e->getMessage());
         }

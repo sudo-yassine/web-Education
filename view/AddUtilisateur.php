@@ -12,7 +12,8 @@ $error = "";
      $_POST['Prenom'],
      $_POST['Adresse'],
      $_POST['Tel'],
-     $_POST['Password']
+     $_POST['Password'],
+     $_POST['Role']
      );
     $utilisateurC->addUtilisateur($Utilisateur);
     header('Location:ListUtilisateurs.php');

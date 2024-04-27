@@ -1,7 +1,6 @@
 <?php
 include '../Controller/utilisateurC.php';
 $Utilisateur = new utilisateurC();
-$Utilisateur->deleteUtilisateur($_GET['id']);
+$Utilisateur->deleteutilisateur($_GET['Id_utilisateur']);
 header('Location:listUtilisateurs.php');
-
 ?>

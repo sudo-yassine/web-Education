@@ -1,41 +1,38 @@
 <?php
-include '../Controller/utilisateurC.php';
-$utilisateurC = new utilisateurC();
+include '../Controller/enseignantC.php';
+$enseignantC = new enseignantC();
 $error = "";
-$utilisateur = null;
-if (
-    isset($_POST["Nom"]) &&
-    isset($_POST["Prenom"]) &&
-    isset($_POST["Adresse"]) &&
-    isset($_POST['Tel'])&&
-    isset($_POST["Password"])&&
-    isset($_POST["Role"])
-) {
-    if (
-        !empty($_POST["Nom"]) &&
-        !empty($_POST["Prenom"]) &&
-        !empty($_POST["Adresse"]) &&
-        !empty($_POST['Tel'])&&
-        !empty($_POST["Password"])&&
-        !empty($_POST["Role"])
-    
-    ) {
-       
-        $utilisateur = new utilisateur(
-            null,
+$enseignant = null;
+
+// Récupération des données pour remplir le formulaire
+if (isset($_GET['Id_enseignant'])) {
+    $enseignant = $enseignantC->showuser($_GET['Id_enseignant']);
+    if (!$enseignant) {
+        $error = "Aucun élève trouvé avec l'ID spécifié.";
+    }
+}
+
+// Traitement de la soumission du formulaire
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (!empty($_POST["Nom"]) && !empty($_POST["Prenom"]) && !empty($_POST["Adresse"]) && !empty($_POST["Tel"]) && !empty($_POST["Password"]) && !empty($_POST["specialite"])) {
+        $enseignantToUpdate = new enseignant(
+            $_GET['Id_enseignant'],  // Utilisez l'ID existant plutôt que `null`
             $_POST['Nom'],
             $_POST['Prenom'],
             $_POST['Adresse'],
             $_POST['Tel'],
             $_POST['Password'],
-            $_POST['Role']   
+            1, // Supposons que le rôle est statique, à ajuster selon votre application
+            $_POST['specialite']
         );
-        $utilisateurC->updateUtilisateur($utilisateur, $_GET['Id_utilisateur']);
-        header('Location:listUtilisateurs.php');
-    } else
+        $enseignantC->updateenseignant($enseignantToUpdate, $_GET['Id_enseignant']);
+        header('Location:listenseignants.php');
+    } else {
         $error = "Missing information";
+    }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,11 +48,11 @@ if (
 <body>
      <div class="container">
         <?php
-        if (isset($_GET['Id_utilisateur'])) {
-            $utilisateur = $utilisateurC->showuser($_GET['Id_utilisateur']);
+        if (isset($_GET['Id_enseignant'])) {
+            $enseignant = $enseignantC->showuser($_GET['Id_enseignant']);
         ?>
             <div class="modal-header">
-                <h5 class="modal-title" id="addcoursModalLabel">Modifier Utilisateur</h5>
+                <h5 class="modal-title" id="addcoursModalLabel">Modifier enseignant</h5>
             </div>
             <div class="modal-body">
                 <div id="error">
@@ -65,27 +62,27 @@ if (
                     <div class="row mb-3">
                         <div class="col">
                             <label class="form-label">Nom</label>
-                            <input type="text" class="form-control" name="Nom" placeholder="Nom" value="<?php echo $utilisateur['Nom']; ?>">
+                            <input type="text" class="form-control" name="Nom" placeholder="Nom" value="<?php echo $enseignant['Nom']; ?>">
                         </div>
                         <div class="col">
                             <label class="form-label">Prenom</label>
-                            <input type="text" class="form-control" name="Prenom" placeholder="Prenom" value="<?php echo $utilisateur['Prenom']; ?>">
+                            <input type="text" class="form-control" name="Prenom" placeholder="Prenom" value="<?php echo $enseignant['Prenom']; ?>">
                         </div>
                          <div class="col">
                             <label class="form-label">Adresse</label>
-                            <input type="text" class="form-control" name="Adresse" placeholder="Adresse" value="<?php echo $utilisateur['Adresse']; ?>">
+                            <input type="text" class="form-control" name="Adresse" placeholder="Adresse" value="<?php echo $enseignant['Adresse']; ?>">
                         </div>
-                         <div class="col">
+                        <div class="col">
                             <label class="form-label">Tel</label>
-                            <input type="number" class="form-control" name="Tel" placeholder="Tel" value="<?php echo $utilisateur['Tel']; ?>">
+                            <input type="number" class="form-control" name="Tel" placeholder="Tel" value="<?php echo $enseignant['Tel']; ?>">
                         </div>
                         <div class="col">
                             <label class="form-label">Password</label>
-                            <input type="text" class="form-control" name="Password" placeholder="Password" value="<?php echo $utilisateur['Password']; ?>">
+                            <input type="text" class="form-control" name="Password" placeholder="Password" value="<?php echo $enseignant['Password']; ?>">
                         </div>
                         <div class="col">
-                            <label class="form-label">Role</label>
-                            <input type="number" class="form-control" name="Role" placeholder="Role" value="<?php echo $utilisateur['Role']; ?>">
+                            <label class="form-label">specialite</label>
+                            <input type="text" class="form-control" name="specialite" placeholder="specialite" value="<?php echo $enseignant['specialite']; ?>">
                         </div>
                     </div>
                     </div>

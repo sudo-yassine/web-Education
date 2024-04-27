@@ -1,5 +1,5 @@
 <?php
-include '../controller/utilisateurC.php';
+include_once '../Controller/utilisateurC.php';
 $utilisateurC = new utilisateurC();
 $list = $utilisateurC->listUtilisateurs();
 ?>
@@ -13,7 +13,7 @@ $list = $utilisateurC->listUtilisateurs();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./css/style.css">
+    <!--<link rel="stylesheet" href="./css/style.css">-->
     </head>
 <body>
     <div class="container">
@@ -26,6 +26,16 @@ $list = $utilisateurC->listUtilisateurs();
             <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#adduserModal">
                 ajouter un utilisateur
             </button>
+            <div class="modal-header d-flex justify-content-between align-items-center">
+                <h5 id="addcoursModalLabel"></h5>
+                <a href="AddEleveForm.php" class="btn btn-primary">Ajouter un élève</a>
+            </div>
+
+
+            <div class="modal-header d-flex justify-content-between align-items-center">
+                <h5 id="addcoursModalLabel"></h5>
+                <a href="AddEnseignantForm.php" class="btn btn-primary">Ajouter un enseignant</a>
+            </div>
         </div>
         <div class="modal fade"  id="adduserModal" tabindex="-1" aria-labelledby="adduserModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -57,6 +67,10 @@ $list = $utilisateurC->listUtilisateurs();
                                     <label >Password</label>
                                     <input type="text"class="form-control"  name="Password" placeholder="Password">
                                 </div>
+                                <div class="form-label">
+                                    <label >Role</label>
+                                    <input type="number"class="form-control"  name="Role" placeholder="Eleve 0 sinon Enseigant 1">
+                                </div>
                             </div>
                             <div>
                                 <button type="submit"  class="btn btn-primary me-1" id="insertBtn">Submit</button>
@@ -70,12 +84,13 @@ $list = $utilisateurC->listUtilisateurs();
         <table class="table table-bordered table-striped table-hover align-middle" id="myTable" style="width:100%;">
             <thead class="table-dark">
                 <tr>
-                    <th>Id_utilisateu</th>
+                    <th>Id_utilisateur</th>
                     <th>Nom</th>
                     <th>Prenom</th>
                     <th>Adresse</th>
                     <th>Tel</th>
                     <th>Password</th>
+                    <th>Role</th>
                     <th>Modifier</th>
                     <th>supprimer</th>
                 </tr>
@@ -91,6 +106,7 @@ $list = $utilisateurC->listUtilisateurs();
                         <td><?= $utilisateur['Adresse']; ?></td>
                         <td><?= $utilisateur['Tel']; ?></td>
                         <td><?= $utilisateur['Password']; ?></td>
+                        <td><?= $utilisateur['Role']; ?></td>
                         <td>
                             <a href="updateUtilisateur.php?Id_utilisateur=<?php echo $utilisateur['Id_utilisateur']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>Modifier</a>
                         </td>

@@ -1,31 +1,35 @@
 <?php
 class Utilisateur
 {
-    private $Id_utilisateur;
-    private $Nom;
-    private $Prenom;
-    private $Adresse;
-    private $Tel;
-    private $Password;
+    protected $Id_utilisateur;
+    protected $Nom;
+    protected $Prenom;
+    protected $Adresse;
+    protected $Tel;
+    protected $Password;
+    protected $Role;
 
-
-    public function __construct ($Id_utilisateu, $Nom, $Prenom, $Adresse ,$Tel, $Password)
+    public function __construct($Id_utilisateur, $Nom, $Prenom, $Adresse, $Tel, $Password, $Role)
     {
-        $this->Id_utilisateu = $Id_utilisateu;
+        $this->Id_utilisateur = $Id_utilisateur;
         $this->Nom = $Nom;
         $this->Prenom = $Prenom;
         $this->Adresse = $Adresse;
         $this->Tel = $Tel;
         $this->Password = $Password;
+        $this->Role = $Role;
     }
-
     public function getId()
     {
-        return $this->Id_utilisateu;
+        return $this->Id_utilisateur;
     }
     public function getNom()
     {
         return $this->Nom;
+    }
+    public function getRole()
+    {
+        return $this->Role;
     }
     public function getPrenom()
     {
