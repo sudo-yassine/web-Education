@@ -42,10 +42,9 @@ $list = $ressourcesC->listressources();
                                     <input type="text"class="form-control"  name="description_ressources" placeholder="description_ressources">
                                 </div>
                                 <div class="col">
-                                    <label class="form-label" >livre</label>
-                                    <input type="text" class="form-control" name="livre" placeholder=" livre" 
-                                    onblur="validatelivre(this)" value="<?php echo htmlspecialchars($admin['livre'] ?? ''); ?>">
-                                    <div id="error_nom" class="text-danger"></div>
+                                <label class="form-label">Livre (Image)</label>
+<input type="file" class="form-control" name="livre" accept="image/*">
+
                                 </div>
                                 <div class="col">
                                     <label >playlist_ytb</label>
@@ -118,7 +117,7 @@ $list = $ressourcesC->listressources();
                     <tr>
                         <td><?= $ressources['id_ressources']; ?></td>
                         <td><?= $ressources['description_ressources']; ?></td>
-                        <td><?= $ressources['livre']; ?></td>
+                        <td><a href="https://www.alkitab.tn/livre/9782100821594-analyse-loic-teyssier-jean-romain-heu/"> <img src="uploads/<?= $ressources['livre']; ?>" alt="Image" width=300> </a></td>
                         <td><?= $ressources['playlist_ytb']; ?></td>
                         <td><?= $ressources['id_examen']; ?></td>
                         <td  class="text-center">
