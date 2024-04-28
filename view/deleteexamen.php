@@ -1,5 +1,5 @@
 <?php
-include '../controller/examenC.php';
+include_once '../controller/examenC.php';
 $examenC = new examenC();
 $examenC->deleteexamen($_GET['id_examen']);
 header('Location:listexamen.php');
