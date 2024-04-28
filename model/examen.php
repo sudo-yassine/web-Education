@@ -6,13 +6,15 @@ class examen
     private $titre;
     private $description;
     private $duree;
-    public function __construct($id_examen = null, $id_ressources , $titre, $description ,$duree)
+    private $difficulte;
+    public function __construct($id_examen = null, $id_ressources , $titre, $description ,$duree,$difficulte)
     {
         $this->id_examen = $id_examen;
         $this->id_ressources = $id_ressources;
         $this->titre = $titre;
         $this->description = $description;
         $this->duree = $duree;
+        $this->difficulte = $difficulte;
     }
 
     public function getid_examen()
@@ -51,6 +53,14 @@ class examen
     public function setduree($duree)
     {
         $this->duree = $duree;
+    }
+    public function getdifficulte()
+    {
+        return $this->difficulte;
+    }
+    public function setdifficulte($difficulte)
+    {
+        $this->difficulte = $difficulte;
     }
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-class examen
+class ressources
 {
     private $id_ressources;
     private $description_ressources;

@@ -7,30 +7,30 @@ class ressourcesC
 
     public function listexamen($id_ressources)
     {
-        try{
-            $db = config::getConnexion();
-            $sql = $db->prepare("SELECT * FROM examen WHERE id_ressources = '$id_ressources'");
-            $sql->execute(['id_ressources' => $id_ressources]);
-            $stmt = $db->query($sql);
-            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $data;
-        }
-         catch (Exception $e) {
-            die('Error:' . $e->getMessage());
+        try {
+            $pdo = config::getConnexion();
+            $query = $pdo->prepare("SELECT * FROM examen WHERE id_ressources = :id");
+            $query->execute(['id' => $id_ressources]);
+            return $query->fetchAll();
+        } catch (PDOException $e) {
+           echo $e->getMessage(); 
         }
     }
+    
+
+
     public function listressources()
     {
-        $sql = "SELECT * FROM ressources";
-        $db = config::getConnexion();
         try {
-            $stmt = $db->query($sql);
-            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $data;
-        } catch (Exception $e) {
-            die('Error:' . $e->getMessage());
+            $pdo = config::getConnexion();
+            $query = $pdo->prepare("SELECT * FROM ressources");
+            $query->execute();
+            return $query->fetchAll();
+        } catch (PDOException $e) {
+           echo $e->getMessage(); 
         }
     }
+
     function deleteressources($id_ressources)
     {
         $sql = "DELETE FROM ressources WHERE id_ressources = :id_ressources";
@@ -52,8 +52,9 @@ class ressourcesC
             var_dump($ressources);
             $query = $db->prepare($sql);
             $query->execute([
-                'n' => $ressources->getdescription_ressources(),
+                
                 'h' => $ressources->getlivre(),
+                'n' => $ressources->getdescription_ressources(),
                 'nv' => $ressources->getplaylist_ytb()
             ]);
         } catch (Exception $e) {

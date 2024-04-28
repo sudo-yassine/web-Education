@@ -1,8 +1,15 @@
 <?php
 include_once '../controller/examenC.php';
+include_once '../view/searchexamen.php';
 $examenC = new examenC();
 $list = $examenC->listexamen();
+// Vérifier si un tri est demandé
+$order = isset($_GET['order']) && in_array($_GET['order'], ['ASC', 'DESC']) ? $_GET['order'] : 'ASC';
+
+// Récupérer les examens triés par difficulté
+$examens = $examenC->listexamenByDifficulty($order);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,14 +26,20 @@ $list = $examenC->listexamen();
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3 mt-5" >
             <div class="text-body-secondary">
-                <span class="h5">tous les examens</span>
+                <span class="h5"></span>
                 <br>
-               crud examen 
+                
             </div>
             <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#addexamenModal">
                 ajouter un examen
             </button>
         </div>
+        <a href="listexamen.php?order=ASC" class="btn btn-primary">Trier par difficulté croissante</a>
+        <a href="listexamen.php?order=DESC" class="btn btn-primary">Trier par difficulté décroissante</a>
+        <div class="mb-3">
+    <label for="searchInput" class="form-label">Rechercher par titre :</label>
+    <input type="text" class="form-control" id="searchInput" placeholder="Entrez un titre">
+</div>
         <div class="modal fade"  id="addexamenModal" tabindex="-1" aria-labelledby="addexamenModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -56,6 +69,14 @@ $list = $examenC->listexamen();
                                 <div class="form-label">
                                     <label >duree</label>
                                     <input type="Text"class="form-control"  name="duree" placeholder="duree">
+                                </div>
+                                <div class="form-label">
+                                    <label>Difficulté</label>
+                                        <select class="form-select" id="difficulte" name="difficulte">
+                                            <option value="facile">Facile</option>
+                                            <option value="moyen">Moyen</option>
+                                            <option value="difficile">Difficile</option>
+                                        </select>
                                 </div>
                             </div>
                             <div>
@@ -106,13 +127,14 @@ $list = $examenC->listexamen();
                     <th>titre</th>
                     <th>description</th>
                     <th>duree</th>
+                    <th>difficulte</th>
                     <th>update</th>
                     <th>delete</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                foreach ($list as $examen) {
+                foreach ($examens as $examen) {
                 ?>
                     <tr>
                         <td><?= $examen['id_examen']; ?></td>
@@ -120,11 +142,12 @@ $list = $examenC->listexamen();
                         <td><?= $examen['titre']; ?></td>
                         <td><?= $examen['description']; ?></td>
                         <td><?= $examen['duree']; ?></td>
-                        <td>
-                            <a href="updateexamen.php?id_examen=<?php echo $examen['id_examen']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>update</a>
+                        <td><?= $examen['difficulte']; ?></td>
+                        <td class="text-center">
+                            <a href="updateexamen.php?id_examen=<?php echo $examen['id_examen']; ?>" class="btn  btn-success"><i class="fa-solid fa-pen-to-square fa-xl"></i>update</a>
                         </td>
-                        <td>
-                            <a href="deleteexamen.php?id_examen=<?php echo $examen['id_examen']; ?>"class="btn"><i class="fa-solid fa-trash fa-xl"></i>Delete</a>
+                        <td class="text-center">
+                            <a href="deleteexamen.php?id_examen=<?php echo $examen['id_examen']; ?>"class="btn  btn-danger"><i class="fa-solid fa-trash fa-xl"></i>Delete</a>
                         </td>
 
                     </tr>
@@ -137,6 +160,24 @@ $list = $examenC->listexamen();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#searchInput').on('input', function() {
+                var titre = $(this).val();
+                $.ajax({
+                    url: 'searchexamen.php',
+                    method: 'GET',
+                    data: { titre: titre },
+                    success: function(response) {
+                        $('#myTable tbody').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
     
 </body>
 

@@ -1,37 +1,30 @@
 <?php
-include_once '../Controller/examenC.php';
-$examenC = new examenC();
+include_once '../Controller/ressourcesC.php';
+$ressourcesC = new ressourcesC();
 $error = "";
-$examen = null;
+$ressources = null;
 if (
-    isset($_POST["id_ressources"]) &&
-    isset($_POST["titre"]) &&
-    isset($_POST["description"]) &&
-    isset($_POST['duree']) &&
-    isset($_POST['difficulte'])
+    isset($_POST["description_ressources"]) &&
+    isset($_POST["livre"]) &&
+    isset($_POST["playlist_ytb"]) 
 ) {
     if (
-        !empty($_POST['id_ressources']) &&
-        !empty($_POST["titre"]) &&
-        !empty($_POST["description"]) &&
-        !empty($_POST["duree"]) &&
-        !empty($_POST["difficulte"])
+        !empty($_POST['description_ressources']) &&
+        !empty($_POST["livre"]) &&
+        !empty($_POST["playlist_ytb"]) 
     ) {
        
-        $examen = new examen(
+        $ressources = new ressources(
             null,
-            $_POST['id_ressources'],
-            $_POST['titre'],
-            $_POST['description'],
-            $_POST['duree'],
-            $_POST['difficulte']      
+            $_POST['description_ressources'],
+            $_POST['livre'],
+            $_POST['playlist_ytb']   
         );
-        $examenC->updateexamen($examen, $_GET['id_examen']);
-        header('Location:listexamen.php');
+        $ressourcesC->updateressources($ressources, $_GET['id_ressources']);
+        header('Location:listressources.php');
     } else
         $error = "Missing information";
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,11 +41,11 @@ if (
 <body>
      <div class="container">
         <?php
-        if (isset($_GET['id_examen'])) {
-            $examen = $examenC->showexamen($_GET['id_examen']);
+        if (isset($_GET['id_ressources'])) {
+            $ressources = $ressourcesC->showressources($_GET['id_ressources']);
         ?>
             <div class="modal-header">
-                <h5 class="modal-title" id="addexamenModalLabel">Update examen</h5>
+                <h5 class="modal-title" id="addressourcesModalLabel">Update ressources</h5>
             </div>
             <div class="modal-body">
                 <div id="error">
@@ -62,28 +55,17 @@ if (
                     <div class="row mb-3">
                         <div class="col">
                             <label class="form-label">ID ressources</label>
-                            <input type="text" class="form-control" name="id_ressources" placeholder="ID ressources" value="<?php echo $examen['id_ressources']; ?>">
+                            <input type="text" class="form-control" name="description_ressources" placeholder="ID ressources" value="<?php echo $ressources['description_ressources']; ?>">
                         </div>
                         <div class="col">
-                            <label class="form-label">titre</label>
-                            <input type="text" class="form-control" name="titre" placeholder="titre" value="<?php echo $examen['titre']; ?>">
+                            <label class="form-label">livre</label>
+                            <input type="text" class="form-control" name="livre" placeholder="livre" value="<?php echo $ressources['livre']; ?>">
                         </div>
                          <div class="col">
-                            <label class="form-label">description</label>
-                            <input type="text" class="form-control" name="description" placeholder="description" value="<?php echo $examen['description']; ?>">
+                            <label class="form-label">playlist_ytb</label>
+                            <input type="text" class="form-control" name="playlist_ytb" placeholder="playlist_ytb" value="<?php echo $ressources['playlist_ytb']; ?>">
                         </div>
-                         <div class="col">
-                            <label class="form-label">duree</label>
-                            <input type="text" class="form-control" name="duree" placeholder="duree" value="<?php echo $examen['duree']; ?>">
-                        </div>
-                        <div class="col">
-                            <label class="form-label">difficulte</label>
-                            <select class="form-select" name="difficulte">
-                                    <option value="facile" <?php if ($examen['difficulte'] === 'facile') echo 'selected'; ?>>Facile</option>
-                                    <option value="moyen" <?php if ($examen['difficulte'] === 'moyen') echo 'selected'; ?>>Moyen</option>
-                                    <option value="difficile" <?php if ($examen['difficulte'] === 'difficile') echo 'selected'; ?>>Difficile</option>
-                            </select>
-                        </div>
+                         
                     </div>
                     </div>
                     <div>
