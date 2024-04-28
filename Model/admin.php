@@ -8,60 +8,69 @@ class admin
     private $pass;
     private $Email;
 
-
-    public function __construct ($Id_admin,$niveau , $nom, $prenom, $pass,$Email)
+    public function __construct($Id_admin = null, $niveau, $nom, $prenom, $pass, $Email)
     {
         $this->Id_admin = $Id_admin;
         $this->niveau = $niveau;
         $this->nom = $nom;
         $this->prenom = $prenom;
-        $this->pass = $pass;
-        $this->Email =$Email;
+        $this->setpassword($pass);  // Utilisation du setter pour hasher le mot de passe dès la création
+        $this->Email = $Email;
     }
 
     public function getId()
     {
-        return $this->$Id_admin;
+        return $this->Id_admin;
     }
-    public function getnom()
+
+    public function getNom()
     {
         return $this->nom;
     }
+
     public function getEmail()
     {
         return $this->Email;
     }
-    public function getprenom()
+
+    public function getPrenom()
     {
         return $this->prenom;
     }
-    public function getniveau()
+
+    public function getNiveau()
     {
         return $this->niveau;
     }  
-    public function getpassword()
+
+    public function getPassword()
     {
         return $this->pass;
     } 
-    public function setnom($nom)
+
+    public function setNom($nom)
     {
         $this->nom = $nom;
     }
+
     public function setEmail($Email)
     {
         $this->Email = $Email;
     }
-    public function setprenom($prenom)
+
+    public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
     }
-    public function setniveau($niveau)
+
+    public function setNiveau($niveau)
     {
         $this->niveau = $niveau;
     }
+
     public function setpassword($pass)
     {
-        $this->pass= $pass;
+        $this->pass = password_hash($pass, PASSWORD_DEFAULT); // Hashage du mot de passe
     }
 }
 ?>
