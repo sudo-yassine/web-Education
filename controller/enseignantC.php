@@ -155,7 +155,19 @@ class enseignantC
         $query = $db->prepare($sql);
         $query->execute(['Id_enseignant' => $userId, 'specialite' => $specialite]);
     }
-    
+    public function checkLogin($email, $password) {
+        $db = config::getConnexion();
+        try {
+            $stmt = $db->prepare("SELECT * FROM utilisateur WHERE Email = :email AND Password = :password");
+            $stmt->execute(['email' => $email, 'password' => $password]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            var_dump($user); // Affiche les informations de l'utilisateur ou `false`
+            return $user ? $user : false;
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            return false;
+        }
+    }
     
    
 }

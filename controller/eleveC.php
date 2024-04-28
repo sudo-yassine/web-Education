@@ -130,19 +130,7 @@ class eleveC
             echo 'Error: ' . $e->getMessage();
         }
     }
-    /*
-    function showuser($Id_eleve) {
-        $sql = "SELECT * FROM eleve WHERE Id_eleve = :Id_eleve"; 
-        $db = config::getConnexion();
-        try {
-            $query = $db->prepare($sql);
-            $query->execute(['Id_eleve' => $Id_eleve]);
-            $eleve = $query->fetch();
-            return $eleve;
-        } catch (Exception $e) {
-            die('Error: ' . $e->getMessage());
-        }
-    }*/
+    
     function showuser($Id_eleve) {
         // Joindre la table `eleve` avec la table `utilisateur` pour obtenir des informations sur l'utilisateur associé à chaque élève
         $sql = "SELECT eleve.*, utilisateur.Nom, utilisateur.Prenom, utilisateur.Email,utilisateur.Tel,utilisateur.Password 
@@ -168,6 +156,21 @@ class eleveC
         $query = $db->prepare($sql);
         $query->execute(['Id_eleve' => $userId, 'niveau' => $niveau]);
     }
+    public function checkLogin($email, $password) {
+        $db = config::getConnexion();
+        try {
+            $stmt = $db->prepare("SELECT * FROM utilisateur WHERE Email = :email AND Password = :password");
+            $stmt->execute(['email' => $email, 'password' => $password]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            var_dump($user); // Affiche les informations de l'utilisateur ou `false`
+            return $user ? $user : false;
+        } catch (PDOException $e) {
+            echo 'Erreur : ' . $e->getMessage();
+            return false;
+        }
+    }
+    
+    
     
     
    
