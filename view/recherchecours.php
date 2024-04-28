@@ -1,6 +1,8 @@
+
+
+
 <?php
 require_once "../Controller/coursC.php";
-
 $coursC = new coursC();
 
 // Handling the form submission
@@ -10,9 +12,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $list = $coursC->affichercours($matiereId); 
     }
 }
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["niveau"])) {
+        $niveau = $_POST["niveau"];
+        $list = $coursC->searchByNiveau($niveau); // Assuming you have a method to search courses by niveau
+    }
+}
+
+
+
 $matieres = $coursC->affichermatiere();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,6 +73,20 @@ $matieres = $coursC->affichermatiere();
                 </div>
             </div>
             <?php } ?>
+            <div class="col-md-12">
+                <form id="searchForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="mt-4">
+                    <div class="input-group">
+                        <select class="form-select" name="niveau" id="niveau">
+                            <option value="1ere">1ere</option>
+                            <option value="2eme">2eme</option>
+                            <option value="3eme">3eme</option>
+                            <option value="4eme">4eme</option>
+                            <option value="5eme">5eme</option>
+                        </select>
+                        <button class="btn btn-outline-secondary" type="submit">Search by Niveau</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <form id="submitForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
             <input type="hidden" name="matiere" id="matiere">

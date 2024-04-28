@@ -5,6 +5,36 @@ include '../model/cours.php';
 class coursC
 {
 
+
+public function searchByNiveau($niveau) {
+    try {
+        $pdo = config::getConnexion();
+        $query = $pdo->prepare("SELECT * FROM cours WHERE niveau = :niveau");
+        $query->execute(['niveau' => $niveau]);
+        return $query->fetchAll();
+    } catch (PDOException $e) {
+        echo $e->getMessage(); 
+    }
+}
+
+
+
+
+
+
+ public function searchByHours($hours) {
+        try {
+            $pdo = config::getConnexion();
+            $query = $pdo->prepare("SELECT * FROM cours WHERE heures = :hours");
+            $query->execute(['hours' => $hours]);
+            return $query->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage(); 
+        }
+    }
+
+
+
 public function affichercours($matiereId)
     {
         try {
