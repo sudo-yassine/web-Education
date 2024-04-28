@@ -11,7 +11,6 @@ if (isset($_GET['titre'])) {
             ?>
             <tr>
                 <td><?= $examen['id_examen']; ?></td>
-                <td><?= $examen['id_ressources']; ?></td>
                 <td><?= $examen['titre']; ?></td>
                 <td><?= $examen['description']; ?></td>
                 <td><?= $examen['duree']; ?></td>

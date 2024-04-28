@@ -47,11 +47,15 @@ $list = $ressourcesC->listressources();
                                     onblur="validatelivre(this)" value="<?php echo htmlspecialchars($admin['livre'] ?? ''); ?>">
                                     <div id="error_nom" class="text-danger"></div>
                                 </div>
-                                <div>
+                                <div class="col">
                                     <label >playlist_ytb</label>
                                     <input type="text" class="form-control" name="playlist_ytb" placeholder="playlist_ytb"
                                     onblur="validateplaylist_ytb(this)" value="<?php echo htmlspecialchars($admin['playlist_ytb'] ?? ''); ?>">
                                     <div id="error" class="text-danger"></div>
+                                </div>
+                                <div class="col">
+                                    <label class="form-label">id_examen</label>
+                                    <input type="text"class="form-control"  name="id_examen" placeholder="id_examen">
                                 </div>
                                 
                             </div>
@@ -102,6 +106,7 @@ $list = $ressourcesC->listressources();
                     <th>ID ressources</th>
                     <th>livre</th>
                     <th>playlist_ytb</th>
+                    <th>id_examen</th>
                     <th  class="text-center">update</th>
                     <th  class="text-center">delete</th>
                 </tr>
@@ -115,6 +120,7 @@ $list = $ressourcesC->listressources();
                         <td><?= $ressources['description_ressources']; ?></td>
                         <td><?= $ressources['livre']; ?></td>
                         <td><?= $ressources['playlist_ytb']; ?></td>
+                        <td><?= $ressources['id_examen']; ?></td>
                         <td  class="text-center">
                             <a href="updateressources.php?id_ressources=<?php echo $ressources['id_ressources']; ?>" class="btn  btn-success"><i class="fa-solid fa-pen-to-square fa-xl"></i>update</a>
                         </td>

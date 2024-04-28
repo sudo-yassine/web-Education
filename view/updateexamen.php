@@ -4,14 +4,13 @@ $examenC = new examenC();
 $error = "";
 $examen = null;
 if (
-    isset($_POST["id_ressources"]) &&
+
     isset($_POST["titre"]) &&
     isset($_POST["description"]) &&
     isset($_POST['duree']) &&
     isset($_POST['difficulte'])
 ) {
     if (
-        !empty($_POST['id_ressources']) &&
         !empty($_POST["titre"]) &&
         !empty($_POST["description"]) &&
         !empty($_POST["duree"]) &&
@@ -20,7 +19,6 @@ if (
        
         $examen = new examen(
             null,
-            $_POST['id_ressources'],
             $_POST['titre'],
             $_POST['description'],
             $_POST['duree'],
@@ -60,10 +58,6 @@ if (
                 </div>
                 <form method="POST" id="insertForm" action="" enctype="multipart/form-data">
                     <div class="row mb-3">
-                        <div class="col">
-                            <label class="form-label">ID ressources</label>
-                            <input type="text" class="form-control" name="id_ressources" placeholder="ID ressources" value="<?php echo $examen['id_ressources']; ?>">
-                        </div>
                         <div class="col">
                             <label class="form-label">titre</label>
                             <input type="text" class="form-control" name="titre" placeholder="titre" value="<?php echo $examen['titre']; ?>">

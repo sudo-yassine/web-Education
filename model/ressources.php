@@ -5,12 +5,15 @@ class ressources
     private $description_ressources;
     private $livre;
     private $playlist_ytb;
-    public function __construct($id_ressources = null, $description_ressources , $livre, $playlist_ytb )
+    private $id_examen; // Nouvel attribut ajouté
+
+    public function __construct($id_ressources = null, $description_ressources, $livre, $playlist_ytb, $id_examen = null)
     {
         $this->id_ressources = $id_ressources;
         $this->description_ressources = $description_ressources;
         $this->livre = $livre;
         $this->playlist_ytb = $playlist_ytb;
+        $this->id_examen = $id_examen; // Initialiser le nouvel attribut
     }
 
     public function getid_ressources()
@@ -41,6 +44,13 @@ class ressources
     {
         $this->playlist_ytb = $playlist_ytb;
     }
-
+    public function getid_examen()
+    {
+        return $this->id_examen;
+    }
+    public function setid_examen($id_examen)
+    {
+        $this->id_examen = $id_examen;
+    }
 }
 ?>

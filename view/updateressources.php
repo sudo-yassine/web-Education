@@ -11,14 +11,17 @@ if (
     if (
         !empty($_POST['description_ressources']) &&
         !empty($_POST["livre"]) &&
-        !empty($_POST["playlist_ytb"]) 
+        !empty($_POST["playlist_ytb"])&&
+        !empty($_POST["id_examen"])
+        
     ) {
        
         $ressources = new ressources(
             null,
             $_POST['description_ressources'],
             $_POST['livre'],
-            $_POST['playlist_ytb']   
+            $_POST['playlist_ytb'],
+            $_POST['id_examen']
         );
         $ressourcesC->updateressources($ressources, $_GET['id_ressources']);
         header('Location:listressources.php');
@@ -65,7 +68,10 @@ if (
                             <label class="form-label">playlist_ytb</label>
                             <input type="text" class="form-control" name="playlist_ytb" placeholder="playlist_ytb" value="<?php echo $ressources['playlist_ytb']; ?>">
                         </div>
-                         
+                        <div class="col">
+                            <label class="form-label">id examen</label>
+                            <input type="text" class="form-control" name="playlist_ytb" placeholder="id_examen" value="<?php echo $ressources['id_examen']; ?>">
+                        </div>
                     </div>
                     </div>
                     <div>

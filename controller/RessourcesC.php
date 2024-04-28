@@ -45,17 +45,15 @@ class ressourcesC
     }
     function addressources($ressources)
     {
-        $sql = "INSERT INTO ressources
-        VALUES (NULL, :n,:h,:nv)";
+        $sql = "INSERT INTO ressources (description_ressources, livre, playlist_ytb, id_examen) VALUES (:n,:h,:nv,:id_examen)";
         $db = config::getConnexion();
         try {
-            var_dump($ressources);
             $query = $db->prepare($sql);
             $query->execute([
-                
-                'h' => $ressources->getlivre(),
                 'n' => $ressources->getdescription_ressources(),
-                'nv' => $ressources->getplaylist_ytb()
+                'h' => $ressources->getlivre(),
+                'nv' => $ressources->getplaylist_ytb(),
+                'id_examen' => $ressources->getid_examen()
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
@@ -69,14 +67,15 @@ class ressourcesC
                 'UPDATE ressources SET
                 description_ressources = :n,
                 livre = :h,
-                playlist_ytb = :nv
+                playlist_ytb = :nv,
+                id_examen = :id_examen
                WHERE id_ressources= :id_ressources'
             );
             $query->execute([
-                'id_ressources' => $id_ressources,
-               'n'=>$ressources->getdescription_ressources(),
-               'h'=>$ressources->getlivre(),
-               'nv'=>$ressources->getplaylist_ytb(),
+                'n' => $ressources->getdescription_ressources(),
+                'h' => $ressources->getlivre(),
+                'nv' => $ressources->getplaylist_ytb(),
+                'id_examen' => $ressources->getid_examen(),
                 'id_ressources' => $id_ressources
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
@@ -98,3 +97,4 @@ class ressourcesC
         }
     }
 }
+?>
