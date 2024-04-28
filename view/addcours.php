@@ -16,29 +16,19 @@ if (
         !empty($_POST["heures"]) &&
         !empty($_POST["niveau"]) &&
         !empty($_POST["contenu"]) &&
-        !empty($_POST["matiere"]) // Check if matiere is not empty
+        !empty($_POST["matiere"]) 
     ) {
-        // Verify if the matiere exists in the matiere table
-        $matiereId = $_POST['matiere'];
-        $matiereExists = $coursC->verifyMatiereExists($matiereId);
         
-        if ($matiereExists) {
-            // Create a new cours object with matiere attribute
             $cours = new cours(
                 null,
                 $_POST['nom_cours'],
                 $_POST['heures'],
                 $_POST['niveau'],
                 $_POST['contenu'],
-                $_POST['matiere'] // Add matiere to the constructor
+                $_POST['matiere'] 
             );
             $coursC->addcours($cours);
-            header('Location:listcours.php');
-        } else {
-            $error = "Matiere does not exist";
-        }
-    } else {
-        $error = "Missing information";
+             header('Location:listcours.php');
     }
 }
 ?>

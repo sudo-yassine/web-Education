@@ -21,6 +21,8 @@ $matieres = $coursC->affichermatiere();
     <title>Recherche de cours par matiere</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animation CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         body {
             background-color: #f5f5f5;
@@ -46,9 +48,10 @@ $matieres = $coursC->affichermatiere();
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin: 10px;
             cursor: pointer;
-            transition: box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s; /* Added transition for smooth scaling */
         }
         .subject-card:hover {
+            transform: scale(1.05); /* Scale up the card on hover */
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
         .subject-logo {
@@ -60,9 +63,10 @@ $matieres = $coursC->affichermatiere();
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin: 10px;
-            transition: box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s; /* Added transition for smooth scaling */
         }
         .course-card:hover {
+            transform: scale(1.05); /* Scale up the card on hover */
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
     </style>
@@ -103,11 +107,22 @@ $matieres = $coursC->affichermatiere();
             <h2 class="text-center">Cours correspondants à la matière sélectionnée</h2>
             <div class="row">
                 <?php foreach ($list as $cours) { ?>
-                <div class="col-md-4">
+                <div class="col-md-4 animate__animated animate__fadeInUp">
                     <div class="card course-card">
                         <div class="card-body">
                             <h5 class="card-title"><?= $cours['nom_cours'] ?></h5>
                             <p class="card-text"><?= $cours['heures'] ?> heures</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <!-- Button to toggle visibility of additional information -->
+                                <button class="btn btn-primary rounded-pill" onclick="toggleInfo('<?= $cours['id_cours'] ?>')">More Info</button>
+                                <!-- Add to Cart button -->
+                                <button class="btn btn-success rounded-pill">Add to Cart</button>
+                            </div>
+                            <!-- Hidden section for additional information -->
+                            <div id="info<?= $cours['id_cours'] ?>" style="display: none;">
+                                <p><strong>Niveau:</strong> <?= $cours['niveau'] ?></p>
+                                <p><strong>Contenu:</strong> <?= $cours['contenu'] ?></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -125,6 +140,15 @@ $matieres = $coursC->affichermatiere();
         function submitForm(matiereId) {
             document.getElementById("matiere").value = matiereId;
             document.getElementById("submitForm").submit();
+        }
+
+        function toggleInfo(courseId) {
+            var infoDiv = document.getElementById("info" + courseId);
+            if (infoDiv.style.display === "none") {
+                infoDiv.style.display = "block";
+            } else {
+                infoDiv.style.display = "none";
+            }
         }
     </script>
 </body>

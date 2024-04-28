@@ -39,7 +39,7 @@ $list = $coursC->listcours();
                             <div class="row mb-3">
                                 <div class="col">
                 <label class="form-label">Matière</label>
-                <select class="form-select" name="matiere">
+                <select class="form-select"  name="matiere">
                     <?php
                     // Fetch matieres from the database
                     $matieres = $coursC->listmatieres(); // Assuming you have a method to list matieres in your coursC class
