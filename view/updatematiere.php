@@ -24,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_POST["description"],
                 $_POST["ressources"] // Include ressources in the constructor
             );
-            $matiereC->updateMatiere($matiere, $matiereId); // Pass the Matiere object to the updateMatiere method
-            header("Location: listmatiere.php");
+            $matiereC->updateMatiere($matiere, $_GET['id_matiere']); // Pass the Matiere object to the updateMatiere method
+           // header("Location: listmatiere.php");
             exit();
         } else {
             $error = "Missing information";

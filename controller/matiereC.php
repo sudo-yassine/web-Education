@@ -26,7 +26,7 @@ class matiereC
             $query->execute([
                 'nom_matiere' => $matiere->getNomMatiere(),
                 'description' => $matiere->getDescription(),
-                'resources' => $matiere->getResources()
+                'ressources' => $matiere->getResources()
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
@@ -60,7 +60,7 @@ class matiereC
             $query->execute([
                 'nom_matiere' => $matiere->getNomMatiere(),
                 'description' => $matiere->getDescription(),
-                'resources' => $matiere->getResources(),
+                'ressources' => $matiere->getResources(),
                 'id_matiere' => $id_matiere
             ]);
             echo $query->rowCount() . " records updated successfully <br>";
