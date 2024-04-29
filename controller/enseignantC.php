@@ -105,7 +105,7 @@ class enseignantC
             $db->beginTransaction();
             // Mise à jour de la table utilisateur
             $sql = "UPDATE utilisateur SET Nom = :Nom, Prenom = :Prenom, Email=:Email, Tel = :Tel, Password = :Password
-                    WHERE Id_utilisateur = :id AND Role = 1";
+                    WHERE Id_utilisateur = :id AND Role = 0";
             $query = $db->prepare($sql);
             $query->execute([
                 'id' => $id,

@@ -46,7 +46,7 @@ function escape($value) {
                     echo '<td>' . escape($enseignant['Tel'] ) . '</td>';
                     echo '<td>' . escape($enseignant['Password'] ) . '</td>';
                     echo '<td>' . escape($enseignant['specialite'] ) . '</td>';
-                    echo '<td><a href="updateenseignant.php?Id_enseignant=' . escape($enseignant['Id_enseignant']) . '" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i> Modifier</a></td>';
+                    echo '<td><a href="updateEnseignant.php?Id_enseignant=' . escape($enseignant['Id_enseignant']) . '" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i> Modifier</a></td>';
                     echo '<td><a href="Deleteenseignant.php?Id_enseignant=' . escape($enseignant['Id_enseignant']) . '" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Supprimer</a></td>';
                     echo '</tr>';
                 }
