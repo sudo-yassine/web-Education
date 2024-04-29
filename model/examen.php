@@ -2,55 +2,63 @@
 class examen
 {
     private $id_examen;
-    private $id_cours;
     private $titre;
     private $description;
-    private $date_limite;
-    public function __construct($id_examen = null, $id_cours , $titre, $description ,$date_limite)
+    private $duree;
+    private $difficulte;
+
+    public function __construct($id_examen = null, $titre, $description, $duree, $difficulte)
     {
         $this->id_examen = $id_examen;
-        $this->id_cours = $id_cours;
         $this->titre = $titre;
         $this->description = $description;
-        $this->date_limite = $date_limite;
+        $this->duree = $duree;
+        $this->difficulte = $difficulte;
     }
 
     public function getid_examen()
     {
         return $this->id_examen;
     }
-    public function getid_cours()
-    {
-        return $this->id_cours;
-    }
-    public function setid_cours($id_cours)
-    {
-        $this->id_cours = $id_cours;
-    }
+
     public function gettitre()
     {
         return $this->titre;
     }
+
     public function settitre($titre)
     {
         $this->titre = $titre;
     }
+
     public function getdescription()
     {
         return $this->description;
     }
+
     public function setdescription($description)
     {
         $this->description = $description;
     }
 
-    public function getdate_limite()
+    public function getduree()
     {
-        return $this->date_limite;
+        return $this->duree;
     }
-    public function setdate_limite($date_limite)
+
+    public function setduree($duree)
     {
-        $this->date_limite = $date_limite;
+        $this->duree = $duree;
+    }
+
+    public function getdifficulte()
+    {
+        return $this->difficulte;
+    }
+
+    public function setdifficulte($difficulte)
+    {
+        $this->difficulte = $difficulte;
     }
 }
 ?>

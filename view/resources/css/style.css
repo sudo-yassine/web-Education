@@ -1,0 +1,9 @@
+.btn-success {
+    background-color: green;
+    border-color: green;
+}
+
+.btn-danger {
+    background-color: red;
+    border-color: red;
+}

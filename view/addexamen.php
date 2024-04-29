@@ -1,32 +1,31 @@
 <?php
-include '../Controller/examenC.php';
+include_once '../Controller/examenC.php';
 $examenC = new examenC();
 $error = "";
-//$examen = null;
+
 if (
-    isset($_POST["id_cours"]) &&
-     isset($_POST["titre"]) &&
-     isset($_POST["description"]) &&
-     isset($_POST['date_limite'])
+    isset($_POST["titre"]) &&
+    isset($_POST["description"]) &&
+    isset($_POST['duree']) &&
+    isset($_POST['difficulte'])
 ) {
     if (
-        !empty($_POST['id_cours']) &&
-         !empty($_POST["titre"]) &&
-         !empty($_POST["description"]) &&
-         !empty($_POST["date_limite"]) 
+        !empty($_POST["titre"]) &&
+        !empty($_POST["description"]) &&
+        !empty($_POST["duree"]) &&
+        !empty($_POST["difficulte"])
     ) {
         $examen = new examen(
             null,
-            $_POST['id_cours'],
             $_POST['titre'],
             $_POST['description'],
-            $_POST['date_limite']      
+            $_POST['duree'],
+            $_POST['difficulte']
         );
         $examenC->addexamen($examen);
         header('Location:listexamen.php');
-    } else
+    } else {
         $error = "Missing information";
+    }
 }
-
-
 ?>

@@ -1,30 +1,30 @@
 <?php
-include '../Controller/coursC.php';
-$coursC = new coursC();
+include_once '../Controller/ressourcesC.php';
+$ressourcesC = new ressourcesC();
 $error = "";
-$cours = null;
+$ressources = null;
 if (
-    isset($_POST["nom_cours"]) &&
-    isset($_POST["heures"]) &&
-    isset($_POST["niveau"]) &&
-    isset($_POST['contenu'])
+    isset($_POST["description_ressources"]) &&
+    isset($_POST["livre"]) &&
+    isset($_POST["playlist_ytb"]) 
 ) {
     if (
-        !empty($_POST['nom_cours']) &&
-        !empty($_POST["heures"]) &&
-        !empty($_POST["niveau"]) &&
-        !empty($_POST["contenu"]) 
+        !empty($_POST['description_ressources']) &&
+        !empty($_POST["livre"]) &&
+        !empty($_POST["playlist_ytb"])&&
+        !empty($_POST["id_examen"])
+        
     ) {
        
-        $cours = new cours(
+        $ressources = new ressources(
             null,
-            $_POST['nom_cours'],
-            $_POST['heures'],
-            $_POST['niveau'],
-            $_POST['contenu']      
+            $_POST['description_ressources'],
+            $_POST['livre'],
+            $_POST['playlist_ytb'],
+            $_POST['id_examen']
         );
-        $coursC->updatecours($cours, $_GET['id_cours']);
-        header('Location:listcours.php');
+        $ressourcesC->updateressources($ressources, $_GET['id_ressources']);
+        header('Location:listressources.php');
     } else
         $error = "Missing information";
 }
@@ -44,11 +44,11 @@ if (
 <body>
      <div class="container">
         <?php
-        if (isset($_GET['id_cours'])) {
-            $cours = $coursC->showcours($_GET['id_cours']);
+        if (isset($_GET['id_ressources'])) {
+            $ressources = $ressourcesC->showressources($_GET['id_ressources']);
         ?>
             <div class="modal-header">
-                <h5 class="modal-title" id="addcoursModalLabel">Update cours</h5>
+                <h5 class="modal-title" id="addressourcesModalLabel">Update ressources</h5>
             </div>
             <div class="modal-body">
                 <div id="error">
@@ -57,20 +57,20 @@ if (
                 <form method="POST" id="insertForm" action="" enctype="multipart/form-data">
                     <div class="row mb-3">
                         <div class="col">
-                            <label class="form-label">nom cours</label>
-                            <input type="text" class="form-control" name="nom_cours" placeholder="nom cours" value="<?php echo $cours['nom_cours']; ?>">
+                            <label class="form-label">ID ressources</label>
+                            <input type="text" class="form-control" name="description_ressources" placeholder="ID ressources" value="<?php echo $ressources['description_ressources']; ?>">
                         </div>
                         <div class="col">
-                            <label class="form-label">heures</label>
-                            <input type="text" class="form-control" name="heures" placeholder="heures" value="<?php echo $cours['heures']; ?>">
+                            <label class="form-label">livre</label>
+                            <input type="text" class="form-control" name="livre" placeholder="livre" value="<?php echo $ressources['livre']; ?>">
                         </div>
                          <div class="col">
-                            <label class="form-label">niveau</label>
-                            <input type="text" class="form-control" name="niveau" placeholder="niveau" value="<?php echo $cours['niveau']; ?>">
+                            <label class="form-label">playlist_ytb</label>
+                            <input type="text" class="form-control" name="playlist_ytb" placeholder="playlist_ytb" value="<?php echo $ressources['playlist_ytb']; ?>">
                         </div>
-                         <div class="col">
-                            <label class="form-label">contenu</label>
-                            <input type="text" class="form-control" name="contenu" placeholder="contenu" value="<?php echo $cours['contenu']; ?>">
+                        <div class="col">
+                            <label class="form-label">id examen</label>
+                            <input type="text" class="form-control" name="playlist_ytb" placeholder="id_examen" value="<?php echo $ressources['id_examen']; ?>">
                         </div>
                     </div>
                     </div>
