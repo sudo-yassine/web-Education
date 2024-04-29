@@ -136,16 +136,21 @@ class examenC
     }
 
     function listexamenByDifficulty($order = 'ASC')
-    {
-        $sql = "SELECT * FROM examen ORDER BY difficulte $order";
-        $db = config::getConnexion();
-        try {
-            $stmt = $db->query($sql);
-            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $data;
-        } catch (Exception $e) {
-            die('Error:' . $e->getMessage());
-        }
+{
+    $sql = "SELECT * FROM examen ORDER BY CASE 
+                WHEN difficulte = 'facile' THEN 1 
+                WHEN difficulte = 'moyen' THEN 2 
+                ELSE 3 
+            END $order";
+    $db = config::getConnexion();
+    try {
+        $stmt = $db->query($sql);
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+    } catch (Exception $e) {
+        die('Error:' . $e->getMessage());
     }
+}
+
 }
 ?>
