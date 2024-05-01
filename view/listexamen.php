@@ -21,9 +21,11 @@ $examens = $examenC->listexamenByDifficulty($order);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="resources/css/dashboard.css">
+
     </head>
 <body>
-<<<<<<< HEAD
+
     <nav class="sidebar close">
       <header>
         <div class="image-text">
@@ -118,9 +120,9 @@ $examens = $examenC->listexamenByDifficulty($order);
     <section class="home">
       <div class="text">Gestion des Examens </div>
       <div class="container">
-=======
+
     <div class="container">
->>>>>>> origin/Examen
+
         <div class="d-flex justify-content-between align-items-center mb-3 mt-5" >
             <div class="text-body-secondary">
                 <span class="h5"></span>
