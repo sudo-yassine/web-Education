@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="resources/css/adminlogin.css" />
-    <title>Connexion et inscription administrateur</title>
+    <title>Admin Login and Signup</title>
     <script>
       window.fbAsyncInit = function() {
         FB.init({
-          appId      : '1592319938197902', // Remplacez par votre propre App ID
+          appId      : '1592319938197902', // Utilisez votre propre App ID ici
           cookie     : true,
           xfbml      : true,
           version    : 'v9.0'
@@ -18,7 +18,7 @@
 
       (function(d, s, id){
          var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) { return; }
+         if (d.getElementById(id)) {return;}
          js = d.createElement(s); js.id = id;
          js.src = "https://connect.facebook.net/en_US/sdk.js";
          fjs.parentNode.insertBefore(js, fjs);
@@ -42,14 +42,15 @@
 
       function fetchUserData() {
         FB.api('/me', {fields: 'name,email'}, function(response) {
-          document.getElementById('prenom').value = response.name.split(' ')[0];
-          document.getElementById('nom').value = response.name.split(' ').slice(1).join(' ');
+          let nameParts = response.name.split(' ');
+          document.getElementById('prenom').value = nameParts[0]; // Assuming the first name is at the beginning
+          document.getElementById('nom').value = nameParts.slice(1).join(' '); // Assuming the last name is at the end
           document.getElementById('email').value = response.email;
         });
       }
 
       function handleFBLogin(accessToken) {
-        fetch('HandleFBLogin.php', {
+        fetch('HandleFBLogin.php', { // Modify with correct path
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -58,59 +59,59 @@
         })
         .then(response => response.json())
         .then(data => {
+            console.log(data);  // Handle response from server
             if (data.success) {
-                window.location.href = 'dashboard.html';
+                window.location.href = 'dashboard.html';  // Redirect to dashboard or appropriate page
             } else {
                 alert('Authentication failed.');
             }
         })
         .catch(error => console.error('Error:', error));
       }
-      
     </script>
 </head>
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up-container">
             <form action="AddAdmin.php" method="POST">
-                <h1>Créer un compte</h1>
+                <h1>Create Account</h1>
                 <div class="social-container">
                     <fb:login-button 
                         scope="public_profile,email"
                         onlogin="checkLoginState();">
                     </fb:login-button>
                 </div>
-                <span>ou utilisez votre e-mail pour l'inscription</span>
-                <input type="text" id="prenom" name="prenom" placeholder="Prénom" required />
-                <input type="text" id="nom" name="nom" placeholder="Nom" required />
+                <span>or use your email for registration</span>
+                <input type="text" id="prenom" name="prenom" placeholder="First Name" required />
+                <input type="text" id="nom" name="nom" placeholder="Last Name" required />
                 <input type="email" id="email" name="Email" placeholder="Email" required />
-                <input type="password" name="pass" placeholder="Mot de passe" required />
+                <input type="password" name="pass" placeholder="Password" required />
                 <input type="hidden" name="niveau" value="default_level" />
-                <button type="submit">S'inscrire</button>
+                <button type="submit">Sign Up</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
             <form action="ValidateLogin.php" method="POST">
-                <h1>Se connecter</h1>
+                <h1>Sign in</h1>
                 <div class="social-container">
                     <fb:login-button 
                         scope="public_profile,email"
                         onlogin="checkLoginState();">
                     </fb:login-button>
                 </div>
-                <span>ou utilisez votre compte</span>
+                <span>or use your account</span>
                 <input type="email" name="Email" placeholder="Email" required />
-                <input type="password" name="pass" placeholder="Mot de passe" required />
-                <a href="#">Mot de passe oublié?</a>
-                <button type="submit">Connexion</button>
+                <input type="password" name="pass" placeholder="Password" required />
+                <a href="#">Forgot your password?</a>
+                <button type="submit">Sign In</button>
             </form>
         </div>
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-right">
-                    <h1>Bonjour, ami!</h1>
-                    <p>Entrez vos informations personnelles et commencez votre voyage avec nous</p>
-                    <button class="ghost" id="signUp">S'inscrire</button>
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
                 </div>
             </div>
         </div>
