@@ -1,37 +1,28 @@
 <?php
 include '../Controller/adminC.php';
 
-// Créer une instance de la classe adminC
 $adminC = new adminC();
 
-// Vérifier si les données POST sont présentes
-if(isset($_POST['niveau'], $_POST['nom'], $_POST['prenom'], $_POST['pass'],$_POST['Email'])) {
-    // Créer une nouvelle instance de la classe admin avec les données POST
-    $admin = new admin(
-        null,
-        $_POST['niveau'],
-        $_POST['nom'],
-        $_POST['prenom'],
-        $_POST['pass'],
-        $_POST['Email']
-
-    );
-    
-
-    
-    // Ajouter l'administrateur
-    $success = $adminC->addAdmin($admin);
-    
-    if($success) {
-        // Rediriger vers la liste des administrateurs si l'ajout est réussi
-        header('Location: listAdmins.php');
-        exit(); // Assure que le script s'arrête ici pour éviter toute exécution supplémentaire
+// Vérifier si les données POST sont présentes ou si elles viennent de Facebook (AJAX)
+if(isset($_POST['niveau']) && (isset($_POST['nom']) && isset($_POST['prenom']) && isset($_POST['pass']) && isset($_POST['Email'])) || isset($_POST['facebookData'])) {
+    if(isset($_POST['facebookData'])) {
+        // Traiter les données venant de Facebook
+        $data = json_decode($_POST['facebookData']);
+        $admin = new admin(null, 'niveau_par_defaut', $data->nom, $data->prenom, 'mot_de_passe_par_defaut', $data->Email);
     } else {
-        // Afficher un message d'erreur si l'ajout a échoué
+        // Créer une nouvelle instance de la classe admin avec les données POST classiques
+        $admin = new admin(null, $_POST['niveau'], $_POST['nom'], $_POST['prenom'], $_POST['pass'], $_POST['Email']);
+    }
+    
+    $success = $adminC->addAdmin($admin);
+
+    if($success) {
+        header('Location: listAdmins.php');
+        exit();
+    } else {
         echo "Une erreur s'est produite lors de l'ajout de l'administrateur. Veuillez réessayer.";
     }
 } else {
-    // Gérer le cas où des données POST sont manquantes
     echo "Données POST manquantes.";
 }
 ?>

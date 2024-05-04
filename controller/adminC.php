@@ -111,5 +111,40 @@ class adminC
             die('Error: ' . $e->getMessage());
         }
     }
+    
+    public function validateAdminLogin($email, $password) {
+        $db = config::getConnexion();
+        $stmt = $db->prepare("SELECT pass FROM adminisatrateur WHERE Email = :Email");
+        $stmt->execute(['Email' => $email]); // Assurez-vous que les clés utilisées dans execute() sont correctement entre guillemets
+
+        $hashed_password = $stmt->fetchColumn();
+    
+        if ($hashed_password && password_verify($password, $hashed_password)) {
+            return true;
+        } else {
+            return false;
+        }
+        try {
+            $stmt->execute([$email]);
+        } catch (PDOException $e) {
+            die("Erreur lors de la connexion à la base de données: " . $e->getMessage());
+        }
+        
+    }
+    
+    
+    
+    
+
+    public function checkAdminByEmail($email) {
+        $db = config::getConnexion();
+        $stmt = $db->prepare("SELECT COUNT(*) FROM adminisatrateur WHERE Email = ?");
+        $stmt->execute([$email]); // Ensure that this matches the corrected table name
+    
+        return $stmt->fetchColumn() > 0;
+    }
+    
+    
+    
 }
 ?>
