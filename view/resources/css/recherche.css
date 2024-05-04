@@ -96,6 +96,8 @@ body {
 }
 
 .subject-card {
+  z-index: 2;
+  position: relative;
   border: none;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -1372,4 +1374,41 @@ a {
   100% {
     transform: scale(1);
   }
+}
+
+.stats-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Custom CSS */
+.modal-body {
+  padding: 20px;
+}
+
+.question {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.form-check {
+  margin-bottom: 10px;
+}
+
+.modal-footer {
+  justify-content: center;
+}
+
+/* Optional: Adjust modal size */
+.modal-dialog {
+  max-width: 500px;
+}
+quiz {
+  z-index: 2;
+  position: absolute;
+  top: -30px; /* Adjust as needed */
+  text-align: center;
+  height: 30px;
+  width: 30px;
 }

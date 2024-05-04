@@ -6,6 +6,20 @@ class coursC
 {
 
 
+function calculateTotalHoursForSubject($subjectId) {
+    global $coursC;
+    try {
+        $pdo = config::getConnexion();
+        $query = $pdo->prepare("SELECT SUM(heures) AS total_hours FROM cours WHERE matiere = :subjectId");
+        $query->execute(['subjectId' => $subjectId]);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        return $result['total_hours'];
+    } catch (PDOException $e) {
+        echo $e->getMessage(); 
+        return 0; // Return 0 in case of error
+    }
+}
+    
 public function searchByNiveau($niveau) {
     try {
         $pdo = config::getConnexion();
@@ -180,4 +194,4 @@ public function verifyMatiereExists($matiereId)
         }
     }
 }
-?>
+

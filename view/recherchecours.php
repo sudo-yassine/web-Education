@@ -1,6 +1,3 @@
-
-
-
 <?php
 require_once "../Controller/coursC.php";
 $coursC = new coursC();
@@ -19,9 +16,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+$matieres = $coursC->affichermatiere();
+
+// Calculate total hours for each subject
+$totalHoursPerSubject = [];
+foreach ($matieres as $matiere) {
+$totalHoursPerSubject[$matiere['id_matiere']] = $coursC->calculateTotalHoursForSubject($matiere['id_matiere']);
+}
 
 
 $matieres = $coursC->affichermatiere();
+
+
+$quizzes = [
+    2=> [
+        'question' => 'What is the formula for the area of a circle?',
+        'options' => ['A. πr²', 'B. 2πr', 'C. πd', 'D. ½bh'],
+        'correct_answer' => 'A. πr²'
+    ],
+    // Define quizzes for other subjects as needed
+3=> [
+        'question' => 'What is the past tense of the verb "run"?',
+        'options' => ['A) run', 'B) ran', 'C) running', 'D) runs'],
+        'correct_answer' => 'B) ran'
+    ],
+   
+    4 => [
+        'question' => 'What does CSS stand for?',
+        'options' => ['A) Creative Style Sheets', 'B) Computer Style Sheets', 'C) Cascading Style Sheets', 'D) Colorful Style Sheets'],
+        'correct_answer' => 'C) Cascading Style Sheets'
+    ],
+
+    // Database quizzes
+    5 => [
+        'question' => 'What is the primary purpose of a database management system (DBMS)?',
+        'options' => ['A) To create databases', 'B) To manipulate databases', 'C) To secure databases', 'D) All of the above'],
+        'correct_answer' => 'D) All of the above'
+    ]
+    
+];
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,14 +101,20 @@ $matieres = $coursC->affichermatiere();
 
             foreach ($matieres as $matiere) { ?>
             <div class="col-md-3">
+                
                 <div class="card subject-card" onclick="submitForm(<?= $matiere['id_matiere'] ?>)">
+               
                     <img src="<?= $subjectLogos[$matiere['id_matiere']] ?>" class="card-img-top subject-logo" alt="Subject Logo">
                     <div class="card-body text-center">
                         <h5 class="card-title"><?= $matiere['nom_matiere'] ?></h5>
                     </div>
                 </div>
+                 <div class="quiz">
+                  <button type="button" class="btn btn-primary pop-quiz-btn" onclick="displayQuiz(<?= $matiere['id_matiere'] ?>)">Pop Quiz</button> 
+                </div>
+                 
             </div>
-            <?php } ?>
+                   <?php } ?>
             <div class="col-md-12">
                 <form id="searchForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="mt-4">
                     <div class="input-group">
@@ -88,34 +130,54 @@ $matieres = $coursC->affichermatiere();
                 </form>
             </div>
         </div>
+        
         <form id="submitForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
             <input type="hidden" name="matiere" id="matiere">
         </form>
+        <div class="col-md-12 text-md-right"> <!-- Use text-md-right class to align content to the right on medium screens and larger -->
+            <button class="btn btn-outline-secondary mt-3" onclick="sortCoursesByHours()">Sort by Hours</button>
+        </div>
+
+
 
         <?php if (isset($list)) {?>
         <div class="mt-4">
             <h2 class="text-center">Cours correspondants à la matière sélectionnée</h2>
             <div class="row">
                 <?php foreach ($list as $cours) { ?>
-                <div class="col-md-4 animate__animated animate__fadeInUp">
-                    <div class="card course-card">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= $cours['nom_cours'] ?></h5>
-                            <p class="card-text"><?= $cours['heures'] ?> heures</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <!-- Button to toggle visibility of additional information -->
-                                <button class="btn btn-primary rounded-pill" onclick="toggleInfo('<?= $cours['id_cours'] ?>')">More Info</button>
-                                <!-- Add to Cart button -->
-                                <button class="btn btn-success rounded-pill">Add to Cart</button>
-                            </div>
-                            <!-- Hidden section for additional information -->
-                            <div id="info<?= $cours['id_cours'] ?>" style="display: none;">
-                                <p><strong>Niveau:</strong> <?= $cours['niveau'] ?></p>
-                                <p><strong>Contenu:</strong> <?= $cours['contenu'] ?></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <div class="col-md-4 animate__animated animate__fadeInUp">
+    <div class="card course-card">
+        <div class="card-body">
+            <h5 class="card-title"><?= $cours['nom_cours'] ?></h5>
+            <p class="card-text"><?= $cours['heures'] ?> heures</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <!-- Button to toggle visibility of additional information -->
+                <button class="btn btn-primary rounded-pill" onclick="toggleInfo('<?= $cours['id_cours'] ?>')">More Info</button>
+                <!-- Button to toggle visibility of statistics -->
+                <button class="btn btn-info rounded-pill" onclick="toggleStats('<?= $cours['id_cours'] ?>')">Stats</button>
+                <!-- Add to Cart button -->
+                <button class="btn btn-success rounded-pill">Add to Cart</button>
+            </div>
+            <!-- Hidden section for additional information -->
+            <div id="info<?= $cours['id_cours'] ?>" style="display: none;">
+                <p><strong>Niveau:</strong> <?= $cours['niveau'] ?></p>
+                <p><strong>Contenu:</strong> <?= $cours['contenu'] ?></p>
+            </div>
+        </div>
+    </div>
+    <!-- Card for statistics -->
+<div id="stats<?= $cours['id_cours'] ?>" class="card course-stats" style="display: none;">
+    <div class="card-body">
+        <h5 class="card-title">Statistics for <?= $cours['nom_cours'] ?></h5>
+        <!-- This canvas will hold the chart -->
+        <canvas id="chart<?= $cours['id_cours'] ?>" width="100" height="100"></canvas>
+    </div>
+</div>
+
+<!-- <button class="btn btn-info rounded-pill" onclick="toggleStats('<?= $cours['id_cours'] ?>', <?= json_encode($statistics_data) ?>)">Stats</button> -->
+
+</div>
+ 
                 <?php }?>
             </div>
         </div>
@@ -124,6 +186,142 @@ $matieres = $coursC->affichermatiere();
     
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+<script>
+  
+  // JavaScript to handle the click event of the "pop quiz" button
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all "pop quiz" buttons
+    var popQuizButtons = document.querySelectorAll('.pop-quiz-btn');
+
+    // Attach click event listener to each button
+    popQuizButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default behavior of the button
+            
+            // Now you can display the quiz or perform any other action
+            // For example, you can show a modal with the quiz questions
+            // Or you can navigate to a separate quiz page using window.location.href
+            // Example:
+            // window.location.href = '/quiz-page';
+        });
+    });
+});
+
+</script>
+
+
+<script>
+    // Function to display the quiz modal
+    
+    function displayQuiz(subjectId) {
+    // Get the quiz details for the selected subject
+    var quiz = <?php echo json_encode($quizzes); ?>[subjectId];
+    
+    // Build the HTML for the quiz modal
+    var quizModalHTML = `
+       <!-- Quiz Modal HTML -->
+<div class="modal fade" id="quizModal" tabindex="-1" aria-labelledby="quizModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="quizModalLabel">Quiz</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="question">${quiz.question}</p>
+                <form id="quizForm">
+                    ${quiz.options.map((option, index) => `
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="answer" id="option${index}" value="${option}">
+                            <label class="form-check-label" for="option${index}">${option}</label>
+                        </div>
+                    `).join('')}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="submitQuiz(${subjectId})">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+    `;
+
+    // Append the quiz modal HTML to the body
+    document.body.insertAdjacentHTML('beforeend', quizModalHTML);
+
+    // Show the quiz modal
+    var quizModal = new bootstrap.Modal(document.getElementById('quizModal'));
+    quizModal.show();
+}
+
+
+    // Function to submit the quiz
+   function submitQuiz(subjectId) {
+    // Get the selected answer
+    var selectedAnswer = document.querySelector('input[name="answer"]:checked');
+    if (!selectedAnswer) {
+        alert('Please select an answer.');
+        return;
+    }
+
+    // Get the quiz details
+    var quiz = <?php echo json_encode($quizzes); ?>[subjectId];
+    
+    // Check if the selected answer is correct
+    if (selectedAnswer.value === quiz.correct_answer) {
+        alert('Correct answer!');
+    } else {
+        alert('Incorrect answer. Try again!');
+    }
+
+    // Close the quiz modal
+    var quizModal = bootstrap.Modal.getInstance(document.getElementById('quizModal'));
+    quizModal.hide();
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function sortCoursesByHours() {
+        // Get all course cards
+        var courseCards = document.querySelectorAll('.course-card');
+        
+        // Convert NodeList to Array for easier sorting
+        courseCards = Array.from(courseCards);
+
+        // Sort the course cards by hours
+        courseCards.sort(function(a, b) {
+            var hoursA = parseFloat(a.querySelector('.card-text').textContent);
+            var hoursB = parseFloat(b.querySelector('.card-text').textContent);
+            return hoursA - hoursB;
+        });
+
+        // Remove all course cards from their parent element
+        var parentElement = document.querySelector('.row');
+        parentElement.innerHTML = '';
+
+        // Append the sorted course cards back to the parent element
+        courseCards.forEach(function(card) {
+            parentElement.appendChild(card);
+        });
+    }
+</script>
+
     <script>
         function submitForm(matiereId) {
             document.getElementById("matiere").value = matiereId;
@@ -138,6 +336,49 @@ $matieres = $coursC->affichermatiere();
                 infoDiv.style.display = "none";
             }
         }
+
+   // Function to toggle visibility of statistics
+function toggleStats(courseId, statsData) {
+    var statsDiv = document.getElementById('stats' + courseId);
+    if (statsDiv.style.display === 'none') {
+        // Show the statistics card
+        statsDiv.style.display = 'block';
+        // Update the chart with the provided data
+        updateChart('chart' + courseId, statsData);
+    } else {
+        // Hide the statistics card
+        statsDiv.style.display = 'none';
+    }
+}
+
+// Function to update the chart with statistics data
+function updateChart(chartId, data) {
+    var ctx = document.getElementById(chartId).getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.labels,
+            datasets: [{
+                label: 'Hours',
+                data: data.hours,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+ 
+
+        
     </script>
      <div class="pg-footer">
       <footer class="footer">
