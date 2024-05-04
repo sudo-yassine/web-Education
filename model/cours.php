@@ -6,13 +6,16 @@ class cours
     private $heures;
     private $niveau;
     private $contenu;
-    public function __construct($id = null, $nom_cours , $heures, $niveau ,$contenu)
+    private $matiere; 
+
+    public function __construct($id = null, $nom_cours , $heures, $niveau ,$contenu, $matiere)
     {
         $this->id_cours = $id;
         $this->nom_cours = $nom_cours;
         $this->heures = $heures;
         $this->niveau = $niveau;
         $this->contenu = $contenu;
+        $this->matiere = $matiere;
     }
 
     public function getid_cours()
@@ -51,6 +54,15 @@ class cours
     public function setcontenu($contenu)
     {
         $this->contenu = $contenu;
+    }
+
+    public function getmatiere()
+    {
+        return $this->matiere;
+    }
+    public function setmatiere($matiere)
+    {
+        $this->matiere = $matiere;
     }
 }
 ?>

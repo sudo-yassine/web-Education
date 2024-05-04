@@ -1,194 +1,3 @@
-<<<<<<< HEAD
-@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;700&display=swap");
-
-:root {
-  --color: #33333300;
-}
-/* 
-body {
-  font-family: "Red Hat Text", sans-serif;
-} */
-
-.container {
-  text-align: center;
-  color: var(--color);
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-image: url(/view/resources/img/Design.png);
-  background-size: cover;
-  background-position: center;
-
-  /*  this is where the magic happens:  */
-  background-attachment: fixed;
-}
-
-p {
-  max-width: 52ch;
-  line-height: 1.5;
-  padding: 1em;
-  margin-right: 40%;
-}
-
-.blank,
-.other {
-  width: 100%;
-  min-height: 40vh;
-  background-color: rgb(196, 193, 193);
-}
-
-.second {
-  background-image: url(/view/resources/img/image.png);
-  background-attachment: fixed;
-  height: 1200px;
-}
-
-h3 {
-  font-weight: 700;
-  font-size: 1.6rem;
-  margin-top: 1em;
-  margin-bottom: 0.5em;
-  margin-right: 30%;
-
-} 
-
-.card > a {
-  margin-bottom: 2em;
-}
-
-.item {
-  display: flex;
-  max-width: 320px;
-  background-color: white;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 0.5em;
-  -webkit-box-shadow: 0px 29px 38px -15px rgba(0, 0, 0, 0.43);
-  -moz-box-shadow: 0px 29px 38px -15px rgba(0, 0, 0, 0.43);
-  box-shadow: 0px 29px 38px -15px rgba(0, 0, 0, 0.43);
-}
-
-.img {
-  width: 90%;
-  height: 250px;
-  background-color: lightgrey;
-  background-size: cover;
-  background-position: center;
-  margin-top: 20px;
-  border-radius: 0.3em;
-}
-
-.img-first {
-  background-image: url(/view/resources/img/data_science.webp);
-}
-
-.img-second {
-  background-image: url(/view/resources/img/reseaux.webp);
-}
-
-.img-third {
-  background-image: url(/view/resources/img/mysql-banner.png);
-}
-.img-fourth {
-  background-image: url(/view/resources/img/plus.png);
-  height: 200px;
-  width: 200px;
-  margin-top: 100%;
-}
-
-.second {
-  flex-direction: row;
-  gap: 1.6em;
-}
-/* mch commetaire */
-.title_wrapper h1 {
-  text-align: center;
-  font-size: 300px;
-  text-transform: uppercase;
-  text-align: left;
-  font-family: sans-serif;
-  font-weight: 700;
-  color: #ffffff;
-}
-.title_wrapper h2 {
-  text-align: center;
-  font-size: 210px;
-  text-transform: uppercase;
-  text-align: left;
-  font-family: sans-serif;
-  font-weight: 700;
-  color: #ffffff;
-  transform: translateY(-110%);
-}
-
-.widget1 {
-  height: 30vh;
-  transform: translateY(-10px);
-}
-
-.your_courses h1 {
-  font-family: sans-serif;
-  /* font-size: 1200%; */
-  color: rgba(147, 8, 202, 0.726);
-}
-.your_courses h2 {
-  font-family: sans-serif;
-  /* font-size: 900%; */
-  /* transform: translateY(-180px); */
-  color: rgb(7, 0, 10);
-}
-
-/* animaited text */
-/* anas : zedt class "line" bech temchi ken 3al cources */  
-.line {
-  --s: 0.1em; /* the thickness of the line */
-  --c: #980bda; /* the color */
-
-  color: #0000;
-  padding-bottom: var(--s);
-  background: linear-gradient(90deg, var(--c) 50%, #5637dd 0)
-      calc(100% - var(--_p, 0%)) / 200% 100%,
-    linear-gradient(var(--c) 0 0) 0% 100% / var(--_p, 0%) var(--s) no-repeat;
-  -webkit-background-clip: text, padding-box;
-  background-clip: text, padding-box;
-  transition: 0.5s;
-}
-h1:hover {
-  --_p: 100%;
-}
-
-/* body {
-  height: 100vh;
-  margin: 0;
-  display: grid;
-  place-content: center;
-} */
-h1 {
-  font-family: system-ui, sans-serif;
-  font-size: 5rem;
-  cursor: pointer;
-}
-/* header */
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
-
-*,
-*:after,
-*:before {
-  box-sizing: border-box;
-}
-
-:root {
-  --header-outer-height: 110px;
-  --header-inner-height: 70px;
-  --header-height-difference: calc(
-    var(--header-outer-height) - var(--header-inner-height)
-  );
-  --header-bg: #ffffff7c;
-}
-
 body {
   width: 100%;
   height: 100%;
@@ -198,14 +7,12 @@ body {
   background-size: 30px 30px;
   background-position: -5px -5px;
 }
-
 .responsive-wrapper {
   width: 90%;
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
 }
-
 /* Sticky header */
 .header-outer {
   /* Make it stick */
@@ -288,8 +95,34 @@ body {
   left: 0;
 }
 
-.main {
-  margin-top: 3rem;
+.subject-card {
+  z-index: 2;
+  position: relative;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s; /* Added transition for smooth scaling */
+}
+.subject-card:hover {
+  transform: scale(1.05); /* Scale up the card on hover */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.subject-logo {
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+}
+.course-card {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  transition: transform 0.3s, box-shadow 0.3s; /* Added transition for smooth scaling */
+}
+.course-card:hover {
+  transform: scale(1.05); /* Scale up the card on hover */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 .widget1 {
@@ -335,7 +168,7 @@ body {
   } */
 }
 /* join button */
-button {
+.button_join {
   padding: 17px 40px;
   border-radius: 50px;
   border-color: hsl(261deg 80% 48%);
@@ -372,23 +205,10 @@ button:active {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-height: 50pc;
-  width: 100%;
+  width: 85%;
 }
 
 /* stat card */
-.card {
-  /* margin-left: pc; */
-  margin: auto;
-  width: 500px;
-  /* background: #fff480; */
-  color: black;
-  position: relative;
-  border-radius: 2.5em;
-  /* padding: 2em; */
-  transition: transform 0.4s ease;
-}
-
 .card .card-content h1 {
   /* align-items: right; */
   /* display: flex; */
@@ -1159,17 +979,12 @@ button:active {
   font-size: 400%;
   font-weight: 500;
   color: rgb(128, 8, 197);
->>>>>>> cours
 }
 
 /* footer */
 
 a {
-<<<<<<< HEAD
-  color: black;
-=======
   color: #fff;
->>>>>>> cours
   text-decoration: none;
 }
 .pg-footer {
@@ -1386,11 +1201,6 @@ a {
   width: 34px;
 }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> cours
 /* Media Query For different screens */
 @media (min-width: 320px) and (max-width: 479px) {
   /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
@@ -1455,16 +1265,8 @@ a {
   } */
 }
 
-<<<<<<< HEAD
-
-
 /* jdiiid icons */
 
-
-=======
-/* jdiiid icons */
-
->>>>>>> cours
 .card1 {
   display: flex;
   height: 70px;
@@ -1485,15 +1287,11 @@ a {
   cursor: pointer;
 }
 
-<<<<<<< HEAD
-.card1 .social-link1,.card1 .social-link2,.card1 .social-link3,.card1 .social-link4,.card1 .social-link5 {
-=======
 .card1 .social-link1,
 .card1 .social-link2,
 .card1 .social-link3,
 .card1 .social-link4,
 .card1 .social-link5 {
->>>>>>> cours
   position: relative;
   display: flex;
   align-items: center;
@@ -1512,11 +1310,6 @@ a {
 
 .card1 .social-link1:hover {
   background: #f09433;
-<<<<<<< HEAD
-  background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-=======
   background: -moz-linear-gradient(
     45deg,
     #f09433 0%,
@@ -1541,7 +1334,6 @@ a {
     #cc2366 75%,
     #bc1888 100%
   );
->>>>>>> cours
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
   animation: bounce_613 0.4s linear;
 }
@@ -1582,8 +1374,41 @@ a {
   100% {
     transform: scale(1);
   }
-<<<<<<< HEAD
 }
-=======
+
+.stats-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
 }
->>>>>>> cours
+
+/* Custom CSS */
+.modal-body {
+  padding: 20px;
+}
+
+.question {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.form-check {
+  margin-bottom: 10px;
+}
+
+.modal-footer {
+  justify-content: center;
+}
+
+/* Optional: Adjust modal size */
+.modal-dialog {
+  max-width: 500px;
+}
+quiz {
+  z-index: 2;
+  position: absolute;
+  top: -30px; /* Adjust as needed */
+  text-align: center;
+  height: 30px;
+  width: 30px;
+}
