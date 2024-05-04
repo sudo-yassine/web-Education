@@ -1,5 +1,5 @@
 <?php
-include '../Controller/RecrutC.php';
+include '../Controller/RecrutC_A.php';
 $RecrutC = new RecrutC();
 $list = $RecrutC->listrecrut();
 
@@ -14,7 +14,7 @@ $list = $RecrutC->listrecrut();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recrutement</title>
+    <title>ADMIN RECRUT</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <!-- Font Awesome  -->
@@ -36,7 +36,7 @@ $list = $RecrutC->listrecrut();
     <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-3 mt-5">
             <div class="text-body-secondary">
-                <span class="h5">All Recruts</span>
+                <span class="h5">ADMIN Recruts</span>
                 <br>
                 Manage all your existing Recrutements or add a new one
             </div>
@@ -60,8 +60,18 @@ $list = $RecrutC->listrecrut();
                         <form method="POST" id="insertForm" action="AddRecrut.php" enctype="multipart/form-data">
                             <div class="row mb-3">
                                 <div class="col">
+                                    <label class="form-label">id_recrutement</label>
+                                    <input type="number" class="form-control" name="id_recrutement" placeholder="IDR">
+                                </div>
+
+                                <div class="col">
                                     <label class="form-label">date entretien</label>
                                     <input type="date" class="form-control" name="date_entretien" placeholder="AAAA-MM-JJ">
+                                </div>
+
+                                <div class="col">
+                                    <label class="form-label">statu</label>
+                                    <input type="number" class="form-control" name="statu" placeholder="statu">
                                 </div>
 
                                 <div class="col">
@@ -74,6 +84,13 @@ $list = $RecrutC->listrecrut();
                                     <input type="text" class="form-control" name="reponse" placeholder="repondre ici" onblur="validateReponse(this)>
                                     <div id="input" class="text-danger"></div>
                                 </div>       
+
+                                <div class="col">
+                                    <label class="form-label">Id_enseignant</label>
+                                    <input type="number" class="form-control" name="Id_enseignant" placeholder="IDe">
+                                </div>
+
+                                
                                                       
                                 <div class="col">
                                 </div>          
@@ -106,9 +123,13 @@ $list = $RecrutC->listrecrut();
         <table class="table table-bordered table-striped table-hover align-middle" id="myTable" style="width:100%;">
             <thead class="table-dark">
                 <tr>
+                    
+                    <th>ID recrut</th>
                     <th>date_entretien</th>
+                    <th>statu</th>
                     <th>cv</th>               
                     <th>reponse</th>
+                    <th>Id_enseignant</th>
                     <th>action</th>
                 </tr>
             </thead>
@@ -117,9 +138,12 @@ $list = $RecrutC->listrecrut();
                 foreach ($list as $Recrut) {
                 ?>
                     <tr>
+                        <td><?= $Recrut['id_recrutement']; ?></td>
                         <td><?= $Recrut['date_entretien']; ?></td>
+                        <td><?= $Recrut['statu']; ?></td>
                         <td><?= $Recrut['cv']; ?></td>
                         <td><?= $Recrut['reponse']; ?></td>
+                        <td><?= $Recrut['Id_enseignant']; ?></td>
                         <td align="center">
                         <!--  
                             <a href="UpdateRecrut.php?id_recurtement=<?php echo $Recrut['id_recurtement']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>Update</a>
@@ -142,7 +166,46 @@ $list = $RecrutC->listrecrut();
     <!-- Datatables  -->
     <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
     <!-- JS  -->
- 
+    <?php
+    $RecrutC = new RecrutC();
+
+// Traitement du formulaire
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['recrut']) && isset($_POST['search'])) {
+        $Id_enseignant= $_POST['recrut'];
+        $list = $RecrutC->afficherRecrut($Id_enseignant);
+        // Further processing here...
+    }
+}
+?>
+    <h3>Recherche de Statu par enseignant </h3>
+    
+    <form action="" method="POST">
+        <label for="Recrut">Sélectionnez enseignant :</label>
+        <select name="Recrut" id="Recrut">
+        <?php
+           $enseignant= $RecrutC->afficherEnseignant();
+            foreach ($enseignant as $enseignant) {
+                echo '<option value="' . $enseignant['Id_enseignant'] . '">' . $enseignant['Id_enseignant']    . $enseignant['specialite']  . '</option>';
+            }
+            ?>
+        </select>
+        <input type="submit" value="Rechercher" name="search">
+        <?php 
+    if (isset($list)) { ?>
+        <br>
+        <h3>recrut correspondants au enseignant sélectionné :</h3>
+        <ul>
+            <?php foreach ($list as $recrut) { ?>
+                <li>
+                    <h6><?= $recrut['date_entretien']  ?></h6>
+                    <h6><?= $recrut['statu'] ?></h6>
+                    
+                </li>
+            <?php } ?>
+        </ul>
+    <?php } ?>
+    </form>
 
 
     

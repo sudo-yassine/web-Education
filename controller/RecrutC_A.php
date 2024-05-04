@@ -1,6 +1,6 @@
 <?php
 include '../config.php';
-include '../model/Recrut.php';
+include '../model/Recrut_A.php';
 
 /*
 CREATE TABLE recrut(
@@ -103,7 +103,29 @@ class RecrutC
             die('Error: ' . $e->getMessage());
         }
     }
-    
 
+    public function afficherRecrut($Id_enseignant)
+    {
+        try {
+            $pdo = config::getConnexion();
+            $query = $pdo->prepare("SELECT * FROM recrut WHERE Id_enseignant = :id");
+            $query->execute(['id' => $Id_enseignant]);
+            return $query->fetchAll();
+        } catch (PDOException $e) {
+           echo $e->getMessage(); 
+        }
+    }
+
+
+    public function afficherEnseignant()
+    {
+        try {
+            $pdo = config::getConnexion();
+            $query = $pdo->prepare("SELECT * FROM recrut");
+            $query->execute();
+            return $query->fetchAll();
+        } catch (PDOException $e) {
+           echo $e->getMessage(); 
+        }
+    }
 }
-

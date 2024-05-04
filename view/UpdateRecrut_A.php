@@ -1,27 +1,34 @@
 <?php
-include '../Controller/RecrutC.php';
+include '../Controller/RecrutC_A.php';
 $RecrutC = new RecrutC();
 $error = "";
 $Recrut = null;
 if (
+    isset($_POST["id_recrutement"]) &&
     isset($_POST["date_entretien"]) &&
+    isset($_POST["statu"]) &&
     isset($_POST["cv"]) &&
-    isset($_POST['reponse'])
+    isset($_POST['reponse'])&&
+    isset($_POST["Id_enseignant"]) 
 ) {
     if (
+        !empty($_POST['id_recrutement']) &&
         !empty($_POST['date_entretien']) &&
+        !empty($_POST['statu']) &&
         !empty($_POST["cv"]) &&
-        !empty($_POST["reponse"]) 
+        !empty($_POST["reponse"])&&
+        !empty($_POST["Id_enseignant"]) 
+
     ) {
        
         $Recrut = new Recrut(
-            null,
+            $_POST['id_recrutement'],
             $_POST['date_entretien'],
-            null,
+            $_POST['statu'],
             $_POST['cv'],
             null,
             $_POST['reponse'],
-            null
+            $_POST['Id_enseignant']
         );
         $RecrutC->UpdateRecrut($Recrut, $_GET['id_recrutement']);
         header('Location:ListRecrut.php');
@@ -57,18 +64,37 @@ if (
                 </div>
                 <form method="POST" id="insertForm" action="" enctype="multipart/form-data">
                     <div class="row mb-3">
-                        <div class="col">
-                            <label class="form-label">Date Entretien</label>
-                            <input type="date" class="form-control" name="date entretien" placeholder="date_entretien" value="<?php echo $Recrut['date_entretien']; ?>">
-                        </div>
-                        <div class="col">
-                            <label class="form-label">cv</label>
-                            <input type="file" class="form-control" name="cv" placeholder="cv" value="<?php echo $Recrut['cv']; ?>">
-                        </div>
-                         <div class="col">
-                            <label class="form-label">reponse</label>
-                            <input type="text" class="form-control" name="reponse" placeholder="reponse" value="<?php echo $Recrut['reponse']; ?>">
-                        </div>
+                    <div class="col">
+                                    <label class="form-label">id_recrutement</label>
+                                    <input type="text" class="form-control" name="id_recrutement" placeholder="IDR">
+                                </div>
+
+                                <div class="col">
+                                    <label class="form-label">date entretien</label>
+                                    <input type="date" class="form-control" name="date_entretien" placeholder="AAAA-MM-JJ">
+                                </div>
+
+                                <div class="col">
+                                    <label class="form-label">statu</label>
+                                    <input type="text" class="form-control" name="statu" placeholder="statu">
+                                </div>
+
+                                <div class="col">
+                                    <label class="form-label">cv</label>
+                                    <input type="file" class="form-control" name="cv" placeholder="upload link here">
+                                </div>
+
+                                <div class="col">
+                                    <label class="form-label">reponse</label>                               
+                                    <input type="text" class="form-control" name="reponse" placeholder="repondre ici" onblur="validateReponse(this)>
+                                    <div id="input" class="text-danger"></div>
+                                </div>       
+
+                                <div class="col">
+                                    <label class="form-label">Id_enseignant</label>
+                                    <input type="text" class="form-control" name="Id_enseignant" placeholder="IDe">
+                                </div>
+
                     </div>
                     </div>
                     <div>
