@@ -56,7 +56,11 @@ $quizzes = [
     
 ];
 
-
+$coursePrerequisites = [
+    1 => 101,  // Math course requires passing the math quiz
+    2 => 201,  // English course requires passing the English quiz
+    // Add more prerequisites as needed
+];
 
 ?>
 
@@ -165,7 +169,9 @@ $quizzes = [
 									<!-- Button to toggle visibility of statistics -->
 									<button class="btn btn-info rounded-pill" onclick="location.href = 'stat.php';">Stats</button>
 									<!-- Add to Cart button -->
-									<button class="btn btn-success rounded-pill">Add to Cart</button>
+									<!-- <button class="btn btn-success rounded-pill">Add to Cart</button> -->
+                  <button class="btn btn-success rounded-pill" onclick="addToCart(<?= $cours['id_cours'] ?>)">Add to Cart</button>
+
 								</div>
 								<!-- Hidden section for additional information -->
 								<div id="info<?= $cours['id_cours'] ?>" style="display: none">
@@ -214,6 +220,25 @@ $quizzes = [
 				});
 			});
 		</script>
+
+
+<script>
+    function addToCart(courseId) {
+        // Check if the prerequisite is passed
+        if (!isPrerequisitePassed(courseId)) {
+            // If not passed, show an alert or a pop-up
+            alert("You must pass the prerequisite quiz before adding this course to the cart.");
+            return; // Stop further execution
+        }
+
+        // If the prerequisite is passed, continue adding the course to the cart
+        // You can add the course to the cart using JavaScript or by submitting a form
+        // For demonstration, let's just log a message
+        console.log("Course with ID " + courseId + " added to the cart.");
+    }
+</script>
+
+
 
 		<script>
 			    // Function to display the quiz modal
