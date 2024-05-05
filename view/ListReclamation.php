@@ -116,7 +116,6 @@ $list = $reclamationC->ListReclamtion();
         <a href="stat.php" class="btn btn-primary"
             style="background-color:rgb(226, 112, 255); border-color: transparent; text-decoration: none;">
             <i class="bi bi-bar-chart-line"></i>
-            <a href="page_de_debut.php"><button>Retour</button></a>
 
         </a>
         <script>

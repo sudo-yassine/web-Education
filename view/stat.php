@@ -48,6 +48,8 @@ $data = json_encode(array_values($pourcentages));
             <canvas id="graphiqueReclamations"></canvas>
         </div>
     </div>
+    <a href="ListReclamation.php"><button>Retour</button></a>
+
 
     <script>
         // Récupérer les données PHP converties en JavaScript
@@ -90,4 +92,3 @@ $data = json_encode(array_values($pourcentages));
 </body>
 </html>
 
-<?php include('footer.php'); ?>
