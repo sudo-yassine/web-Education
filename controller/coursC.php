@@ -5,6 +5,39 @@ include '../model/cours.php';
 class coursC
 {
 
+public function functionstat()
+    {
+        $db = config::getConnexion();
+
+        try {
+            // Sélectionner le nombre de réclamations pour chaque type depuis la base de données
+            $query = $db->prepare('SELECT COUNT(*) AS total, heures FROM cours GROUP BY heures');
+            $query->execute();
+            $coursparheures = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            // Initialiser un tableau pour stocker les pourcentages
+            $pourcentages = [];
+
+            // Calculer le pourcentage de réclamations pour chaque type
+            $totalcours = 0;
+            foreach ($coursparheures as $cours) {
+                $totalcours += $cours['total'];
+            }
+
+            foreach ($coursparheures as $cours) {
+                $pourcentage = ($cours['total'] / $totalcours) * 100;
+                $pourcentages[$cours['heures']] = $pourcentage;
+            }
+
+            return $pourcentages;
+            } catch (PDOException $e) {
+            echo "Erreur lors du calcul " . $e->getMessage();
+            }
+
+        }
+
+
+
 
 function calculateTotalHoursForSubject($subjectId) {
     global $coursC;
