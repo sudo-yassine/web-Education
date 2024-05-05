@@ -222,6 +222,7 @@ $examens = $examenC->listexamenByDifficulty($order);
                     <th>description</th>
                     <th>duree</th>
                     <th>difficulte</th>
+                    <th>Date et heure d'ajout</th>
                     <th>update</th>
                     <th>delete</th>
                 </tr>
@@ -236,6 +237,7 @@ $examens = $examenC->listexamenByDifficulty($order);
                         <td><?= $examen['description']; ?></td>
                         <td><?= $examen['duree']; ?></td>
                         <td><?= $examen['difficulte']; ?></td>
+                        <td><?= $examen['date_heure']; ?></td>
                         <td  class="text-center">
                             <a href="updateexamen.php?id_examen=<?php echo $examen['id_examen']; ?>" class="btn  btn-success"><i class="fa-solid fa-pen-to-square fa-xl"></i>update</a>
                         </td>
@@ -275,5 +277,3 @@ $examens = $examenC->listexamenByDifficulty($order);
 </body>
 
 </html>
-
-

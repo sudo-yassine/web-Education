@@ -16,13 +16,15 @@ if (
         !empty($_POST["duree"]) &&
         !empty($_POST["difficulte"])
     ) {
+        $date_heure = date('Y-m-d H:i:s');
        
         $examen = new examen(
             null,
             $_POST['titre'],
             $_POST['description'],
             $_POST['duree'],
-            $_POST['difficulte']      
+            $_POST['difficulte'], 
+            $date_heure   
         );
         $examenC->updateexamen($examen, $_GET['id_examen']);
         header('Location:listexamen.php');
@@ -48,6 +50,7 @@ if (
         <?php
         if (isset($_GET['id_examen'])) {
             $examen = $examenC->showexamen($_GET['id_examen']);
+            
         ?>
             <div class="modal-header">
                 <h5 class="modal-title" id="addexamenModalLabel">Update examen</h5>
@@ -78,6 +81,8 @@ if (
                                     <option value="difficile" <?php if ($examen['difficulte'] === 'difficile') echo 'selected'; ?>>Difficile</option>
                             </select>
                         </div>
+                        
+
                     </div>
                     </div>
                     <div>
