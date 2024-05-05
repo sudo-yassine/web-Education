@@ -72,22 +72,22 @@
   background-size: cover;
   background-position: center;
   border-radius: 10px;
-  text-align: center; /* Ajout de cette ligne pour centrer le contenu */
-  display: block; /* Change display property to block to make them display vertically */
+  text-align: center;
+  color: black;
 }
 
 .card-title {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #fff; /* Changer la couleur du titre en blanc */
+  color: #fff;
 }
 
 .card-text {
   font-size: 16px;
   margin-bottom: 10px;
-  color: #fff; /* Changer la couleur du texte en blanc */
-  font-family: 'Open Sans', sans-serif; /* Change the font family to Open Sans */
+  color: black;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .card-text:last-child {
@@ -109,9 +109,15 @@
   background-color: #0056b3;
 }
 
+.card-container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
     </style>
 
-    <title>home page</title>
+    <title>chat assistance </title>
   </head>
   <body>
     <!-- Sticky header -->
@@ -134,8 +140,9 @@
     
     <!-- courses header -->
     <center>
-      <h1 class="line">Research For Coures</h1>
+      <h1 class="line">Research For Exams </h1>
     </center>
+    <div class="card-container">
     <?php
 include_once '../controller/examenC.php';
 
@@ -151,6 +158,7 @@ if (!empty($exams)) {
     foreach ($exams as $exam) {
         ?>
         <!-- Start of card -->
+
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title"><?php echo $exam['titre']; ?></h5>
@@ -159,8 +167,9 @@ if (!empty($exams)) {
                 <p class="card-text">Difficulty: <?php echo $exam['difficulte']; ?></p>
                 
                 <!-- Add more details as needed -->
-                <a href="#" class="btn btn-primary">Take Exam</a>
+                
             </div>
+        </div>
         </div>
         <!-- End of card -->
         <?php
