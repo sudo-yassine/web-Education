@@ -15,6 +15,7 @@ if (isset($_GET['titre'])) {
                 <td><?= $examen['description']; ?></td>
                 <td><?= $examen['duree']; ?></td>
                 <td><?= $examen['difficulte']; ?></td>
+                <td><?= $examen['date_heure']; ?></td>
                 <td>
                     <a href="updateexamen.php?id_examen=<?= $examen['id_examen']; ?>" class="btn  btn-success"><i class="fa-solid fa-pen-to-square fa-xl"></i>Modifier</a>
                 </td>
@@ -25,7 +26,7 @@ if (isset($_GET['titre'])) {
             <?php
         }
     } else {
-        echo "<tr><td colspan='7'>Aucun résultat trouvé.</td></tr>";
+        echo "<tr><td colspan='8'>Aucun résultat trouvé.</td></tr>";
     }
 }
 ?>
