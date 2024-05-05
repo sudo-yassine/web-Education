@@ -71,11 +71,14 @@
             
           </div>
           <div class="register">
-            <form class="form">
+            <form class="form" action="registereleve.php" method="post"> <!-- Modifier l'attribut action pour pointer vers votre script PHP -->
               <label for="chk" aria-hidden="true">Register</label>
-              <input class="input"type="text"name="txt"placeholder="Username"required=""/>
-              <input class="input"type="email"name="email"placeholder="Email"required="" />
-              <input class="input"type="password"name="password"placeholder="Password"required=""/>
+              <input class="input" type="text" name="nom" placeholder="Nom" required/>
+              <input class="input" type="text" name="prenom" placeholder="Prénom" required/>
+              <input class="input" type="email" name="email" placeholder="Email" required />
+              <input class="input" type="text" name="tel" placeholder="Téléphone" required/>
+              <input class="input" type="password" name="password" placeholder="Password" required/>
+              <input class="input" type="text" name="niveau" placeholder="Niveau" required/>
               <button>Register</button>
             </form>
           </div>

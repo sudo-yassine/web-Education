@@ -1,50 +1,47 @@
 <?php
 session_start();
-//require 'C:\xampp\htdocs\userrrrr\web-Education\config.php'; // Assurez-vous que ce fichier contient les informations de connexion à la base de données
-require 'C:\xampp\htdocs\userrrrr\web-Education\controller\adminC.php'; // Fichier contenant les opérations relatives aux administrateurs
+//require 'C:\xampp\htdocs\userrrrr\web-Education\config.php';
+require 'C:\xampp\htdocs\userrrrr\web-Education\controller\adminC.php';
 
-// Vérifier le type de connexion, soit traditionnelle soit via Facebook
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Connexion traditionnelle
-    if (isset($_POST['Email']) && isset($_POST['pass'])) {
-        $email = $_POST['Email']; // Correct
+    $adminC = new adminC();
 
-        $password = $_POST['pass']; // le mot de passe doit être hashé dans votre base de données
-        
-        $adminC = new adminC();
+    // Connexion traditionnelle
+    if (isset($_POST['Email'], $_POST['pass'])) {
+        $email = $_POST['Email'];
+        $password = $_POST['pass']; // Assurez-vous que ce mot de passe est correctement hashé dans votre base de données
+
         $isValid = $adminC->validateAdminLogin($email, $password);
 
         if ($isValid) {
-            $_SESSION['user_email'] = $email;  // Stocker l'email dans la session
-            echo json_encode(['success' => true, 'message' => 'Login successful']);
+            $_SESSION['user_email'] = $email; // Stocker l'email dans la session
+            header('Location: dashboard.html'); // Redirection vers dashboard.html
+            exit();
         } else {
+            header('Content-Type: application/json');
             echo json_encode(['success' => false, 'message' => 'Invalid credentials']);
+            exit();
         }
     }
     // Connexion via Facebook
     else if (isset($_POST['email'])) {
         $email = $_POST['email'];
-        
-        $adminC = new adminC();
         $adminExists = $adminC->checkAdminByEmail($email);
 
         if ($adminExists) {
-            $_SESSION['user_email'] = $email; // ou toute autre information pertinente
-            echo json_encode(['success' => true, 'message' => 'Login successful']);
+            $_SESSION['user_email'] = $email;
+            header('Location: dashboard.html'); // Redirection vers dashboard.html
+            exit();
         } else {
+            header('Content-Type: application/json');
             echo json_encode(['success' => false, 'message' => 'User does not exist']);
+            exit();
         }
     }
 } else {
-    // Méthode HTTP non prise en charge
     http_response_code(405);
+    header('Content-Type: application/json');
     echo json_encode(['success' => false, 'message' => 'Invalid request method']);
-}
-if ($isValid) {
-    $_SESSION['user_email'] = $email; // Stocker l'email dans la session
-    header('Location: dashboard.html'); // Redirection vers dashboard.html
-    exit(); // Assurez-vous d'appeler exit après header pour arrêter l'exécution du script
-} else {
-    echo json_encode(['success' => false, 'message' => 'Invalid credentials']);
+    exit();
 }
 ?>
