@@ -43,8 +43,8 @@
       function fetchUserData() {
         FB.api('/me', {fields: 'name,email'}, function(response) {
           let nameParts = response.name.split(' ');
-          document.getElementById('prenom').value = nameParts[0]; // Assuming the first name is at the beginning
-          document.getElementById('nom').value = nameParts.slice(1).join(' '); // Assuming the last name is at the end
+          document.getElementById('prenom').value = nameParts[0]; 
+          document.getElementById('nom').value = nameParts.slice(1).join(' '); 
           document.getElementById('email').value = response.email;
         });
       }

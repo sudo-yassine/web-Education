@@ -1,23 +1,16 @@
 <?php
 session_start();
 
-// Correction: supprimez le $ inutile dans la clé
 $accessToken = $_POST['accessToken']; 
 
-// Supposons que vous avez une fonction qui fait cela et renvoie les données utilisateur ou false si non valide
 $user = verifyFacebookAccessToken($accessToken);
 
 if ($user) {
-    $_SESSION['user_id'] = $user['id'];  // Ou une autre forme de gestion de session
+    $_SESSION['user_id'] = $user['id']; 
     echo json_encode(['success' => true]);
 } else {
     echo json_encode(['success' => false, 'message' => 'Invalid access token']);
 }
-
-/**
- * Implémente la vérification du token d'accès Facebook.
- * Appelle l'API Facebook pour valider le token et récupérer les données utilisateur.
- */
 function verifyFacebookAccessToken($token) {
     if (!$token) {
         return false;

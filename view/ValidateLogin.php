@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Connexion traditionnelle
     if (isset($_POST['Email'], $_POST['pass'])) {
         $email = $_POST['Email'];
-        $password = $_POST['pass']; // Assurez-vous que ce mot de passe est correctement hashé dans votre base de données
+        $password = $_POST['pass'];
 
         $isValid = $adminC->validateAdminLogin($email, $password);
 
@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Location: dashboard.html'); // Redirection vers dashboard.html
             exit();
         } else {
-            header('Content-Type: application/json');
             echo json_encode(['success' => false, 'message' => 'Invalid credentials']);
             exit();
         }
@@ -33,14 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Location: dashboard.html'); // Redirection vers dashboard.html
             exit();
         } else {
-            header('Content-Type: application/json');
             echo json_encode(['success' => false, 'message' => 'User does not exist']);
             exit();
         }
     }
 } else {
-    http_response_code(405);
-    header('Content-Type: application/json');
     echo json_encode(['success' => false, 'message' => 'Invalid request method']);
     exit();
 }
