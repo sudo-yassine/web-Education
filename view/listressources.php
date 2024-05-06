@@ -102,7 +102,7 @@ $list = $ressourcesC->listressources();
             <thead class="table-dark">
                 <tr>
                     <th>ID ressources</th>
-                    <th>ID ressources</th>
+                    <th>description</th>
                     <th>livre</th>
                     <th>playlist_ytb</th>
                     <th>id_examen</th>
