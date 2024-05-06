@@ -91,4 +91,3 @@ $data = json_encode(array_values($pourcentages));
     </script>
 </body>
 </html>
-

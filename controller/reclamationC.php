@@ -146,6 +146,7 @@ class reclamationC
             echo "Erreur lors du calcul des pourcentages de réclamations par type: " . $e->getMessage();
             }
     }
+    
     /*kaaba okhra lel ratings
     public function calculerPourcentageReclamationsParType()
     {
