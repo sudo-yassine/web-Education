@@ -4,6 +4,8 @@ include '../model/cours.php';
 
 class coursC
 {
+  private $db; // PDO database connection
+
 
 public function functionstat()
     {
@@ -227,4 +229,3 @@ public function verifyMatiereExists($matiereId)
         }
     }
 }
-
