@@ -63,12 +63,12 @@
         </a>
       </div>
     </header>
-      <img class="welcome-img" src="resources/img/Design.png" alt="" height="1000" width="1530" />
+      <img class="welcome-img" src="resources/img/Design1.png" alt="" height="1000" width="1530" />
 
      <div class="container">
   <div id="technology" class="section">
     <div class="content">
-      <a href="courseleve.php">
+      <a href="coursenseignant.php">
 
          <h1>COURSES</h1>
       </a>
