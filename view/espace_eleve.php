@@ -98,7 +98,7 @@
   </div>
   <div id="advertising" class="section">
     <div class="content">
-      <a href="">
+      <a href="chatassistance.php">
       <h1>EXAMS</h1>
       </a>
     </div>
