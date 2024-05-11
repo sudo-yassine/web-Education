@@ -57,7 +57,7 @@ $list = $coursC->listcours();
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" id="insertForm" action="addcours.php" enctype="multipart/form-data">
+                        <form method="POST" id="insertForm" action="addcoursfront.php" enctype="multipart/form-data">
                             <div class="row mb-3">
                                 <div class="col">
                 <label class="form-label">Matière</label>
