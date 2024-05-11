@@ -207,6 +207,7 @@ $list = $reclamationC->ListReclamtion();
         <thead class="table-dark">
                 <tr>
                     <th>nom</th>
+                    
                     <th>prenom</th>               
                     <th>email</th>
                     <th>telephone</th>
