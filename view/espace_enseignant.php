@@ -44,6 +44,23 @@
     <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
 
     <title>home page</title>
+    <style>
+        .image-container {
+            position: relative;
+            text-align: center;
+        }
+
+        .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Anton', sans-serif;
+            font-size: 200px; /* Adjust the font size as needed */
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    </style>
   </head>
   <body>
     <!-- Sticky header -->
@@ -63,7 +80,11 @@
         </a>
       </div>
     </header>
-      <img class="welcome-img" src="resources/img/Design1.png" alt="" height="1000" width="1530" />
+      <div class="image-container" style="position: relative;">
+        <div class="overlay-text">espace enseingant</div>
+        <img class="welcome-img" src="resources/img/Design1.png" alt="" height="1000" width="1530" />
+    </div>
+      <!-- <img class="welcome-img" src="resources/img/Design1.png" alt="" height="1000" width="1530" /> -->
 
      <div class="container">
   <div id="technology" class="section">
