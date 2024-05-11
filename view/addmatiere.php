@@ -21,7 +21,7 @@ if (
             $_POST['resources']
         );
         $matiereC->addMatiere($matiere); // Call the method to add matiere from your controller
-        //header('Location: listmatiere.php'); // Redirect to the matiere list page
+        header('Location: listmatiere.php'); // Redirect to the matiere list page
     }
 }
 ?>

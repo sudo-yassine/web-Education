@@ -21,7 +21,7 @@ if (
             $_POST["resources"]
         );
         $matiereC->updatematiere($matiere, $_GET["id_matiere"]);
-        header('Location:listmatiere.php');
+       // header('Location:listmatiere.php');
     } else {
         $error = "Missing information";
     }

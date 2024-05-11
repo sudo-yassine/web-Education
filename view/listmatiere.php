@@ -62,6 +62,7 @@ $list = $matiereC->listMatieres();
                     <th>Description</th>
                     <th>Ressources</th>
                     <th>update</th>
+                    <th>delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -73,6 +74,9 @@ $list = $matiereC->listMatieres();
         <td><?= isset($matiere['resources']) ? $matiere['resources'] : 'N/A'; ?></td>
         <td>
             <a href="updatematiere.php?id_matiere=<?= $matiere['id_matiere']; ?>" class="btn btn-primary">Update</a>
+        </td>
+        <td>
+            <a href="deletematiere.php?id_matiere=<?= $matiere['id_matiere']; ?>" class="btn btn-danger">Delete</a>
         </td>
     </tr>
 <?php endforeach; ?>
