@@ -169,16 +169,16 @@ public function verifyMatiereExists($matiereId)
     function addcours($cours)
     {
         $sql = "INSERT INTO cours
-                VALUES (NULL, :matiere, :n, :h, :nv, :c)";
+                VALUES (NULL, :n, :h, :nv, :c, :matiere)";
         $db = config::getConnexion();
         try {
             $query = $db->prepare($sql);
             $query->execute([
-                'matiere' => $cours->getmatiere(), 
                 'n' => $cours->getnom_cours(),
                 'h' => $cours->getheures(),
                 'nv' => $cours->getniveau(),
-                'c' => $cours->getcontenu()
+                'c' => $cours->getcontenu(),
+                'matiere' => $cours->getmatiere()
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
