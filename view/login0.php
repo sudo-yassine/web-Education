@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($login) {
         $_SESSION['user_id'] = $login['Id_utilisateur'];
         echo "Authentification réussie, redirection en cours...";
-        header("Location: index.html");
+        header("Location: espace_eleve.php");
         exit;
     } else {
         echo "Identifiants incorrects";
