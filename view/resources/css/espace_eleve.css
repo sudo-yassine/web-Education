@@ -196,11 +196,10 @@ button:active {
 
 /* welcome image */
 .welcome-img {
-  /* display: block; */
-  margin-left: auto;
-  margin-right: auto;
-  /* max-height: 50pc; */
-  /* width: 100%; */
+  /* image-resolution: 10%; */
+  /* height: 199px; */
+  /* width: 100px; */
+  /* margin-left: 200px; */
 }
 
 /* stat card */
@@ -1381,4 +1380,61 @@ a {
   100% {
     transform: scale(1);
   }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container {
+  display: flex;
+  height: 50vh;
+}
+
+.section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  transition: flex 0.4s ease;
+  position: relative;
+}
+
+.section .overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: background-color 0.8s ease;
+}
+
+.section .content {
+  z-index: 2;
+}
+
+.section:hover {
+  flex: 2;
+}
+
+.section:hover .overlay {
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+#technology {
+  background-image: url(https://www.wise.live/blog/wp-content/uploads/2022/12/pexels-thisisengineering-3862153.jpg);
+}
+
+#advertising {
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwoeHnWvdBaYtP3C8q0GpiT4LjYMR9-XeBzqLrm6FcfQ&s);
 }
