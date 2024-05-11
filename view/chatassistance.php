@@ -7,7 +7,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="resources/css/main.css" />
+    <link rel="stylesheet" href="resources/css/chatassistance.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -31,6 +31,7 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link
@@ -59,16 +60,46 @@
 
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
     <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./resources/css/espace_eleve.css" />
+  
 
     <style>
+      .title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #333; /* You can change the color as needed */
+            margin-bottom: 20px; /* Adjust margin as needed */
+        }
+        .resources-table {
+    width: 100%;  /* Set a width for the table */
+    border-collapse: collapse;  /* Remove space between cells */
+  }
+  
+  /* Style table headers */
+  .resources-table thead th {
+    padding: 10px;  /* Add padding to headers */
+    text-align: left;  /* Align text to the left */
+    border: 1px solid #ddd;  /* Add a border */
+  }
+  
+  /* Style table body cells */
+  .resources-table tbody td {
+    padding: 10px;  /* Add padding to cells */
+    border: 1px solid #ddd;  /* Add a border */
+  }
+  
+  /* Style the image in the "Livre" column */
+  .resources-table img {
+    max-width: 100%;  /* Resize image to fit cell width */
+    height: auto;  /* Maintain aspect ratio */
+  }
 .card {
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   padding: 20px;
-  background-image: url('resources/img/im.png');
+  background: linear-gradient(to right, rgb(232, 203, 192), rgb(99, 111, 164));
   background-size: cover;
   background-position: center;
   border-radius: 10px;
@@ -99,7 +130,7 @@
   color: #fff;
   padding: 8px 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 50px;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -113,6 +144,23 @@
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
+  flex-direction: row; /* Change from column to row */
+}
+
+button {
+  padding: 17px 40px;
+  border-radius: 50px;
+  border-color: hsl(261deg 80% 48%);
+  margin-left: 7pc;
+  cursor: pointer;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: bold;
+
+  transition: all 0.5s ease;
 }
 
     </style>
@@ -135,14 +183,13 @@
           <button>Log Out</button>
         </a>
       </div>
+      
     </header>
 
     
     <!-- courses header -->
-    <center>
-      <h1 class="line">Research For Exams </h1>
-    </center>
-    <div class="card-container">
+ 
+    
     <?php
 include_once '../controller/examenC.php';
 
@@ -154,32 +201,211 @@ $exams = $examenC->listexamen();
 
 // Check if there are exams available
 if (!empty($exams)) {
-    // Loop through each exam to create cards dynamically
-    foreach ($exams as $exam) {
-        ?>
-        <!-- Start of card -->
+  $i = 0; // Counter for number of cards in a row
+?>
+  <br>
+  <br>
+  <div>
+    <center>
+    <table>
 
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title"><?php echo $exam['titre']; ?></h5>
-                <p class="card-text"><?php echo $exam['description']; ?></p>
-                <p class="card-text">Duration: <?php echo $exam['duree']; ?></p>
-                <p class="card-text">Difficulty: <?php echo $exam['difficulte']; ?></p>
-                
-                <!-- Add more details as needed -->
-                
+<?php
+// Loop through each exam to create cards dynamically
+foreach ($exams as $exam) {
+    if ($i % 3 == 0) { // Check if it's the start of a new row (every 3rd iteration)
+        echo "<tr>"; // Open new row
+    }
+
+?>
+    <td>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" style="color: black;"><?php echo $exam['titre']; ?></h5>
+
+                    <p class="card-text" style="display: none;"><?php echo $exam['description']; ?></p>
+                    <p class="card-text" style="display: none;">Duration: <?php echo $exam['duree']; ?></p>
+                    <p class="card-text" style="display: none;">Difficulty: <?php echo $exam['difficulte']; ?></p>
+
+                    <button class="a"> More Info</button>
+                    <button class="b" style="display: none;"> Back</button>
+                </div>
             </div>
         </div>
-        </div>
-        <!-- End of card -->
-        <?php
+    </td>
+<?php
+    $i++;
+
+    if ($i % 3 == 0) { // Close the row if it's filled with 3 cards
+        echo "</tr>";
     }
-} else {
-    // Display a message if no exams are available
-    echo "No exams available.";
+}
+
+// Close any remaining open row
+if ($i % 3 != 0) {
+    echo "</tr>"; // Close the last row
+}
+
+?>
+</table>
+    </center>
+      
+  </div>
+<?php } else {
+  // Display a message if no exams are available
+  echo "No exams available.";
 }
 ?>
+<script>
+    // JavaScript to toggle visibility of additional information
+document.querySelectorAll('.a').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const cardBody = this.parentElement;
+        const cardTexts = cardBody.querySelectorAll('.card-text');
+        const moreInfoBtn = cardBody.querySelector('.a');
+        const backBtn = cardBody.querySelector('.b');
+        
+        // Hide the "More Info" button and show the "Back" button
+        moreInfoBtn.style.display = 'none';
+        backBtn.style.display = 'inline-block';
+        
+        // Show additional information
+        cardTexts.forEach(text => {
+            text.style.display = 'block';
+        });
+    });
+});
+
+// JavaScript to return to previous state
+document.querySelectorAll('.b').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const cardBody = this.parentElement;
+        const cardTexts = cardBody.querySelectorAll('.card-text');
+        const moreInfoBtn = cardBody.querySelector('.a');
+        const backBtn = cardBody.querySelector('.b');
+        
+        // Hide the "Back" button and show the "More Info" button
+        backBtn.style.display = 'none';
+        moreInfoBtn.style.display = 'inline-block';
+        
+        // Hide additional information
+        cardTexts.forEach(text => {
+            text.style.display = 'none';
+        });
+    });
+});
+</script>
+<?php
+
+
+$ExamenC = new ExamenC();
+
+// Traitement du formulaire
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST["id_examen"]) && isset($_POST["search"])) {
+        $id_examen = $_POST["id_examen"];
+        $list = $ExamenC->afficherressources($id_examen); 
+    }
+}
+$examen = $ExamenC->afficherexamens();
+?>
+
+<br><br>
+<article class="widget1">
+          <br>
+        <table>
+          <tr>
+            <td>
+              <div class="">
+                <div class="card-content">
+                  <h1></h1>
+                  
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="">
+                <div class="card-content">
+                <h1 class="title mb-4">Recherche des ressources </h1>
+                  
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="">
+                <div class="card-content">
+                  <h1></h1>
+                
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </article>
+      <br>
+      <br>
+
+<div class="container">
+  <center>
     
+  </center>
+  
+  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="mb-3">
+    <div class="row g-3">
+      <div class="col-auto">
+        <label for="id_examen" class="form-label"></label>
+      </div>
+      <div class="col-auto">
+        <select name="id_examen" id="id_examen" class="form-select">
+          <?php foreach ($examen as $exam): ?>
+            <option value="<?= $exam['id_examen']; ?>"><?= $exam['titre']; ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+      <div class="col-auto">
+        <button type="submit" name="search" id="search" class="btn btn-primary me-2">Rechercher</button>
+        <button type="button" id="cancelBtn" class="btn btn-secondary">Annuler</button>
+      </div>
+    </div>
+  </form>
+
+  <?php if (isset($list)): ?>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped resources-table">
+        <thead>
+          <tr style="background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);">
+            
+          <th scope="col">Description des ressources</th>
+            <th scope="col">Livre</th>
+            <th scope="col">Playlist YouTube</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($list as $ressources): ?>
+            <tr>
+              <td><?= $ressources['description_ressources']; ?></td>
+              <td><img src="uploads/<?= $ressources['livre']; ?>" alt="Image" width=300 ></td>
+              <td><?= $ressources['playlist_ytb']; ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    </div>
+  <?php endif; ?>
+</div>
+
+    <script>
+       // Fonction pour effacer le tableau lorsque le bouton "Annuler" est cliqué
+       document.getElementById('cancelBtn').addEventListener('click', function() {
+           var table = document.querySelector('.table'); // Sélectionne le tableau
+           if (table) { // Vérifie si le tableau existe
+               table.innerHTML = ''; // Efface le contenu du tableau
+           }
+       });
+   </script>
+
+   <!-- Inclusion de Bootstrap JavaScript (optionnel si vous n'utilisez pas de composants JavaScript de Bootstrap) -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
       
   </body>
   <div class="pg-footer">
@@ -201,7 +427,7 @@ if (!empty($exams)) {
             <a class="footer-logo-link" href="#">
               <span class="hidden-link-text">LOGO</span>
               
-              <img src="/view/resources/img/wisdom_wave_blanc.png" alt="logo" height="125" width="175">
+              <img src="./resources/img/wisdomwave.png" alt="logo" height="125" width="175">
             </a>
           </div>
           <div class="footer-menu">
@@ -389,39 +615,5 @@ s0.parentNode.insertBefore(s1,s0);
   
 </html>
 
-<!-- <main class="main"> -->
-<!-- <header>
 
-         
-            <div class="container container_image" aria-hidden="true">
-              <div class="title_wrapper">
-                <h1>Welcome </h1>
-                <h2>Student</h2>
-              </div>
-            </div>
-          </header>
-          
-          <article class="widget1">
-            <table align="center">
-              <tr>
-                <td>
-                  <div class="card">
-                    <div class="card-content">
-                      <h1>Cources</h1>
-                    </div>
-                  </div>
-                </td>
-                
-              </tr>
-            </table>
-          </article>
-          
-          <section>
-            <h2>Lorem ipsum dolor sit amet.</h2>
-            <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-            </p>
-          </section>
-    </main> -->
 

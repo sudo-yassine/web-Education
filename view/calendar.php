@@ -166,17 +166,7 @@
 
 <!-- Ajoutez ce script JavaScript à la fin de votre page juste avant la balise de fermeture du corps -->
 <script>
-    // Fonction pour passer à l'année précédente
-    function previousYear() {
-        var currentYear = document.getElementById('calendarContainer').getAttribute('data-year');
-        generateAnnualCalendar(parseInt(currentYear) - 1);
-    }
-
-    // Fonction pour passer à l'année suivante
-    function nextYear() {
-        var currentYear = document.getElementById('calendarContainer').getAttribute('data-year');
-        generateAnnualCalendar(parseInt(currentYear) + 1);
-    }
+    
 
     // Fonction pour générer le calendrier annuel
     function generateAnnualCalendar(year) {
