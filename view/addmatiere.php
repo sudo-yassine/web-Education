@@ -1,44 +1,27 @@
 <?php
-include '../Controller/coursC.php';
-$coursC = new coursC();
+include '../Controller/matiereC.php'; // Include the controller for matiere
+$matiereC = new matiereC(); // Create an instance of the matiere controller
 $error = "";
-$cours = null;
+$matiere = null;
 
 if (
-    isset($_POST["nom_cours"]) &&
-    isset($_POST["heures"]) &&
-    isset($_POST["niveau"]) &&
-    isset($_POST["contenu"]) &&
-    isset($_POST["matiere"]) 
+    isset($_POST["nom_matiere"]) &&
+    isset($_POST["description"]) &&
+    isset($_POST["resources"])
 ) {
     if (
-        !empty($_POST['nom_cours']) &&
-        !empty($_POST["heures"]) &&
-        !empty($_POST["niveau"]) &&
-        !empty($_POST["contenu"]) &&
-        !empty($_POST["matiere"]) // Check if matiere is not empty
+        !empty($_POST['nom_matiere']) &&
+        !empty($_POST["description"]) &&
+        !empty($_POST["resources"])
     ) {
-        // Verify if the matiere exists in the matiere table
-        $matiereId = $_POST['matiere'];
-        $matiereExists = $coursC->verifyMatiereExists($matiereId);
-        
-        if ($matiereExists) {
-            // Create a new cours object with matiere attribute
-            $cours = new cours(
-                null,
-                $_POST['nom_cours'],
-                $_POST['heures'],
-                $_POST['niveau'],
-                $_POST['contenu'],
-                $_POST['matiere'] // Add matiere to the constructor
-            );
-            $coursC->addcours($cours);
-            header('Location:listcours.php');
-        } else {
-            $error = "Matiere does not exist";
-        }
-    } else {
-        $error = "Missing information";
+        $matiere = new matiere(
+            null,
+            $_POST['nom_matiere'],
+            $_POST['description'],
+            $_POST['resources']
+        );
+        $matiereC->addMatiere($matiere); // Call the method to add matiere from your controller
+        //header('Location: listmatiere.php'); // Redirect to the matiere list page
     }
 }
 ?>

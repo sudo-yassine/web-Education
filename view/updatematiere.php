@@ -1,40 +1,34 @@
 <?php
 include '../Controller/matiereC.php';
-
-$matiereC = new MatiereC();
+$matiereC = new matiereC();
 $error = "";
 $matiere = null;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (
+    isset($_POST["nom_matiere"]) &&
+    isset($_POST["description"]) &&
+    isset($_POST["resources"])
+) {
     if (
-        isset($_POST["nom_matiere"]) &&
-        isset($_POST["description"]) &&
-        isset($_POST["ressources"]) &&
-        isset($_POST["id_matiere"]) // Ensure id_matiere is set
+        !empty($_POST["nom_matiere"]) &&
+        !empty($_POST["description"]) &&
+        !empty($_POST["resources"])
     ) {
-        if (
-            !empty($_POST["nom_matiere"]) &&
-            !empty($_POST["description"]) &&
-            !empty($_POST["ressources"]) &&
-            !empty($_POST["id_matiere"]) // Ensure id_matiere is not empty
-        ) {
-            $matiere = new Matiere(
-                $_POST["id_matiere"],
-                $_POST["nom_matiere"],
-                $_POST["description"],
-                $_POST["ressources"] // Include ressources in the constructor
-            );
-            $matiereC->updateMatiere($matiere, $_GET['id_matiere']); // Pass the Matiere object to the updateMatiere method
-           // header("Location: listmatiere.php");
-            exit();
-        } else {
-            $error = "Missing information";
-        }
+        $matiere = new matiere(
+            null,
+            $_POST["nom_matiere"],
+            $_POST["description"],
+            $_POST["resources"]
+        );
+        $matiereC->updatematiere($matiere, $_GET["id_matiere"]);
+        header('Location:listmatiere.php');
+    } else {
+        $error = "Missing information";
     }
 }
 
-if (isset($_GET['id_matiere'])) {
-    $matiere = $matiereC->showMatiere($_GET['id_matiere']);
+if (isset($_GET["id_matiere"])) {
+    $matiere = $matiereC->showmatiere($_GET["id_matiere"]);
 }
 ?>
 <!DOCTYPE html>
