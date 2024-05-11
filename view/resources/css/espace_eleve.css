@@ -196,11 +196,11 @@ button:active {
 
 /* welcome image */
 .welcome-img {
-  display: block;
+  /* display: block; */
   margin-left: auto;
   margin-right: auto;
-  max-height: 50pc;
-  width: 100%;
+  /* max-height: 50pc; */
+  /* width: 100%; */
 }
 
 /* stat card */
