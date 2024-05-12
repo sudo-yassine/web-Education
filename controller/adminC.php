@@ -77,7 +77,7 @@ class adminC
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
-                'UPDATE administrateur SET 
+                'UPDATE adminisatrateur SET 
                     niveau = :niveau,
                     nom = :nom, 
                     prenom = :prenom, 
@@ -87,30 +87,34 @@ class adminC
             );
             $query->execute([
                 'id' => $id,
-                'niveau' => $admin->getniveau(),
-                'nom' => $admin->getnom(),
-                'prenom' => $admin->getprenom(),
-                'pass' => $admin->getpassword(),
-                'email' =>$admin->getEmail()
+                'niveau' => $admin->getNiveau(),
+                'nom' => $admin->getNom(),
+                'prenom' => $admin->getPrenom(),
+                'pass' => $admin->getPassword(),
+                'email' => $admin->getEmail()
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {
             echo 'Error: ' . $e->getMessage();
         }
     }
+    
     function showAdmin($Id_admin)
-    {
-        $sql = "SELECT * from adminisatrateur where Id_admin = $Id_admin";
-        $db = config::getConnexion();
-        try {
-            $query = $db->prepare($sql);
-            $query->execute();
-            $admin= $query->fetch();
-            return $admin;
-        } catch (Exception $e) {
-            die('Error: ' . $e->getMessage());
-        }
+{
+    $sql = "SELECT niveau, nom, prenom, email FROM adminisatrateur WHERE Id_admin = :Id_admin";
+    $db = config::getConnexion();
+    try {
+        $query = $db->prepare($sql);
+        $query->bindParam(':Id_admin', $Id_admin);
+        $query->execute();
+        $admin = $query->fetch(PDO::FETCH_ASSOC);
+        return $admin;
+    } catch (Exception $e) {
+        die('Error: ' . $e->getMessage());
     }
+}
+
+
     
     public function validateAdminLogin($email, $password) {
         $db = config::getConnexion();
