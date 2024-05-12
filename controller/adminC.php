@@ -33,8 +33,8 @@ class adminC
 
     public function addAdmin($admin)
 {
-    $sql = "INSERT INTO adminisatrateur (niveau, nom, prenom, pass,Email)  
-            VALUES (:niveau, :nom, :prenom, :pass,:Email)";
+    $sql = "INSERT INTO adminisatrateur (niveau, nom, prenom, pass,email)  
+            VALUES (:niveau, :nom, :prenom, :pass,:email)";
     $db = config::getConnexion();
     try {
         $query = $db->prepare($sql);
@@ -43,7 +43,7 @@ class adminC
             'nom' => $admin->getnom(),
             'prenom' => $admin->getprenom(),
             'pass' => $admin->getpassword(),
-            'Email' =>$admin->getEmail()
+            'email' =>$admin->getEmail()
         ]);
 
         // Retourner true si l'ajout a réussi
@@ -77,12 +77,12 @@ class adminC
         try {
             $db = config::getConnexion();
             $query = $db->prepare(
-                'UPDATE adminisatrateur SET 
+                'UPDATE administrateur SET 
                     niveau = :niveau,
                     nom = :nom, 
                     prenom = :prenom, 
                     pass = :pass,
-                    Email = :Email
+                    email = :email
                 WHERE Id_admin = :id'
             );
             $query->execute([
@@ -91,7 +91,7 @@ class adminC
                 'nom' => $admin->getnom(),
                 'prenom' => $admin->getprenom(),
                 'pass' => $admin->getpassword(),
-                'Email' =>$admin->getEmail()
+                'email' =>$admin->getEmail()
             ]);
             echo $query->rowCount() . " records UPDATED successfully <br>";
         } catch (PDOException $e) {
@@ -114,23 +114,19 @@ class adminC
     
     public function validateAdminLogin($email, $password) {
         $db = config::getConnexion();
-        $stmt = $db->prepare("SELECT pass FROM adminisatrateur WHERE Email = :Email");
-        $stmt->execute(['Email' => $email]); // Assurez-vous que les clés utilisées dans execute() sont correctement entre guillemets
-
+        $stmt = $db->prepare("SELECT pass FROM adminisatrateur WHERE email = :email");
+        $stmt->execute(['email' => $email]); // Assurez-vous que les clés utilisées dans execute() sont correctement entre guillemets
+    
         $hashed_password = $stmt->fetchColumn();
     
+        // Vérifiez si le mot de passe haché correspond au mot de passe fourni
         if ($hashed_password && password_verify($password, $hashed_password)) {
             return true;
         } else {
             return false;
         }
-        try {
-            $stmt->execute([$email]);
-        } catch (PDOException $e) {
-            die("Erreur lors de la connexion à la base de données: " . $e->getMessage());
-        }
-        
     }
+    
     
     
     
@@ -138,11 +134,24 @@ class adminC
 
     public function checkAdminByEmail($email) {
         $db = config::getConnexion();
-        $stmt = $db->prepare("SELECT COUNT(*) FROM adminisatrateur WHERE Email = ?");
-        $stmt->execute([$email]); // Ensure that this matches the corrected table name
+        $stmt = $db->prepare("SELECT COUNT(*) FROM adminisatrateur WHERE email = ?");
+        $stmt->execute([$email]); // Assurez-vous que cela correspond au nom de la table correctement orthographié
     
-        return $stmt->fetchColumn() > 0;
+        // Vérifiez s'il y a des erreurs lors de l'exécution de la requête
+        if ($stmt->errorCode() != "00000") {
+            $errors = $stmt->errorInfo();
+            echo "Erreur SQL : " . $errors[2];
+            return false;
+        }
+    
+        // Vérifiez le nombre de lignes retournées
+        $rowCount = $stmt->fetchColumn();
+        echo "Nombre de lignes trouvées : " . $rowCount;
+    
+        // Retourne true si au moins une correspondance est trouvée, sinon retourne false
+        return $rowCount > 0;
     }
+    
     
     
     

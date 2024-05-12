@@ -15,7 +15,7 @@ if(isset($_POST['niveau']) && (isset($_POST['nom']) && isset($_POST['prenom']) &
     if(isset($_POST['facebookData'])) {
         // Traiter les données venant de Facebook
         $data = json_decode($_POST['facebookData']);
-        $admin = new admin(null, 'niveau', $data->nom, $data->prenom, 'mot_de_passe_par_defaut', $data->Email);
+        $admin = new admin(null, $data->niveau, $data->nom, $data->prenom, 'mot_de_passe_par_defaut', $data->Email);
     } else {
         // Créer une nouvelle instance de la classe admin avec les données POST classiques
         $admin = new admin(null, $_POST['niveau'], $_POST['nom'], $_POST['prenom'], $_POST['pass'], $_POST['email']);
@@ -31,9 +31,9 @@ if(isset($_POST['niveau']) && (isset($_POST['nom']) && isset($_POST['prenom']) &
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'nadahsayri99@gmail.com';
-            $mail->Password = 'ekbp ynqu ehor gkfn';
+            $mail->Password = 'bfjv oqwe lfnu ewbc';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-            $mail->Port = 465;
+            $mail->Port = 25;
             $mail->setFrom('nadahsayri99@gmail.com', 'Wisdom Wave');
             $mail->addAddress($_POST['email']);  // Utiliser l'adresse e-mail de l'admin ajouté
 
@@ -46,7 +46,7 @@ if(isset($_POST['niveau']) && (isset($_POST['nom']) && isset($_POST['prenom']) &
             echo "Erreur d'envoi de l'e-mail : {$mail->ErrorInfo}";
         }
         
-        header('Location: listAdmins.php');
+        header('Location: dashboard.html');
         exit();
     } else {
         echo "Une erreur s'est produite lors de l'ajout de l'administrateur. Veuillez réessayer.";

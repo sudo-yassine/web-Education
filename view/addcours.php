@@ -28,7 +28,7 @@ if (
                 $_POST['matiere'] 
             );
             $coursC->addcours($cours);
-            header('Location:listcours.php');
+            header('Location:coursdash.php');
     }
 }
 ?>

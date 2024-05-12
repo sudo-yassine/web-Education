@@ -143,8 +143,8 @@ $list = $coursC->listcours();
                     <p class="card-text">Heures: <?= $cours['heures']; ?></p>
                     <p class="card-text">Niveau: <?= $cours['niveau']; ?></p>
                     <p class="card-text">Contenu: <?= $cours['contenu']; ?></p>
-                    <a href="updatecours.php?id_cours=<?= $cours['id_cours']; ?>" class="btn btn-primary"><i class="fa-solid fa-pen-to-square fa-lg"></i> Update</a>
-                    <a href="deletecours.php?id_cours=<?= $cours['id_cours']; ?>" class="btn btn-danger"><i class="fa-solid fa-trash fa-lg"></i> Delete</a>
+                    <a href="updatecours.php" class="btn btn-primary"><i class="fa-solid fa-pen-to-square fa-lg"></i> Update</a>
+                    <a href="deletecoursfront.php?id_cours=<?= $cours['id_cours']; ?>" class="btn btn-danger"><i class="fa-solid fa-trash fa-lg"></i> Delete</a>
                 </div>
             </div>
         </div>

@@ -1,7 +1,9 @@
 
 
 <?php
-include '../../../Controller/coursC.php';
+include_once('../Controller/coursC.php');
+
+// include_once('../Controller/coursC.php');
 $coursC = new coursC();
 $list = $coursC->listcours();
 ?>
@@ -16,18 +18,18 @@ $list = $coursC->listcours();
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Soft UI Dashboard by Creative Tim
+    Wisdom Wave
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Nucleo Icons -->
-  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="./assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="./assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
+  <link id="pagestyle" href="./assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -35,8 +37,8 @@ $list = $coursC->listcours();
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="https://demos.creative-tim.com/soft-ui-dashboard/pages/dashboard.html" target="_blank">
-        <img src="../assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold">Soft UI Dashboard</span>
+        <img src="resources/img/wisdomwave.png" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold">Wisdom Wave</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -346,14 +348,151 @@ $list = $coursC->listcours();
       </div>
     </nav>
     <!-- End Navbar -->
+    
+
+
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-3 mt-5" >
+            <div class="text-body-secondary">
+                <span class="h5">tous les cours</span>
+                <br>
+               crud cours 
+            </div>
+            <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#addcoursModal">
+                ajouter un cours
+            </button>
+        </div>
+        <div class="modal fade"  id="addcoursModal" tabindex="-1" aria-labelledby="addcoursModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 id="addcoursModalLabel">ajouter un cours</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" id="insertForm" action="addcoursfront.php" enctype="multipart/form-data">
+                            <div class="row mb-3">
+                                <div class="col">
+                <label class="form-label">Matière</label>
+                <select class="form-select"  name="matiere">
+                    <?php
+                    // Fetch matieres from the database
+                    $matieres = $coursC->listmatieres(); // Assuming you have a method to list matieres in your coursC class
+                    foreach ($matieres as $matiere) {
+                        echo "<option value='" . $matiere['id_matiere'] . "'>" . $matiere['nom_matiere'] . "</option>";
+                    }
+                    ?>
+                </select>
+            </div>
+                                <div class="col">
+                                    <label class="form-label">nom cours</label>
+                                    <input type="text"class="form-control"  name="nom_cours" placeholder="nom du cours" onblur="validateName(this)" value="<?php echo htmlspecialchars($cours['nom_cours'] ?? ''); ?>">  
+
+                                    <div id="erreur" class="text-danger"></div>
+                                </div>
+                                <div class="col">
+                                    <label class="form-label" >heures</label>
+                                    <input type="text" class="form-control" name="heures" placeholder="nombre heures"onblur="validateNiveau(this)"value="<?php echo htmlspecialchars($cours['heures'] ?? ''); ?>">
+                                    <div id="erreur" class="text-danger"></div>
+                                </div>
+                                <div>
+                                    <label >niveau</label>
+                                    <input type="text" class="form-control" name="niveau" placeholder="niveau" onblur="validateNiveau(this)"value="<?php echo htmlspecialchars($cours['niveau'] ?? ''); ?>">
+                                    <div id="erreur" class="text-danger"></div>
+                                </div>
+                                <div class="form-label">
+                                    <label >contenu</label>
+                                    <input type="text"class="form-control"  name="contenu" placeholder="contenu"onblur="validateNiveau(this)"value="<?php echo htmlspecialchars($cours['contenu'] ?? ''); ?>">
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit"  class="btn btn-primary me-1" id="insertBtn">Submit</button>
+                                <button type="button"  class="btn btn-primary me-1" data-bs-dismiss="modal">Cancel</button>
+                                <div id="erreur" class="text-danger"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+                        function validateName(input) {
+                            var name = input.value.trim();
+                            var errorDiv = input.nextElementSibling;
+                            var regex = /^[A-Za-z]+$/;
+
+                            if (!regex.test(name)) {
+                                errorDiv.textContent = "Veuillez entrer un nom ou un prénom valide (lettres uniquement)";
+                                
+                                return false;
+                            } else {
+                                errorDiv.textContent = "";
+                                return true;
+                            }
+                        }
+                        function validateNiveau(input) {
+                            var name = input.value.trim();
+                            var errorDiv = input.nextElementSibling;
+                            var regex=/^[a-zA-Z0-9]+$/
+;
+
+                            if (!regex.test(name)) {
+                                errorDiv.textContent = "Veuillez entrer un nom ou un prénom valide (lettres uniquement)";
+                                
+                                return false;
+                            } else {
+                                errorDiv.textContent = "";
+                                return true;
+                            }
+                        }
+                        
+                    </script>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+    <?php foreach ($list as $cours) { ?>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $cours['nom_cours']; ?></h5>
+                    <p class="card-text">Heures: <?= $cours['heures']; ?></p>
+                    <p class="card-text">Niveau: <?= $cours['niveau']; ?></p>
+                    <p class="card-text">Contenu: <?= $cours['contenu']; ?></p>
+                    <a href="updatecours.php" class="btn btn-primary"><i class="fa-solid fa-pen-to-square fa-lg"></i> Update</a>
+                    <a href="deletecoursfront.php?id_cours=<?= $cours['id_cours']; ?>" class="btn btn-danger"><i class="fa-solid fa-trash fa-lg"></i> Delete</a>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.datatables.net/v/bs5/dt-1.13.4/datatables.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-header pb-0">
-              <h6>Authors table</h6>
+              <h6>Courses table</h6>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
+              
+              
               <div class="table-responsive p-0">
               <table class="table align-middle" id="myTable" style="width:100%;">
     <thead class="table-dark">
@@ -378,7 +517,7 @@ $list = $coursC->listcours();
                 <td><?= $cours['niveau']; ?></td>
                 <td><?= $cours['contenu']; ?></td>
                 <td class="align-middle">
-                    <a href="updatecours.php?id_cours=<?php echo $cours['id_cours']; ?>" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Update">
+                    <a href="updatecoursfront.php?id_cours=<?php echo $cours['id_cours']; ?>" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Update">
                         Update
                     </a>
                 </td>
@@ -394,235 +533,14 @@ $list = $coursC->listcours();
     </tbody>
 </table>
 
+
+
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <div class="card mb-4">
-            <div class="card-header pb-0">
-              <h6>Projects table</h6>
-            </div>
-            <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center justify-content-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Project</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Budget</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">Completion</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div>
-                            <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm rounded-circle me-2" alt="spotify">
-                          </div>
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Spotify</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">$2,500</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">working</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <div class="d-flex align-items-center justify-content-center">
-                          <span class="me-2 text-xs font-weight-bold">60%</span>
-                          <div>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle">
-                        <button class="btn btn-link text-secondary mb-0">
-                          <i class="fa fa-ellipsis-v text-xs"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div>
-                            <img src="../assets/img/small-logos/logo-invision.svg" class="avatar avatar-sm rounded-circle me-2" alt="invision">
-                          </div>
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Invision</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">$5,000</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">done</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <div class="d-flex align-items-center justify-content-center">
-                          <span class="me-2 text-xs font-weight-bold">100%</span>
-                          <div>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle">
-                        <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                          <i class="fa fa-ellipsis-v text-xs"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div>
-                            <img src="../assets/img/small-logos/logo-jira.svg" class="avatar avatar-sm rounded-circle me-2" alt="jira">
-                          </div>
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Jira</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">$3,400</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">canceled</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <div class="d-flex align-items-center justify-content-center">
-                          <span class="me-2 text-xs font-weight-bold">30%</span>
-                          <div>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="30" style="width: 30%;"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle">
-                        <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                          <i class="fa fa-ellipsis-v text-xs"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div>
-                            <img src="../assets/img/small-logos/logo-slack.svg" class="avatar avatar-sm rounded-circle me-2" alt="slack">
-                          </div>
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Slack</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">$1,000</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">canceled</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <div class="d-flex align-items-center justify-content-center">
-                          <span class="me-2 text-xs font-weight-bold">0%</span>
-                          <div>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0" style="width: 0%;"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle">
-                        <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                          <i class="fa fa-ellipsis-v text-xs"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div>
-                            <img src="../assets/img/small-logos/logo-webdev.svg" class="avatar avatar-sm rounded-circle me-2" alt="webdev">
-                          </div>
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Webdev</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">$14,000</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">working</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <div class="d-flex align-items-center justify-content-center">
-                          <span class="me-2 text-xs font-weight-bold">80%</span>
-                          <div>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="80" style="width: 80%;"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle">
-                        <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                          <i class="fa fa-ellipsis-v text-xs"></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div>
-                            <img src="../assets/img/small-logos/logo-xd.svg" class="avatar avatar-sm rounded-circle me-2" alt="xd">
-                          </div>
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Adobe XD</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-bold mb-0">$2,300</p>
-                      </td>
-                      <td>
-                        <span class="text-xs font-weight-bold">done</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <div class="d-flex align-items-center justify-content-center">
-                          <span class="me-2 text-xs font-weight-bold">100%</span>
-                          <div>
-                            <div class="progress">
-                              <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle">
-                        <button class="btn btn-link text-secondary mb-0" aria-haspopup="true" aria-expanded="false">
-                          <i class="fa fa-ellipsis-v text-xs"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
       <footer class="footer pt-3  ">
         <div class="container-fluid">
           <div class="row align-items-center justify-content-lg-between">

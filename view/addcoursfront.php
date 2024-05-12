@@ -28,7 +28,7 @@ if (
                 $_POST['matiere'] 
             );
             $coursC->addcours($cours);
-            header('Location:espace_enseignant.php');
+            header('Location:coursenseignant.php');
     }
 }
 ?>
