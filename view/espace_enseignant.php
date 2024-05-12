@@ -102,6 +102,16 @@
       <h1>EXAMS</h1>
       </a>
     </div>
+    
+    <div class="overlay"></div>
+  </div>
+  <div id="recrut" class="section">
+    <div class="content">
+      <a href="recrut.php">
+      <h1>RECRUT</h1>
+      </a>
+    </div>
+    
     <div class="overlay"></div>
   </div>
 </div>
