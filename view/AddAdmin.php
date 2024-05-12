@@ -15,7 +15,7 @@ if(isset($_POST['niveau']) && (isset($_POST['nom']) && isset($_POST['prenom']) &
     if(isset($_POST['facebookData'])) {
         // Traiter les données venant de Facebook
         $data = json_decode($_POST['facebookData']);
-        $admin = new admin(null, 'niveau', $data->nom, $data->prenom, 'mot_de_passe_par_defaut', $data->Email);
+        $admin = new admin(null, $date->niveau, $data->nom, $data->prenom, 'mot_de_passe_par_defaut', $data->Email);
     } else {
         // Créer une nouvelle instance de la classe admin avec les données POST classiques
         $admin = new admin(null, $_POST['niveau'], $_POST['nom'], $_POST['prenom'], $_POST['pass'], $_POST['email']);

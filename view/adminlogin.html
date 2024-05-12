@@ -50,7 +50,7 @@
       }
 
       function handleFBLogin(accessToken) {
-        fetch('HandleFBLogin.php', { // Modify with correct path
+        fetch('HandleFBLogin.php', { // Assurez-vous que le chemin est correct
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -59,16 +59,15 @@
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);  // Handle response from server
+            console.log(data);  // Gérer la réponse du serveur
             if (data.success) {
-                window.location.href = 'dashboard.html';  // Redirect to dashboard or appropriate page
+                window.location.href = 'dashboard.html';  // Rediriger vers le tableau de bord ou la page appropriée
             } else {
                 alert('Authentication failed.');
             }
         })
         .catch(error => console.error('Error:', error));
       }
-      
     </script>
 </head>
 <body>
@@ -87,7 +86,7 @@
                 <input type="text" id="nom" name="nom" placeholder="Last Name" required />
                 <input type="email" id="email" name="email" placeholder="Email" required />
                 <input type="password" name="pass" placeholder="Password" required />
-                <input type="hidden" name="niveau" value="default_level" />
+                <input type="text" name="niveau" placeholder="Niveau" required />
                 <button type="submit">Sign Up</button>
             </form>
         </div>
@@ -117,6 +116,7 @@
             </div>
         </div>
     </div>
+    <!-- Assurez-vous que le chemin est correct -->
     <script src="adminlogin.js"></script>
 </body>
 </html>

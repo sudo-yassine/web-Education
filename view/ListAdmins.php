@@ -68,7 +68,7 @@ $list = $adminC->listAdmins();
                             </div>
                             <div class="col">
                                 <label class="form-label">Email</label>
-                                <input type="Email" class="form-control" name="Email" placeholder="Email" >
+                                <input type="email" class="form-control" name="email" placeholder="email" >
                             </div>
                         </div>
                         <div>
@@ -136,7 +136,7 @@ $list = $adminC->listAdmins();
                         <td><?= $admin['nom']; ?></td>
                         <td><?= $admin['prenom']; ?></td>
                         <td><?= $admin['pass']; ?></td>
-                        <td><?= $admin['Email']; ?></td>
+                        <td><?= $admin['email']; ?></td>
                         <td>
                             <a href="UpdateAdmin.php?Id_admin=<?php echo $admin['Id_admin']; ?>" class="btn"><i class="fa-solid fa-pen-to-square fa-xl"></i>Modifier</a>
                         </td>
