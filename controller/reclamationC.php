@@ -1,6 +1,6 @@
 <?php
-include '../config.php';
-include '../model/reclamation.php';
+include_once '../config.php';
+include_once '../model/reclamations.php';
 
 /*
 recrut
