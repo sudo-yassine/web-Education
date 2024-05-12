@@ -15,13 +15,16 @@ if (isset($_GET['titre'])) {
                 <td><?= $examen['description']; ?></td>
                 <td><?= $examen['duree']; ?></td>
                 <td><?= $examen['difficulte']; ?></td>
-                <td><?= $examen['date_heure']; ?></td>
-                <td>
-                    <a href="updateexamen.php?id_examen=<?= $examen['id_examen']; ?>" class="btn  btn-success"><i class="fa-solid fa-pen-to-square fa-xl"></i>Modifier</a>
-                </td>
-                <td>
-                    <a href="deleteexamen.php?id_examen=<?= $examen['id_examen']; ?>" class="btn  btn-danger"><i class="fa-solid fa-trash fa-xl"></i>Supprimer</a>
-                </td>
+                <td class="align-middle">
+                                            <a href="updateexamen.php?id_examen=<?= $examen['id_examen']; ?>" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Update">
+                                                Update
+                                            </a>
+                                        </td>
+                                        <td class="align-middle">
+                                            <a href="deleteexamen.php?id_examen=<?= $examen['id_examen']; ?>" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Delete">
+                                                Delete
+                                            </a>
+                                        </td>
             </tr>
             <?php
         }
