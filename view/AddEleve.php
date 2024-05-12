@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['userId'], $_POST['nive
 
     try {
         $eleveC->addEleveDetails($userId, $niveau); // Assurez-vous que cette méthode est bien définie pour ajouter les détails d'un élève
-        header('Location:listeleves.php');
+        header('Location:elevedash.php');
         exit();
     } catch (Exception $e) {
         echo "Erreur: " . $e->getMessage();

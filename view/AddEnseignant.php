@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['userId'], $_POST['spec
 
     try {
         $enseignantC->addenseignantDetails($userId, $specialite); // Assurez-vous que cette méthode est bien définie pour ajouter les détails d'un élève
-        header('Location:listenseignants.php');
+        header('Location:enseignantdash.php');
         exit();
     } catch (Exception $e) {
         echo "Erreur: " . $e->getMessage();
