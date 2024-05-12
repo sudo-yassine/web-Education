@@ -1,0 +1,206 @@
+<?php
+include '../config.php';
+include '../model/examen.php';
+
+class examenC
+{
+
+    public function afficherressources($id_examen)
+    {
+        try {
+            $pdo = config::getConnexion();
+            $query = $pdo->prepare("SELECT * FROM ressources WHERE id_examen = :id");
+            $query->execute(['id' => $id_examen]);
+            return $query->fetchAll();
+        } catch (PDOException $e) {
+           echo $e->getMessage(); 
+        }
+    }
+
+
+    public function afficherexamens()
+    {
+        try {
+            $pdo = config::getConnexion();
+            $query = $pdo->prepare("SELECT * FROM examen");
+            $query->execute();
+            return $query->fetchAll();
+        } catch (PDOException $e) {
+           echo $e->getMessage(); 
+        }
+    }
+
+    public function listexamen()
+    {
+        $sql = "SELECT * FROM examen";
+        $db = config::getConnexion();
+        try {
+            $stmt = $db->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
+        }
+    }
+
+    function deleteexamen($id_examen)
+    {
+        $sql = "DELETE FROM examen WHERE id_examen = :id_examen";
+        $db = config::getConnexion();
+        $req = $db->prepare($sql);
+        $req->bindValue(':id_examen', $id_examen);
+        try {
+            $req->execute();
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
+        }
+    }
+
+    function addexamen($examen)
+    {
+        $sql = "INSERT INTO examen (titre, description, duree, difficulte, date_heure)
+                VALUES (:n, :h, :nv, :c, :dt)";
+        $db = config::getConnexion();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute([
+                'n' => $examen->gettitre(),
+                'h' => $examen->getdescription(),
+                'nv' => $examen->getduree(),
+                'c' => $examen->getdifficulte(),
+                'dt' => $examen->getdateheure(),
+            ]);
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
+
+    function updateexamen($examen, $id_examen)
+    {
+        try {
+            $db = config::getConnexion();
+            $query = $db->prepare(
+                'UPDATE examen SET
+                    titre = :h,
+                    description = :nv,
+                    duree = :c,
+                    difficulte= :a,
+                    date_heure = :dt
+                 WHERE id_examen= :id_examen'
+            );
+            $query->execute([
+                'id_examen' => $id_examen,
+                'h' => $examen->gettitre(),
+                'nv' => $examen->getdescription(),
+                'c' => $examen->getduree(),
+                'a' => $examen->getdifficulte(),
+                'dt' => $examen->getdateheure(),
+                'id_examen' => $id_examen
+            ]);
+            echo $query->rowCount() . " records UPDATED successfully <br>";
+        } catch (PDOException $e) {
+            $e->getMessage();
+        }
+    }
+
+    function showexamen($id_examen)
+    {
+        $sql = "SELECT * from examen where id_examen = $id_examen";
+        $db = config::getConnexion();
+        try {
+            $query = $db->prepare($sql);
+            $query->execute();
+            $examen = $query->fetch();
+            return $examen;
+        } catch (Exception $e) {
+            die('Error: ' . $e->getMessage());
+        }
+    }
+
+    function searchExamenByTitre($titre)
+    {
+        $sql = "SELECT * FROM examen WHERE titre LIKE :titre";
+        $db = config::getConnexion();
+        try {
+            $stmt = $db->prepare($sql);
+            $stmt->bindValue(':titre', '%' . $titre . '%', PDO::PARAM_STR);
+            $stmt->execute();
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
+        }
+    }
+
+    function listexamenByDifficulty($order = 'ASC')
+    {
+        $sql = "SELECT * FROM examen ORDER BY CASE 
+                WHEN difficulte = 'facile' THEN 1 
+                WHEN difficulte = 'moyen' THEN 2 
+                ELSE 3 
+            END $order";
+        $db = config::getConnexion();
+        try {
+            $stmt = $db->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
+        }
+    }
+
+    function listexamenByDate($order = 'ASC')
+    {
+        $sql = "SELECT * FROM examen ORDER BY date_heure $order";
+        $db = config::getConnexion();
+        try {
+            $stmt = $db->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        } catch (Exception $e) {
+            die('Error:' . $e->getMessage());
+        }
+    }
+    public function getAllExams() {
+        try {
+            $pdo = config::getConnexion();
+            $query = $pdo->prepare("SELECT * FROM examen");
+            $query->execute();
+            $examens = [];
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $examen = new examen(
+                    $row['id_examen'],
+                    $row['titre'],
+                    $row['description'],
+                    $row['duree'],
+                    $row['difficulte'],
+                    $row['date_heure']
+                );
+                $examens[] = $examen;
+            }
+            return $examens;
+        } catch (PDOException $e) {
+            echo $e->getMessage(); 
+        }
+    }
+    
+    public function getExamsByDate($date)
+{
+    $db = config::getConnexion();
+    $events = [];
+
+    try {
+        $query = $db->prepare('SELECT * FROM examen WHERE date_heure LIKE :date');
+        $query->bindValue(':date', $date . '%');
+        $query->execute();
+        $events = $query->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+
+    return $events;
+}
+
+    
+}
+?>
