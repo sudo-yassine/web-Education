@@ -19,8 +19,7 @@ if(isset($_POST['niveau']) && (isset($_POST['nom']) && isset($_POST['prenom']) &
     } else {
         // Créer une nouvelle instance de la classe admin avec les données POST classiques
         $admin = new admin(null, $_POST['niveau'], $_POST['nom'], $_POST['prenom'], $_POST['pass'], $_POST['email']);
-    }
-    
+    } 
     $success = $adminC->addAdmin($admin);
 
     if($success) {
@@ -46,7 +45,7 @@ if(isset($_POST['niveau']) && (isset($_POST['nom']) && isset($_POST['prenom']) &
             echo "Erreur d'envoi de l'e-mail : {$mail->ErrorInfo}";
         }
         
-        header('Location: dashboard.html');
+        header('Location: utilisateurdash.php');
         exit();
     } else {
         echo "Une erreur s'est produite lors de l'ajout de l'administrateur. Veuillez réessayer.";

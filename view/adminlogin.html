@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="resources/css/adminlogin.css" />
@@ -13,7 +13,7 @@
           xfbml      : true,
           version    : 'v9.0'
         });
-        FB.AppEvents.logPageView();
+        FB.AppEvents.logPageView();   
       };
 
       (function(d, s, id){
@@ -43,8 +43,8 @@
       function fetchUserData() {
         FB.api('/me', {fields: 'name,email'}, function(response) {
           let nameParts = response.name.split(' ');
-          document.getElementById('prenom').value = nameParts[0];
-          document.getElementById('nom').value = nameParts.slice(1).join(' ');
+          document.getElementById('prenom').value = nameParts[0]; 
+          document.getElementById('nom').value = nameParts.slice(1).join(' '); 
           document.getElementById('email').value = response.email;
         });
       }
@@ -55,7 +55,7 @@
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: accessToken=${encodeURIComponent(accessToken)}
+            body: `accessToken=${encodeURIComponent(accessToken)}`
         })
         .then(response => response.json())
         .then(data => {
@@ -69,74 +69,54 @@
         .catch(error => console.error('Error:', error));
       }
     </script>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container" id="container">
-      <div class="form-container sign-up-container">
-        <form action="AddAdmin.php" method="POST">
-          <h1>Create Account</h1>
-          <div class="social-container">
-            <fb:login-button
-              scope="public_profile,email"
-              onlogin="checkLoginState();"
-            >
-            </fb:login-button>
-          </div>
-          <span>or use your email for registration</span>
-          <input
-            type="text"
-            id="prenom"
-            name="prenom"
-            placeholder="First Name"
-            required
-          />
-          <input
-            type="text"
-            id="nom"
-            name="nom"
-            placeholder="Last Name"
-            required
-          />
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-            required
-          />
-          <input type="password" name="pass" placeholder="Password" required />
-          <input type="text" name="niveau" placeholder="Niveau" required />
-          <button type="submit">Sign Up</button>
-        </form>
-      </div>
-      <div class="form-container sign-in-container">
-        <form action="ValidateLogin.php" method="POST">
-          <h1>Sign in</h1>
-          <div class="social-container">
-            <fb:login-button
-              scope="public_profile,email"
-              onlogin="checkLoginState();"
-            >
-            </fb:login-button>
-          </div>
-          <span>or use your account</span>
-          <input type="email" name="Email" placeholder="Email" required />
-          <input type="password" name="pass" placeholder="Password" required />
-          <a href="#">Forgot your password?</a>
-          <button type="submit">Sign In</button>
-        </form>
-      </div>
-      <div class="overlay-container">
-        <div class="overlay">
-          <div class="overlay-panel overlay-right">
-            <h1>Hello, Friend!</h1>
-            <p>Enter your personal details and start journey with us</p>
-            <button class="ghost" id="signUp">Sign Up</button>
-          </div>
+        <div class="form-container sign-up-container">
+            <form action="AddAdmin.php" method="POST">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <fb:login-button 
+                        scope="public_profile,email"
+                        onlogin="checkLoginState();">
+                    </fb:login-button>
+                </div>
+                <span>or use your email for registration</span>
+                <input type="text" id="prenom" name="prenom" placeholder="First Name" required />
+                <input type="text" id="nom" name="nom" placeholder="Last Name" required />
+                <input type="email" id="email" name="email" placeholder="Email" required />
+                <input type="password" name="pass" placeholder="Password" required />
+                <input type="text" name="niveau" placeholder="Niveau" required />
+                <button type="submit">Sign Up</button>
+            </form>
         </div>
-      </div>
+        <div class="form-container sign-in-container">
+            <form action="ValidateLogin.php" method="POST">
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <fb:login-button 
+                        scope="public_profile,email"
+                        onlogin="checkLoginState();">
+                    </fb:login-button>
+                </div>
+                <span>or use your account</span>
+                <input type="email" name="Email" placeholder="Email" required />
+                <input type="password" name="pass" placeholder="Password" required />
+                <a href="#">Forgot your password?</a>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Assurez-vous que le chemin est correct -->
     <script src="adminlogin.js"></script>
-  </body>
+</body>
 </html>

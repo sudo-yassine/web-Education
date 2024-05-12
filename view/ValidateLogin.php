@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($isValid) {
             $_SESSION['user_email'] = $email; // Stocker l'email dans la session
-            header('Location: dashboard.html'); // Redirection vers dashboard.html
+            header('Location: utilisateurdash.html'); // Redirection vers dashboard.html
             exit();
         } else {
             echo json_encode(['success' => false, 'message' => 'Invalid credentials']);
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($adminExists) {
             $_SESSION['user_email'] = $email;
-            header('Location: dashboard.html'); // Redirection vers dashboard.html
+            header('Location: utilisateurdash.php'); // Redirection vers dashboard.html
             exit();
         } else {
             echo json_encode(['success' => false, 'message' => 'User does not exist']);
