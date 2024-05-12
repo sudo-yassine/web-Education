@@ -427,7 +427,7 @@ $examen = $ExamenC->afficherexamens();
             <a class="footer-logo-link" href="#">
               <span class="hidden-link-text">LOGO</span>
               
-              <img src="./resources/img/wisdomwave.png" alt="logo" height="125" width="175">
+              <img src="./resources/img/wisdom_wave_blanc.png" alt="logo" height="125" width="175">
             </a>
           </div>
           <div class="footer-menu">
