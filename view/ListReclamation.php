@@ -68,10 +68,6 @@
 include '../Controller/reclamationC.php';
 $reclamationC = new reclamationC();
 $list = $reclamationC->ListReclamtion();
-
-
-
-
 ?>
 
 <!DOCTYPE html>
