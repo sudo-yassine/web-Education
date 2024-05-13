@@ -27,7 +27,7 @@ if (
             $date_heure   
         );
         $examenC->updateexamen($examen, $_GET['id_examen']);
-        header('Location:listexamen.php');
+        header('Location:examendash.php');
     } else
         $error = "Missing information";
 }

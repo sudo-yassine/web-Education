@@ -27,7 +27,7 @@ if (
             $date_heure // Utilisation de la date et de l'heure actuelles
         );
         $examenC->addexamen($examen);
-        header('Location:listexamen.php');
+        header('Location:examendash.php');
     } else {
         $error = "Missing information";
     }
