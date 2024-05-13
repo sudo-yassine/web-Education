@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 );
 
                 $ressourcesC->addressources($ressources);
-                header('Location:listressources.php');
+                header('Location:ressourcesdash.php');
                 exit();
             } else {
                 $error = "Une erreur s'est produite lors du téléchargement de l'image.";

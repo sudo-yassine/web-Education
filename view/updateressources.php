@@ -24,7 +24,7 @@ if (
             $_POST['id_examen']
         );
         $ressourcesC->updateressources($ressources, $_GET['id_ressources']);
-        header('Location:listressources.php');
+        header('Location:ressourcesdash.php');
     } else
         $error = "Missing information";
 }
